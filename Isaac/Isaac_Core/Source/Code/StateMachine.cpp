@@ -49,7 +49,9 @@ namespace Core
   void CStateMachine::mp_InitCurrentState(sf::Event av_Event)
   {
     bool lv_bCheckForAutomaticBlock;
-    mv_xCurrentState = std::const_pointer_cast<Foundation::Interfaces::IState>(mv_xStateOrchestrator->mf_xGetStateToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event));
+    std::pair< std::shared_ptr<const Foundation::Interfaces::IState >, const CString> lv_StateAndTrigger = mv_xStateOrchestrator->mf_xGetStateToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
+    mv_xCurrentState = std::const_pointer_cast<Foundation::Interfaces::IState>(lv_StateAndTrigger.first);
+    mv_szLastTriggerName = lv_StateAndTrigger.second;
 
     if (mv_xCurrentState != mv_xPrevState && mv_xPrevState != nullptr)
     {
@@ -147,13 +149,13 @@ namespace Core
 
   void CStateMachine::mp_ReleseState(std::shared_ptr< Foundation::Interfaces::IState >& av_xStateToRelease)
   {
-    av_xStateToRelease->mp_Release();
+    av_xStateToRelease->mp_Release(mc_xTransientData, mv_szLastTriggerName);
     if (av_xStateToRelease->mf_bIsSubState())
     {
       do
       {
         av_xStateToRelease = std::const_pointer_cast<Foundation::Interfaces::IState>(mv_xPrevState->mf_xGetFatherState());
-        av_xStateToRelease->mp_Release();
+        av_xStateToRelease->mp_Release(mc_xTransientData, mv_szLastTriggerName);
       } while (av_xStateToRelease->mf_bIsSubState());
     }
   }

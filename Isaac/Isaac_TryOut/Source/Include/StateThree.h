@@ -20,7 +20,7 @@ public:
 
   void mp_DrawState(std::shared_ptr<sf::RenderWindow> av_pMainWindow) const;
 
-  void mp_Release();
+  void mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName);
 
   ~StateThree();
 };

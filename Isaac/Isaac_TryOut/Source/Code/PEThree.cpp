@@ -33,7 +33,7 @@ void PEThree::mp_DrawState(std::shared_ptr<sf::RenderWindow> ac_xMainWindow) con
 
 }
 
-void PEThree::mp_Release()
+void PEThree::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
 {
 
 }

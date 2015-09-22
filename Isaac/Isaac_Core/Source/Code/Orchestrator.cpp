@@ -46,10 +46,11 @@ namespace Core
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is null");
 
     mv_bIsThisFirstTimeHere = true;
+    mv_szLastTriggerName = "NoTrigger";
     mp_OrganizeDynamicStates();
   }
 
-  const std::shared_ptr<const Foundation::Interfaces::IState>& COrchestrator::mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
+  std::pair<std::shared_ptr< const Foundation::Interfaces::IState >, const CString>  COrchestrator::mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
   {
     av_bHasAnyTriggerDisturbed = false;
     if (mc_xTransitionCollection->mp_GetSize() == 0)
@@ -87,8 +88,9 @@ namespace Core
               if (lv_pTransition.second->mf_bCheckTransition(av_Event))
               {
                 mc_xCurrentState = lv_pTransition.second->mf_xGetDestinationState();
+                mv_szLastTriggerName = lv_pTransition.second->mf_xGetTrigger()->mf_szGetTriggerName();
                 av_bHasAnyTriggerDisturbed = true;
-                return mc_xCurrentState;
+                return std::make_pair(mc_xCurrentState, mv_szLastTriggerName);
                 break;
               }
               else
@@ -100,7 +102,7 @@ namespace Core
         }
       }
     }
-    return mc_xCurrentState;
+    return std::make_pair(mc_xCurrentState, mv_szLastTriggerName);
   }
 
   std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& COrchestrator::mf_xGetTriggersPerState() const

@@ -189,7 +189,7 @@ namespace Foundation
         }
       }
 
-      virtual void mp_Release()
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
       {
         if (mp_GetSize() > 0)
         {
@@ -207,7 +207,7 @@ namespace Foundation
               BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
               if (lc_xProcess != nullptr)
               {
-                lc_xProcess->mp_Release();
+                lc_xProcess->mp_Release(av_xTransientData, ac_szTriggerName);
               }
             }
           }

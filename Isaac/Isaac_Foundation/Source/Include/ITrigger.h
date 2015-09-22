@@ -48,7 +48,6 @@ namespace Foundation
     {
     protected:
       const CString* mc_szTriggerName;
-      //std::map<const CString, const boost::any>* mv_mapInputParameter;
 
     public:
       ITrigger(const CString &ac_szTriggerName) : mc_szTriggerName(&ac_szTriggerName)
@@ -58,12 +57,6 @@ namespace Foundation
 
       const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
 
-
-      bool virtual mf_bUpdateTransientDataOnTrigger()
-      {
-        return true;
-      }
-
       const CString mf_szGetTriggerName() const
       {
         return *mc_szTriggerName;
@@ -72,7 +65,6 @@ namespace Foundation
       virtual ~ITrigger()
       {
         delete mc_szTriggerName;
-        //delete mv_mapInputParameter;
       }
     };
   }

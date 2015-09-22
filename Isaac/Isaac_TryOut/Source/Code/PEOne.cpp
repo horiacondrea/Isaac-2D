@@ -33,7 +33,7 @@ void PEOne::mp_DrawState(std::shared_ptr<sf::RenderWindow> ac_xMainWindow) const
 
 }
 
-void PEOne::mp_Release()
+void PEOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
 {
 
 }

@@ -40,7 +40,7 @@ void StateOne::mp_DrawState(std::shared_ptr<sf::RenderWindow> av_xMainWindow) co
   av_xMainWindow->draw(*mv_pRect);
 }
 
-void StateOne::mp_Release()
+void StateOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
 {
   delete mv_pRect;
 }

@@ -75,7 +75,7 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release() = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const CString& ac_szTriggerName) = 0;
 
       void mp_addStartTrigger(std::shared_ptr<const Interfaces::ITrigger>& ac_xStartTrigger) const
       {

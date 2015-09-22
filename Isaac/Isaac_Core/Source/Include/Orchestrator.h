@@ -63,6 +63,7 @@ namespace Core
     mutable bool mv_bIsThisFirstTimeHere;
     mutable std::shared_ptr< Foundation::Interfaces::ITriggerCollection > mv_xTriggersPerState;
     mutable std::map<const CString, const bool> mv_mapDynamicMapMirror;
+    mutable CString mv_szLastTriggerName;
 
   public:
 
@@ -84,7 +85,7 @@ namespace Core
     // see if any trigger has been disturbed.
     /////////////////////////////////////////////////////////////////////////////
     */
-    const std::shared_ptr< const Foundation::Interfaces::IState >& mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
+    std::pair< std::shared_ptr< const Foundation::Interfaces::IState >, const CString> mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
 
     /*                         mf_pGetTriggersPerState
     /////////////////////////////////////////////////////////////////////////////

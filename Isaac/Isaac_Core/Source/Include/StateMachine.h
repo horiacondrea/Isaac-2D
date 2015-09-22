@@ -64,6 +64,8 @@ namespace Core
     bool mv_bHasThisStateInit;
     std::list< std::pair<std::shared_ptr< Foundation::Interfaces::IState >, bool> > mv_mapHierarchyOfStates;
 
+    CString mv_szLastTriggerName;
+
   public:
 
     // Constructor
