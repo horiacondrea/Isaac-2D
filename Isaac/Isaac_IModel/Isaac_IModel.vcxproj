@@ -55,7 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Isaac_ThirdParty\SFML 2.1\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\Isaac_ThirdParty\SFML 2.1\include;..\Isaac_ThirdParty\Boost\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\Isaac_ThirdParty\SFML 2.1\lib\Debug;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\Output\Debug\</OutDir>
   </PropertyGroup>

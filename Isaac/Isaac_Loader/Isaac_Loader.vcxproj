@@ -44,7 +44,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\Output\Debug\</OutDir>
-    <IncludePath>..\Isaac_Triggers\Source\Include;..\Isaac_Foundation\Source\Include;..\Isaac_Core\Source\Include;D:\Develop\Engines\boost vs 12\boost_1_55_0;$(IncludePath)</IncludePath>
+    <IncludePath>..\Isaac_Triggers\Source\Include;..\Isaac_Foundation\Source\Include;..\Isaac_Core\Source\Include;..\Isaac_ThirdParty\Boost\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

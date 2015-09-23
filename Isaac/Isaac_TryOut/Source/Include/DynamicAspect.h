@@ -1,8 +1,6 @@
 #pragma once
 #include <IDynamicAspect.h>
-#ifdef DEBUG
-#include <vld.h>
-#endif
+
 
 class __declspec(dllexport) DynamicAspect : public Foundation::Interfaces::IDynamicAspect
 {

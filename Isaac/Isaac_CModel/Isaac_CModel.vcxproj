@@ -43,7 +43,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\Isaac\Isaac_IModel\Source\Include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Isaac\Isaac_IModel\Source\Include;..\Isaac_ThirdParty\Boost\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Output\Debug\;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\Output\Debug\</OutDir>
   </PropertyGroup>

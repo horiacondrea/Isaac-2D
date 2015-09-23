@@ -33,9 +33,7 @@ Revision | Who      | Date       | Comment
 #include <memory>
 #include <atlstr.h>
 
-#ifdef DEBUG
-#include <vld.h>
-#endif
+
 
 
 namespace Foundation

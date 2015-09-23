@@ -35,9 +35,7 @@ Revision | Who      | Date       | Comment
 #include <IDynamicAspect.h>
 #include <IStateCollection.h>
 #include <atlstr.h>
-#ifdef DEBUG
-#include <vld.h>
-#endif
+
 /////////////////////////////////////////////////////////////////////////////
 
 /*                                Core 

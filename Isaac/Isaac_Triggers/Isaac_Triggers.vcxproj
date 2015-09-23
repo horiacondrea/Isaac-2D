@@ -65,7 +65,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\Output\Debug\</OutDir>
-    <IncludePath>..\Isaac_Foundation\Source\Include;D:\Framework\Isaac\Isaac\Isaac_IModel\Source\Include;D:\Framework\Isaac\Isaac\Isaac_CModel\Source\Include;$(IncludePath)</IncludePath>
+    <IncludePath>..\Isaac_Foundation\Source\Include;..\Isaac_IModel\Source\Include;..\Isaac_CModel\Source\Include;..\Isaac_ThirdParty\Boost\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
