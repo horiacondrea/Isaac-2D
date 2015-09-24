@@ -18,33 +18,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Isaac_CModel", "Isaac_CModel\Isaac_CModel.vcxproj", "{7B1BCC0E-4FD6-40D5-8C63-DCE93B9CDDFA}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://hcondre.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Isaac_CModel\\Isaac_CModel.vcxproj
-		SccProjectName1 = Isaac_CModel
-		SccLocalPath1 = Isaac_CModel
-		SccProjectUniqueName2 = Isaac_Core\\Isaac_Core.vcxproj
-		SccProjectName2 = Isaac_Core
-		SccLocalPath2 = Isaac_Core
-		SccProjectUniqueName3 = Isaac_Foundation\\Isaac_Foundation.vcxproj
-		SccProjectName3 = Isaac_Foundation
-		SccLocalPath3 = Isaac_Foundation
-		SccProjectUniqueName4 = Isaac_IModel\\Isaac_IModel.vcxproj
-		SccProjectName4 = Isaac_IModel
-		SccLocalPath4 = Isaac_IModel
-		SccProjectUniqueName5 = Isaac_Loader\\Isaac_Loader.vcxproj
-		SccProjectName5 = Isaac_Loader
-		SccLocalPath5 = Isaac_Loader
-		SccProjectUniqueName6 = Isaac_Triggers\\Isaac_Triggers.vcxproj
-		SccProjectName6 = Isaac_Triggers
-		SccLocalPath6 = Isaac_Triggers
-		SccProjectUniqueName7 = Isaac_TryOut\\Isaac_TryOut.vcxproj
-		SccProjectName7 = Isaac_TryOut
-		SccLocalPath7 = Isaac_TryOut
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|Win32 = Debug|Win32
