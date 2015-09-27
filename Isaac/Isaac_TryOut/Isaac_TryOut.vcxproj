@@ -85,8 +85,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\Output\Release\</OutDir>
-    <IncludePath>..\Isaac_Triggers\Source\Include;..\Isaac_Foundation\Source\Include;..\Isaac_Core\Source\Include;D:\Develop\Engines\boost vs 12\boost_1_55_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Develop\Engines\boost vs 12\boost_1_55_0\bin.v2\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Isaac_Triggers\Source\Include;..\Isaac_Foundation\Source\Include;..\Isaac_Core\Source\Include;..\Isaac_ThirdParty\Boost\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
