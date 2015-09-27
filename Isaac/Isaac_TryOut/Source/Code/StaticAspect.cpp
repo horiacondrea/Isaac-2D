@@ -8,16 +8,16 @@ StaticAspect::StaticAspect()
 
 void StaticAspect::mp_Define_States() const
 {
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s1 = std::make_shared<StateOne>(_T("State1"));
+  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s1 = std::make_shared<StateOne>(("State1"));
   mp_AddState(s1);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s2 = std::make_shared<StateTwo>(_T("State2"));
+  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s2 = std::make_shared<StateTwo>(("State2"));
   mp_AddState(s2);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s3 = std::make_shared<StateThree>(_T("State3"));
+  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s3 = std::make_shared<StateThree>(("State3"));
   mp_AddState(s3);
 
-  const std::shared_ptr<const Foundation::Interfaces::IDynamicState> s4 = std::make_shared<DynamicState>(_T("Dyn"));
+  const std::shared_ptr<const Foundation::Interfaces::IDynamicState> s4 = std::make_shared<DynamicState>(("Dyn"));
   mp_AddState(s4);
 
 
@@ -27,10 +27,10 @@ void StaticAspect::mp_Define_States() const
 
 void StaticAspect::mp_Define_Triggers() const
 {
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t1 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, _T("t1"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t2 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, _T("t2"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t3 = std::make_shared<Triggers::CClickOnShape>(_T("t3"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t4 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, _T("t4"));
+  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t1 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t1"));
+  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t2 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t2"));
+  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t3 = std::make_shared<Triggers::CClickOnShape>(("t3"));
+  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t4 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t4"));
 
   mp_AddTrigger(t1);
   mp_AddTrigger(t2);

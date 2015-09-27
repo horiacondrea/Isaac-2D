@@ -45,7 +45,7 @@ namespace Foundation
     {
     public:
 
-      virtual const std::shared_ptr<const Interfaces::IProcessingElement>& mf_xGetPEByName(const CString&) const = 0;
+      virtual const std::shared_ptr<const Interfaces::IProcessingElement>& mf_xGetPEByName(const char*) const = 0;
 
       virtual std::shared_ptr<const Interfaces::ITriggerCollection> mf_xGetAllStartTriggers() const = 0;
 

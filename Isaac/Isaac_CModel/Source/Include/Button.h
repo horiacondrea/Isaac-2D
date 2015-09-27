@@ -28,7 +28,6 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <IButton.h>
-#include <atlstr.h>
 #include <string>
 
 namespace CModel

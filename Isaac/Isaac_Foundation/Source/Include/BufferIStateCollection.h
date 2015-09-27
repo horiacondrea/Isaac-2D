@@ -38,7 +38,7 @@ namespace Foundation
   public:
     CBufferIStateCollection();
 
-    const std::shared_ptr<const Interfaces::IState>& mf_xGetStateByName(const CString& av_szStateName) const;
+    const std::shared_ptr<const Interfaces::IState>& mf_xGetStateByName(const char* av_szStateName) const;
 
     virtual ~CBufferIStateCollection();
 

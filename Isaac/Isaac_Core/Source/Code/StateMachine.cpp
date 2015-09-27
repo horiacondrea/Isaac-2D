@@ -49,7 +49,7 @@ namespace Core
   void CStateMachine::mp_InitCurrentState(sf::Event av_Event)
   {
     bool lv_bCheckForAutomaticBlock;
-    std::pair< std::shared_ptr<const Foundation::Interfaces::IState >, const CString> lv_StateAndTrigger = mv_xStateOrchestrator->mf_xGetStateToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
+    std::pair< std::shared_ptr<const Foundation::Interfaces::IState >, const char*> lv_StateAndTrigger = mv_xStateOrchestrator->mf_xGetStateToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
     mv_xCurrentState = std::const_pointer_cast<Foundation::Interfaces::IState>(lv_StateAndTrigger.first);
     mv_szLastTriggerName = lv_StateAndTrigger.second;
 

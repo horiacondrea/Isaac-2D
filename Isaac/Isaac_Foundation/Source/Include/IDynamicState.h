@@ -33,7 +33,6 @@ Revision | Who      | Date       | Comment
 #include "BufferIPECollection.h"
 #include "IState.h"
 #include <memory>
-#include <atlstr.h>
 
 namespace Foundation
 {
@@ -65,12 +64,7 @@ namespace Foundation
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
 
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
+              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
               if (lc_xProcess != nullptr)
               {
                 lc_xProcess->mp_InitProcess(av_xMainWindow, ac_xTransientData);
@@ -91,11 +85,6 @@ namespace Foundation
             if (item.second->mf_bIsActive())
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
               if (lc_xProcess != nullptr)
               {
                 auto& lc_xLocalTriggers = std::const_pointer_cast<Interfaces::ITriggerCollection>(mf_xGetAllTriggers());
@@ -124,12 +113,7 @@ namespace Foundation
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
 
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
+              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
               if (lc_xProcess != nullptr)
               {
                 lc_xProcess->mp_UpdateState(av_xMainWindow, ac_xTransientData, av_eventSFMLEvent, av_bReturnedBool_WindowClosed);
@@ -148,12 +132,8 @@ namespace Foundation
         if (lc_xNewPE != nullptr)
         {
           auto & lv_xNewProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(lc_xNewPE);
-#ifndef debug
-          CString msg;
-          msg.Format("Process %s is NULL", lv_xNewProcess->mf_szGetPEIdentifier());
-#endif // !debug
 
-          BOOST_ASSERT_MSG(lv_xNewProcess != nullptr, msg);
+          BOOST_ASSERT_MSG(lv_xNewProcess != nullptr, "Process is NULL");
 
           if (lv_xNewProcess != nullptr)
           {
@@ -174,12 +154,7 @@ namespace Foundation
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
 
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
+              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
               if (lc_xProcess != nullptr)
               {
                 lc_xProcess->mp_DrawState(av_xMainWindow);
@@ -189,7 +164,7 @@ namespace Foundation
         }
       }
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
       {
         if (mp_GetSize() > 0)
         {
@@ -199,12 +174,7 @@ namespace Foundation
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
 
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
+              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
               if (lc_xProcess != nullptr)
               {
                 lc_xProcess->mp_Release(av_xTransientData, ac_szTriggerName);
@@ -229,12 +199,7 @@ namespace Foundation
             {
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
 
-#ifndef debug
-              CString msg;
-              msg.Format("Process %s is NULL", item.first);
-#endif // !debug
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, msg);
+              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
               if (lc_xProcess != nullptr)
               {
                 lc_xProcess->mp_ResetProcess();
@@ -249,7 +214,7 @@ namespace Foundation
       }
 
     protected:
-      IDynamicState(const CString ac_szStateName) : IState(ac_szStateName)
+      IDynamicState(const char* ac_szStateName) : IState(ac_szStateName)
       {
         ;
       }
@@ -257,11 +222,11 @@ namespace Foundation
     private:
       std::shared_ptr<const Interfaces::IProcessingElement> mf_bCheckAllPE(sf::Event event) const
       {
-        CString lc_szPEActivated;
+        const char* lc_szPEActivated = nullptr;
         for (const auto& item : *mf_mapGetRawMap())
         {
           item.second->mp_CheckTriggers(lc_szPEActivated, event);
-          if (lc_szPEActivated != _T(""))
+          if (lc_szPEActivated != nullptr)
           {
             return item.second;
           }

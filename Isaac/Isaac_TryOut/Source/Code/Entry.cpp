@@ -8,7 +8,7 @@ int CreateGame()
 
   Core::CGame::instance().mp_DefineGameAspect(lv_xDynAspect);
 
-  Core::CGame::instance().mp_Start(_T("Game"), 800, 600);
+  Core::CGame::instance().mp_Start(("Game"), 800, 600);
 
   return 0;
 }

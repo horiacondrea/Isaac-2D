@@ -1,7 +1,7 @@
 #include "..\Include\StateTwo.h"
 
 
-StateTwo::StateTwo(const CString& ac_szStateName) :
+StateTwo::StateTwo(const char* ac_szStateName) :
 Foundation::Interfaces::IStaticState(ac_szStateName)
 {
   ;
@@ -31,7 +31,7 @@ void StateTwo::mp_DrawState(std::shared_ptr<sf::RenderWindow> av_pMainWindow) co
 
 }
 
-void StateTwo::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
+void StateTwo::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
 {
 
 }

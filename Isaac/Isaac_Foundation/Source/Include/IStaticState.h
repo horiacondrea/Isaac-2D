@@ -32,7 +32,6 @@ Revision | Who      | Date       | Comment
 #include "ITransientData.h"
 #include "IState.h"
 #include <memory>
-#include <atlstr.h>
 
 namespace Foundation
 {
@@ -58,7 +57,7 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName) = 0;
 
       virtual bool mp_bIsDynamicState() const
       {
@@ -70,7 +69,7 @@ namespace Foundation
       }
 
     protected:
-      IStaticState(const CString ac_szStateName) : IState(ac_szStateName)
+      IStaticState(const char* ac_szStateName) : IState(ac_szStateName)
       {
         ;
       }

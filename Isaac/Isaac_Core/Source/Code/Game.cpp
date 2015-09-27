@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Core
 {
 
-  void CGame::mp_Start(const CString &av_szGameTitle, const unsigned int &av_nGameWidth = 800, const unsigned int &av_nGameHeigh = 600)
+  void CGame::mp_Start(const char* av_szGameTitle, const unsigned int &av_nGameWidth = 800, const unsigned int &av_nGameHeigh = 600)
   {
     mv_xMainWindow = std::make_shared<sf::RenderWindow>();
 
@@ -40,14 +40,14 @@ namespace Core
     BOOST_ASSERT_MSG(mc_xTransientData != nullptr, "Transient data is not defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is not defined");
 
-    if(av_szGameTitle            != _T("")  && 
+    if(av_szGameTitle            != nullptr  && 
       mc_xStateCollection        != nullptr &&
       mc_xStateCollection->mp_GetSize() > 0 && 
       mc_xTransientData          != nullptr &&
       mc_xTransitionCollection   != nullptr && 
       mv_xMainWindow             != nullptr )
     {
-      mv_xMainWindow->create(sf::VideoMode(av_nGameWidth, av_nGameHeigh), (LPCSTR)av_szGameTitle, sf::Style::Close);
+      mv_xMainWindow->create(sf::VideoMode(av_nGameWidth, av_nGameHeigh), av_szGameTitle, sf::Style::Close);
 
       mv_xStateOrchestrator = std::make_shared<Core::COrchestrator>(mc_xInitialState, mc_xStateCollection, mc_xTransitionCollection);
       mv_xStateMachine = std::make_shared<Core::CStateMachine>(mv_xMainWindow, mv_xStateOrchestrator, mc_xTransientData);

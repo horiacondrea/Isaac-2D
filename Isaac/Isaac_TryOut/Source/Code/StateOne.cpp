@@ -2,7 +2,7 @@
 #include <ITrigger.h>
 
 
-StateOne::StateOne(const CString& ac_szStateName) :
+StateOne::StateOne(const char* ac_szStateName) :
 Foundation::Interfaces::IStaticState(ac_szStateName)
 {
   ;
@@ -16,7 +16,7 @@ void StateOne::mp_InitState(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
 
 void StateOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl)
 {
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> lv_pTrigger = ac_xGlobalTriggersColl->mf_xGetTriggerByName(_T("t1"));
+  const std::shared_ptr<const Foundation::Interfaces::ITrigger> lv_pTrigger = ac_xGlobalTriggersColl->mf_xGetTriggerByName(("t1"));
   const std::shared_ptr<Triggers::CElementPositionTrigger> lv_pPosition =
     std::const_pointer_cast<Triggers::CElementPositionTrigger>(std::static_pointer_cast<const Triggers::CElementPositionTrigger>(lv_pTrigger));
 
@@ -40,7 +40,7 @@ void StateOne::mp_DrawState(std::shared_ptr<sf::RenderWindow> av_xMainWindow) co
   av_xMainWindow->draw(*mv_pRect);
 }
 
-void StateOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
+void StateOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
 {
   delete mv_pRect;
 }

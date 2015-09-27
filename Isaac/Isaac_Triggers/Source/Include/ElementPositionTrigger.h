@@ -29,7 +29,6 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include <ITrigger.h>
 #include "SFML\Graphics.hpp"
-#include <atlstr.h>
 
 namespace Triggers
 {
@@ -59,7 +58,7 @@ namespace Triggers
     const bool mp_CalculateTrigger() const;
 
   public:
-    CElementPositionTrigger(const Position ac_enumPosition , const CString ac_szTriggerName);
+    CElementPositionTrigger(const Position ac_enumPosition , const char* ac_szTriggerName);
     virtual ~CElementPositionTrigger();
 
     void mp_InitTrigger( sf::Shape* ac_pShape, const double ac_dfPosition);

@@ -31,7 +31,6 @@ Revision | Who      | Date       | Comment
 #include "ITriggerCollection.h"
 #include "ITransientData.h"
 #include <memory>
-#include <atlstr.h>
 
 
 
@@ -60,11 +59,11 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const CString& ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const char* ac_szTriggerName) = 0;
 
       virtual bool mp_bIsDynamicState() const = 0;
 
-      virtual const CString& mf_szGetStateName() const
+      virtual const char* mf_szGetStateName() const
       {
         return mc_szStateName;
       }
@@ -103,7 +102,7 @@ namespace Foundation
 
     protected:
 
-      IState(const CString ac_szStateName) : mc_szStateName(ac_szStateName)
+      IState(const char* ac_szStateName) : mc_szStateName(ac_szStateName)
       {
         
       }
@@ -111,7 +110,7 @@ namespace Foundation
       mutable std::shared_ptr<const Interfaces::IState> mv_xFatherState;
       mutable bool mv_bIsFatherStateActive;
 
-      const CString mc_szStateName;
+      const char* mc_szStateName;
     };
   }
 }

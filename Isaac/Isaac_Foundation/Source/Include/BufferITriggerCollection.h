@@ -37,9 +37,9 @@ namespace Foundation
   public:
     CBufferITriggerCollection();
 
-    bool mf_bRemoveTrigger(const CString& ac_szTriggerIdentifier);
+    bool mf_bRemoveTrigger(const char* ac_szTriggerIdentifier);
 
-    const std::shared_ptr<const Foundation::Interfaces::ITrigger>& mf_xGetTriggerByName(const CString& ac_szTriggerIdentifier) const;
+    const std::shared_ptr<const Foundation::Interfaces::ITrigger>& mf_xGetTriggerByName(const char* ac_szTriggerIdentifier) const;
 
     virtual ~CBufferITriggerCollection();
 

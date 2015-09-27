@@ -5,7 +5,7 @@
 class DynamicState : public Foundation::Interfaces::IDynamicState
 {
 public:
-  DynamicState(const CString& ac_szStateName);
+  DynamicState(const char* ac_szStateName);
 
   void mp_DefineProcess() const;
 

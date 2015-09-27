@@ -33,23 +33,23 @@ namespace Foundation
 
   BufferITransitionCollection::BufferITransitionCollection()
   {
-    mv_mapSmartCollection = new std::map<const CString, const std::shared_ptr<const Foundation::CTransition>>();
+    mv_mapSmartCollection = new std::map<const char*, const std::shared_ptr<const Foundation::CTransition>>();
   }
 
-  void BufferITransitionCollection::mp_AddTransition(const CString& ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const
+  void BufferITransitionCollection::mp_AddTransition(const char* ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const
   {
-    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != _T(""), "Empty string provided");
+    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != nullptr, "Empty string provided");
     BOOST_ASSERT_MSG(ac_xTransition != nullptr, "Transition is null");
-    if (ac_szTransitionIdentifier != _T("") && ac_xTransition != nullptr)
+    if (ac_szTransitionIdentifier != nullptr && ac_xTransition != nullptr)
     {
-      mv_mapSmartCollection->insert(std::map<const CString, const std::shared_ptr<const Foundation::CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
+      mv_mapSmartCollection->insert(std::map<const char*, const std::shared_ptr<const Foundation::CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
     }
   }
 
-  bool BufferITransitionCollection::mf_bRemoveTransition(const CString& ac_szTransitionIdentifier) const
+  bool BufferITransitionCollection::mf_bRemoveTransition(const char* ac_szTransitionIdentifier) const
   {
-    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != _T(""), "Empty string provided");
-    if (ac_szTransitionIdentifier != _T(""))
+    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != nullptr, "Empty string provided");
+    if (ac_szTransitionIdentifier != nullptr)
     {
       mv_mapSmartCollection->erase(ac_szTransitionIdentifier);
       return true;
@@ -57,10 +57,10 @@ namespace Foundation
     return false;
   }
 
-  const std::shared_ptr<const Foundation::CTransition>& BufferITransitionCollection::mf_xGetTransitionByName(const CString& ac_szTransitionIdentifier)
+  const std::shared_ptr<const Foundation::CTransition>& BufferITransitionCollection::mf_xGetTransitionByName(const char* ac_szTransitionIdentifier)
   {
-    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != _T(""), "Empty string provided");
-    if (ac_szTransitionIdentifier != _T(""))
+    BOOST_ASSERT_MSG(ac_szTransitionIdentifier != nullptr, "Empty string provided");
+    if (ac_szTransitionIdentifier != nullptr)
     {
       const auto& it = mv_mapSmartCollection->find(ac_szTransitionIdentifier);
       return it->second;

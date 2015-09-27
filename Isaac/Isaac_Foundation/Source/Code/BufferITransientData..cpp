@@ -34,14 +34,14 @@ namespace Foundation
 
   CBufferITransientData::CBufferITransientData()
   {
-    mv_mapCollection = new std::map<const CString, const boost::any>();
+    mv_mapCollection = new std::map<const char*, const boost::any>();
   }
 
-  void CBufferITransientData::mp_AddTransientData(const boost::any ac_data__Data, const CString& ac_szDataIdentifier) const
+  void CBufferITransientData::mp_AddTransientData(const boost::any ac_data__Data, const char* ac_szDataIdentifier) const
   {
-    BOOST_ASSERT_MSG(ac_szDataIdentifier != _T(""), "Empty string provided");
+    BOOST_ASSERT_MSG(ac_szDataIdentifier != nullptr, "Empty string provided");
 
-    if (ac_szDataIdentifier != _T(""))
+    if (ac_szDataIdentifier != nullptr)
     {
       mv_mapCollection->emplace(ac_szDataIdentifier, ac_data__Data);
     }

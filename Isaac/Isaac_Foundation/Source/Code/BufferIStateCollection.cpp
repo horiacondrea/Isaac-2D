@@ -33,7 +33,7 @@ namespace Foundation
 {
   CBufferIStateCollection::CBufferIStateCollection()
   {
-    mv_mapSmartCollection = new std::map<const CString, const std::shared_ptr<const Interfaces::IState>>();
+    mv_mapSmartCollection = new std::map<const char*, const std::shared_ptr<const Interfaces::IState>>();
   }
 
 
@@ -42,14 +42,14 @@ namespace Foundation
     BOOST_ASSERT_MSG(av_xStateToAdd != nullptr, "State to add is null");
     if (av_xStateToAdd != nullptr)
     {
-      mv_mapSmartCollection->insert(std::map<const CString, const std::shared_ptr<const Interfaces::IState>>::value_type(av_xStateToAdd->mf_szGetStateName(), av_xStateToAdd));
+      mv_mapSmartCollection->insert(std::map<const char*, const std::shared_ptr<const Interfaces::IState>>::value_type(av_xStateToAdd->mf_szGetStateName(), av_xStateToAdd));
     }
   }
 
-  const std::shared_ptr<const Interfaces::IState>& CBufferIStateCollection::mf_xGetStateByName(const CString& av_szStateName) const
+  const std::shared_ptr<const Interfaces::IState>& CBufferIStateCollection::mf_xGetStateByName(const char* av_szStateName) const
   {
-    BOOST_ASSERT_MSG(av_szStateName != _T(""), "Empty string provided");
-    if (av_szStateName != _T(""))
+    BOOST_ASSERT_MSG(av_szStateName != nullptr, "Empty string provided");
+    if (av_szStateName != nullptr)
     {
       const auto& it = mv_mapSmartCollection->find(av_szStateName);
       return it->second;

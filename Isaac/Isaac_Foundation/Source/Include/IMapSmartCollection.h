@@ -27,7 +27,6 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <atlstr.h>
 #include <map>
 #include <memory>
 
@@ -45,7 +44,7 @@ namespace Foundation
     /*                          IMapSmartCollection
     /////////////////////////////////////////////////////////////////////////////
     // IMapCollection -> a smart template interfaces used in order to hold a map of
-    // keys (CString) and elemens (shared_ptr<Types>).
+    // keys (char*) and elemens (shared_ptr<Types>).
     /////////////////////////////////////////////////////////////////////////////
     */
     template<class Type>
@@ -58,7 +57,7 @@ namespace Foundation
         return mv_mapSmartCollection->size();
       }
 
-      std::map<const CString, const std::shared_ptr<Type>>* mf_mapGetRawMap() const
+      std::map<const char*, const std::shared_ptr<Type>>* mf_mapGetRawMap() const
       {
         return mv_mapSmartCollection;
       }
@@ -69,7 +68,7 @@ namespace Foundation
       }
 
     protected:
-      mutable std::map<const CString, const std::shared_ptr<Type>>* mv_mapSmartCollection;
+      mutable std::map<const char*, const std::shared_ptr<Type>>* mv_mapSmartCollection;
     };
   }
 }

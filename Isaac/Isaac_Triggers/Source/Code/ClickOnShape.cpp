@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Triggers
 {
 
-  CClickOnShape::CClickOnShape(const CString ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
+  CClickOnShape::CClickOnShape(const char* ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
   {
 
   }

@@ -39,13 +39,13 @@ namespace Foundation
 
     ~BufferITransitionCollection();
 
-    bool mf_bRemoveTransition(const CString& ac_szTransitionIdentifier) const;
+    bool mf_bRemoveTransition(const char* ac_szTransitionIdentifier) const;
 
-    const std::shared_ptr<const Foundation::CTransition>& mf_xGetTransitionByName(const CString& ac_szTransitionIdentifier);
+    const std::shared_ptr<const Foundation::CTransition>& mf_xGetTransitionByName(const char* ac_szTransitionIdentifier);
 
   protected:
 
-    void mp_AddTransition(const CString& ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const;
+    void mp_AddTransition(const char* ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const;
   };
 
 }

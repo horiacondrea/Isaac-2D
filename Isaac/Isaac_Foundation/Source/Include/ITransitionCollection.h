@@ -46,9 +46,9 @@ namespace Foundation
     {
     public:
 
-      virtual bool mf_bRemoveTransition(const CString&) const = 0;
+      virtual bool mf_bRemoveTransition(const char*) const = 0;
 
-      virtual const std::shared_ptr<const Foundation::CTransition>& mf_xGetTransitionByName(const CString&) = 0;
+      virtual const std::shared_ptr<const Foundation::CTransition>& mf_xGetTransitionByName(const char*) = 0;
 
       virtual ~ITransitionCollection()
       {
@@ -56,7 +56,7 @@ namespace Foundation
 
     protected:
 
-      virtual void mp_AddTransition(const CString&, const std::shared_ptr<const Foundation::CTransition>&) const = 0;
+      virtual void mp_AddTransition(const char*, const std::shared_ptr<const Foundation::CTransition>&) const = 0;
 
     };
   }

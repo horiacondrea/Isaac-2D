@@ -30,7 +30,6 @@ Revision | Who      | Date       | Comment
 #include <ITrigger.h>
 #include "SFML\Graphics.hpp"
 #include <memory>
-#include <atlstr.h>
 
 namespace Triggers
 {
@@ -43,7 +42,7 @@ namespace Triggers
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
 
   public:
-    CClickOnShape(const CString ac_szTriggerIdentifier);
+    CClickOnShape(const char* ac_szTriggerIdentifier);
 
     void InitTrigger(std::shared_ptr<sf::Shape> av_xElement , std::shared_ptr<sf::RenderWindow> av_xMainWindow);
 

@@ -1,6 +1,7 @@
 #include <iostream>
 //#include <vld.h>
 #include <Game.h>
+#include <Windows.h>
 #include <memory>
 
 typedef int(__stdcall *f_funci)();

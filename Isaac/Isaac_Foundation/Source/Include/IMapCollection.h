@@ -27,7 +27,6 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <atlstr.h>
 #include <map>
 
 namespace Foundation
@@ -44,7 +43,7 @@ namespace Foundation
     /*                             IMapCollection
     /////////////////////////////////////////////////////////////////////////////
     // IMapCollection -> a template interfaces used in order to hold a map of
-    // keys (CString) and elemens (Types).
+    // keys (char*) and elemens (Types).
     /////////////////////////////////////////////////////////////////////////////
     */
 
@@ -58,7 +57,7 @@ namespace Foundation
         return mv_mapCollection->size();
       }
 
-      std::map<const CString, Type>* mf_mapGetRawMap() const
+      std::map<const char*, Type>* mf_mapGetRawMap() const
       {
         return mv_mapCollection;
       }
@@ -69,7 +68,7 @@ namespace Foundation
       }
 
     protected:
-      mutable std::map<const CString, Type>* mv_mapCollection;
+      mutable std::map<const char*, Type>* mv_mapCollection;
     };
   }
 }

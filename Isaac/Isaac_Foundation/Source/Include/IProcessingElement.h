@@ -31,7 +31,6 @@ Revision | Who      | Date       | Comment
 #include "BufferITriggerCollection.h"
 #include "ITransientData.h"
 #include "ITrigger.h"
-#include <atlstr.h>
 
 namespace Foundation
 {
@@ -75,7 +74,7 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const CString& ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const char* ac_szTriggerName) = 0;
 
       void mp_addStartTrigger(std::shared_ptr<const Interfaces::ITrigger>& ac_xStartTrigger) const
       {
@@ -107,7 +106,7 @@ namespace Foundation
         return mt_ProcessType;
       }
 
-      virtual const CString mf_szGetPEIdentifier() const
+      virtual const char* mf_szGetPEIdentifier() const
       {
         return mc_szProcessElementIdentifier;
       }
@@ -127,7 +126,7 @@ namespace Foundation
         return mv_xStopTriggers;
       }
 
-      virtual void mp_CheckTriggers(CString& av_szNewPEActivated, sf::Event event) const
+      virtual void mp_CheckTriggers(const char* av_szNewPEActivated, sf::Event event) const
       {
         switch (mt_ProcessType)
         {
@@ -201,7 +200,7 @@ namespace Foundation
       }
 
     protected:
-      IProcessingElement(ProcessType at_ProcessType, const CString ac_szProcessElementIdentifier) :
+      IProcessingElement(ProcessType at_ProcessType, const char* ac_szProcessElementIdentifier) :
         mt_ProcessType(at_ProcessType),
         mc_szProcessElementIdentifier(ac_szProcessElementIdentifier)
       {
@@ -226,7 +225,7 @@ namespace Foundation
 
       ProcessType mt_ProcessType;
 
-      const CString mc_szProcessElementIdentifier;
+      const char* mc_szProcessElementIdentifier;
 
       mutable bool mv_bIsActive;
       bool mv_bHasOneTimeRun;

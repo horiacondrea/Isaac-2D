@@ -6,7 +6,7 @@
 class StateThree : public Foundation::Interfaces::IStaticState
 {
 public:
-  StateThree(const CString& ac_szStateName);
+  StateThree(const char* ac_szStateName);
 
   void mp_InitState(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
     std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData);
@@ -20,7 +20,7 @@ public:
 
   void mp_DrawState(std::shared_ptr<sf::RenderWindow> av_pMainWindow) const;
 
-  void mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName);
+  void mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName);
 
   ~StateThree();
 };

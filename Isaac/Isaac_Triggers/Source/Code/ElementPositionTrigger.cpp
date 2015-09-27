@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Triggers
 {
 
-  CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, const CString ac_szTriggerName) :
+  CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, const char* ac_szTriggerName) :
     mc_enumPosition(ac_enumPosition) ,
    Foundation::Interfaces::ITrigger(ac_szTriggerName)
   {

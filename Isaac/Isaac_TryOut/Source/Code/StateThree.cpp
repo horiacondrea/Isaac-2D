@@ -1,7 +1,7 @@
 #include "..\Include\StateThree.h"
 
 
-StateThree::StateThree(const CString& ac_szStateName) :
+StateThree::StateThree(const char* ac_szStateName) :
 Foundation::Interfaces::IStaticState(ac_szStateName)
 {
   ;
@@ -31,7 +31,7 @@ void StateThree::mp_DrawState(std::shared_ptr<sf::RenderWindow> av_pMainWindow) 
 
 }
 
-void StateThree::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const CString& ac_szTriggerName)
+void StateThree::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
 {
 
 }

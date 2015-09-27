@@ -27,7 +27,6 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <atlstr.h>
 #include <list>
 #include <boost\any.hpp>
 #include <SFML\Graphics.hpp>
@@ -47,24 +46,24 @@ namespace Foundation
     class __declspec(dllexport) ITrigger
     {
     protected:
-      const CString* mc_szTriggerName;
+      const char* mc_szTriggerName;
 
     public:
-      ITrigger(const CString &ac_szTriggerName) : mc_szTriggerName(&ac_szTriggerName)
+      ITrigger(const char* ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
       {
-        mc_szTriggerName = new CString(ac_szTriggerName);
+		  ;
       }
 
       const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
 
-      const CString mf_szGetTriggerName() const
+      const char* mf_szGetTriggerName() const
       {
-        return *mc_szTriggerName;
+        return mc_szTriggerName;
       }
 
       virtual ~ITrigger()
       {
-        delete mc_szTriggerName;
+        //delete mc_szTriggerName;
       }
     };
   }

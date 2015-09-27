@@ -34,7 +34,6 @@ Revision | Who      | Date       | Comment
 #include "Orchestrator.h"
 #include <IDynamicAspect.h>
 #include <IStateCollection.h>
-#include <atlstr.h>
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +73,7 @@ namespace Core
     // and the Orchestrator
     /////////////////////////////////////////////////////////////////////////
     */
-    void mp_Start(const CString &ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
+    void mp_Start(const char* ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
 
 
     // This class is Singleton, so you can only have one 'instance'
