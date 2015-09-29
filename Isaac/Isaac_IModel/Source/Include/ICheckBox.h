@@ -28,13 +28,14 @@ Revision | Who      | Date           | Comment
 
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include "common/defines.h"
+#include <SFML/Graphics.hpp>
 #include "IFrame.h"
 
 
 namespace IModel
 {
-  class __declspec(dllexport) ICheckBox : public sf::Drawable, public sf::Transformable
+  class EXPORT_API ICheckBox : public sf::Drawable, public sf::Transformable
   {
   public:
     ICheckBox(const IFrame* ac_Box, IFrame* av_Check, const bool& ac_bCheck);

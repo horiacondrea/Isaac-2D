@@ -28,12 +28,13 @@ Revision | Who      | Date           | Comment
 
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include "common/defines.h"
+#include <SFML/Graphics.hpp>
 #include <memory>
 
 namespace IModel
 {
-  class __declspec(dllexport) IFrame : public sf::Drawable, public sf::Transformable
+  class EXPORT_API IFrame : public sf::Drawable, public sf::Transformable
   {
   public:
     IFrame(const std::string ac_szPicturePath);

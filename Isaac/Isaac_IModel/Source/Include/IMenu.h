@@ -28,13 +28,14 @@ Revision | Who      | Date       | Comment
 
 
 #pragma once
-#include "..\Include\IButton.h"
-#include <SFML\Graphics.hpp>
+#include "common/defines.h"
+#include "IButton.h"
+#include <SFML/Graphics.hpp>
 
 namespace IModel
 {
 
-  class  __declspec(dllexport) IMenu : public sf::Drawable, public sf::Transformable
+  class EXPORT_API IMenu : public sf::Drawable, public sf::Transformable
   {
   public:
     enum Orientation

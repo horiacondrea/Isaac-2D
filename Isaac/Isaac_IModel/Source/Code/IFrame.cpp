@@ -25,7 +25,8 @@ Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | September 2015 | Created
 */
-#include "../Include/IFrame.h"
+#include "IFrame.h"
+#include <cassert>
 
 namespace IModel
 {
@@ -37,7 +38,7 @@ namespace IModel
     mv_Sprite = new sf::Sprite();
     if (!mv_Texture.loadFromFile(mc_szPicturePath))
     {
-      _ASSERT(false);
+      assert(false);
     }
     else
     {

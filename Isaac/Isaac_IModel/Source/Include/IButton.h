@@ -28,13 +28,14 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include "common/defines.h"
+#include <SFML/Graphics.hpp>
 #include <memory>
 
 namespace IModel
 {
 
-  class __declspec(dllexport) IButton : public sf::Drawable, public sf::Transformable
+  class EXPORT_API IButton : public sf::Drawable, public sf::Transformable
   {
   public:
     IButton();
