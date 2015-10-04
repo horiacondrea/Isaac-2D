@@ -12,18 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Include\IAnimation.h" />
-    <ClInclude Include="Source\Include\IGeoMap.h" />
     <ClInclude Include="Source\Include\IButton.h" />
     <ClInclude Include="Source\Include\ICheckBox.h" />
     <ClInclude Include="Source\Include\IFrame.h" />
+    <ClInclude Include="Source\Include\IGeoMap.h" />
     <ClInclude Include="Source\Include\IMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Code\IAnimation.cpp" />
-    <ClCompile Include="Source\Code\IGeoMap.cpp" />
     <ClCompile Include="Source\Code\IButton.cpp" />
     <ClCompile Include="Source\Code\ICheckBox.cpp" />
     <ClCompile Include="Source\Code\IFrame.cpp" />
+    <ClCompile Include="Source\Code\IGeoMap.cpp" />
     <ClCompile Include="Source\Code\IMenu.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

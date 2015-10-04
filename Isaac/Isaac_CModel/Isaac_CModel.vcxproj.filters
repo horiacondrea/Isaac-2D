@@ -27,10 +27,10 @@
     <ClCompile Include="Source\Code\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Code\GeoMap.cpp">
+    <ClCompile Include="Source\Code\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Code\Animation.cpp">
+    <ClCompile Include="Source\Code\GeoMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +47,10 @@
     <ClInclude Include="Source\Include\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Include\GeoMap.h">
+    <ClInclude Include="Source\Include\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Include\Animation.h">
+    <ClInclude Include="Source\Include\GeoMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
