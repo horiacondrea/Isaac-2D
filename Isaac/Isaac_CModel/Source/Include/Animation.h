@@ -19,38 +19,33 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-Copyright @ 2014
+Copyright @ 2015
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | September 2015 | Created
+1.0      | hc       | October 2015   | Created
 */
-#include "../Include/IFrame.h"
+#pragma once
+#include <IAnimation.h>
 
-namespace IModel
+namespace CModel
 {
-  IFrame::IFrame(const std::string ac_szPicturePath) : 
-    mc_szPicturePath(ac_szPicturePath)
+  class  __declspec(dllexport) Animation : public IModel::IAnimation
   {
-    mv_Sprite = new sf::Sprite();
-    if (!mv_Texture.loadFromFile(mc_szPicturePath))
-    {
-      _ASSERT(false);
-    }
-    else
-    {
-      mv_Sprite->setTexture(mv_Texture, true);
-    }
-  }
+  public:
+    Animation();
+    virtual ~Animation();
 
-  void IFrame::draw(sf::RenderTarget& target, sf::RenderStates states) const
-  {
-    states.transform *= getTransform();
+    virtual void mp_Update();
 
-    target.draw(*mv_Sprite, states);
-  }
+    virtual void mp_AddFrame(const IModel::IFrame* ac_pFrame);
 
-  IFrame::~IFrame()
-  {
-  }
+    virtual void mp_SetSpeet(const int& ac_nSpeed);
+
+  private:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+  };
+
+  
 }

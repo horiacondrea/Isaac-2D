@@ -19,38 +19,58 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-Copyright @ 2014
+Copyright @ 2015
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | September 2015 | Created
+1.0      | hc       | October 2015   | Created
 */
-#include "../Include/IFrame.h"
+#include "../Include/Animation.h"
+#define oneSecond 1000
 
-namespace IModel
+namespace CModel
 {
-  IFrame::IFrame(const std::string ac_szPicturePath) : 
-    mc_szPicturePath(ac_szPicturePath)
+  Animation::Animation()
   {
-    mv_Sprite = new sf::Sprite();
-    if (!mv_Texture.loadFromFile(mc_szPicturePath))
-    {
-      _ASSERT(false);
-    }
-    else
-    {
-      mv_Sprite->setTexture(mv_Texture, true);
-    }
+    mv_nNumberOfFrames = 0;
   }
 
-  void IFrame::draw(sf::RenderTarget& target, sf::RenderStates states) const
+  void Animation::mp_AddFrame(const IModel::IFrame * ac_pFrame)
   {
+    mv_mapFrames.emplace(mv_nNumberOfFrames, ac_pFrame);
+    ++mv_nNumberOfFrames;
+  }
+
+  void Animation::mp_SetSpeet(const int & ac_nSpeed)
+  {
+    mc_nSpeed = ac_nSpeed;
+  }
+
+  void Animation::draw(sf::RenderTarget & target, sf::RenderStates states) const
+  {
+    sf::Time lv_Speed = mv_Clock.getElapsedTime();
     states.transform *= getTransform();
-
-    target.draw(*mv_Sprite, states);
+    auto& it = mv_mapFrames.find(mv_nCurrentIndex);
+    if (lv_Speed.asMilliseconds() > (oneSecond / mc_nSpeed))
+    {
+      mv_nCurrentIndex++;
+      it = mv_mapFrames.find(mv_nCurrentIndex);
+      if (it == mv_mapFrames.end())
+      {
+        it = mv_mapFrames.begin();
+        mv_nCurrentIndex = it->first;
+      }
+      mv_Clock.restart();
+    }
+    target.draw(*it->second, states);
   }
 
-  IFrame::~IFrame()
+  void Animation::mp_Update()
   {
   }
+
+  Animation::~Animation()
+  {
+  }
+  
 }

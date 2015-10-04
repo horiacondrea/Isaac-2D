@@ -89,13 +89,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Code\Animation.cpp" />
     <ClCompile Include="Source\Code\Button.cpp" />
+    <ClCompile Include="Source\Code\GeoMap.cpp" />
     <ClCompile Include="Source\Code\Menu.cpp" />
     <ClCompile Include="Source\Code\Frame.cpp" />
     <ClCompile Include="Source\Code\CheckBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Include\Animation.h" />
     <ClInclude Include="Source\Include\Button.h" />
+    <ClInclude Include="Source\Include\GeoMap.h" />
     <ClInclude Include="Source\Include\Menu.h" />
     <ClInclude Include="Source\Include\Frame.h" />
     <ClInclude Include="Source\Include\CheckBox.h" />
