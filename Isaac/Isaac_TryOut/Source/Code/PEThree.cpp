@@ -1,4 +1,4 @@
-#include "..\Include\PEThree.h"
+#include "PEThree.h"
 
 
 PEThree::PEThree(Foundation::Interfaces::IProcessingElement::ProcessType ac_enumPEType,
@@ -15,7 +15,7 @@ void PEThree::mp_InitProcess(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
 }
 
 void PEThree::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl,
-  std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
+  const std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
 {
 
 }

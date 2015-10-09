@@ -29,11 +29,12 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include <IButton.h>
 #include <string>
+#include "common/defines.h"
 
 namespace CModel
 {
 
-  class __declspec(dllexport) Button : public IModel::IButton
+  class EXPORT_API Button : public IModel::IButton
   {
   public:
     Button(const std::string ac_szButtonText, const std::string ac_szButtonTextFont);

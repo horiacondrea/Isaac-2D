@@ -26,7 +26,7 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | March 2014 | Created
 */
 
-#include "..\Include\BufferITransitionCollection.h"
+#include "BufferITransitionCollection.h"
 
 namespace Foundation
 {

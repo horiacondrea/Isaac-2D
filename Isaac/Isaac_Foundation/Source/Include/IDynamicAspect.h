@@ -29,6 +29,7 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include "IStaticAspect.h"
 #include "BufferITransitionCollection.h"
+#include "common/defines.h"
 
 
 namespace Foundation
@@ -50,7 +51,7 @@ namespace Foundation
     // data and the initial state of the game.
     /////////////////////////////////////////////////////////////////////////////
     */
-    class __declspec(dllexport) IDynamicAspect : public Foundation::BufferITransitionCollection
+    class EXPORT_API IDynamicAspect : public Foundation::BufferITransitionCollection
 
     {
       // Public Methods

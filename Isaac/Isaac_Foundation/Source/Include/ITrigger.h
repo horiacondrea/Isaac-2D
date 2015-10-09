@@ -28,8 +28,9 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <list>
-#include <boost\any.hpp>
-#include <SFML\Graphics.hpp>
+#include <boost/any.hpp>
+#include <SFML/Graphics.hpp>
+#include "common/defines.h"
 
 
 namespace Foundation
@@ -43,7 +44,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) ITrigger
+    class EXPORT_API ITrigger
     {
     protected:
       const char* mc_szTriggerName;

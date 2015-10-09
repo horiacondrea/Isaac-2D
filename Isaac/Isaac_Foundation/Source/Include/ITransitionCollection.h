@@ -28,8 +28,9 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include "..\Include\Transition.h"
+#include "Transition.h"
 #include "IMapSmartCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -42,7 +43,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) ITransitionCollection : public IMapSmartCollection< const Foundation::CTransition >
+    class EXPORT_API ITransitionCollection : public IMapSmartCollection< const Foundation::CTransition >
     {
     public:
 

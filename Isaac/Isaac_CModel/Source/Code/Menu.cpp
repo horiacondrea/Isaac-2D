@@ -26,7 +26,8 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | August 2015 | Created
 */
 
-#include "../Include/Menu.h"
+#include "Menu.h"
+#include "common/defines.h"
 
 namespace CModel
 {

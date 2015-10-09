@@ -9,7 +9,7 @@ if(SFML_FOUND)
 # target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 endif()
 
-find_package(Boost 1.59.0 REQUIRED)
+find_package(Boost 1.54.0 REQUIRED)
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIR})
 # target_link_libraries(${EXECUTABLE_NAME} ${Boost_LIBRARIES})

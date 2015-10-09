@@ -26,8 +26,8 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | March 2014 | Created
 */
 
-#include "..\Include\BufferITransientData.h"
-#include <boost\assert.hpp>
+#include "BufferITransientData.h"
+#include <boost/assert.hpp>
 
 namespace Foundation
 {

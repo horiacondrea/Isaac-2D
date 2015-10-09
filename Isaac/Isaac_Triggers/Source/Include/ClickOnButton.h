@@ -28,15 +28,16 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <ITrigger.h>
-#include "SFML\Graphics.hpp"
+#include "SFML/Graphics.hpp"
 #include <memory>
 #include <IButton.h>
+#include "common/defines.h"
 
 namespace Triggers
 {
 
 #pragma once
-  class __declspec(dllexport) CClickOnButton : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CClickOnButton : public Foundation::Interfaces::ITrigger
   {
 
     const IModel::IButton* mv_xButton;

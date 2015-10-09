@@ -28,10 +28,11 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include "..\Include\ITrigger.h"
-#include "..\Include\IMapSmartCollection.h"
+#include "ITrigger.h"
+#include "IMapSmartCollection.h"
 #include <memory>
 #include <map>
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -44,7 +45,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) ITriggerCollection : public Interfaces::IMapSmartCollection<const Interfaces::ITrigger>
+    class EXPORT_API ITriggerCollection : public Interfaces::IMapSmartCollection<const Interfaces::ITrigger>
     {
     public:
 
@@ -62,7 +63,7 @@ namespace Foundation
         {
           if (typeid(it->second) == typeid(Type))
           {
-            if (std::is_const<Type>)
+            if (std::is_const<Type>())
               return std::const_pointer_cast<Type>(std::static_pointer_cast<Type>(it->second));
             else
               return std::static_pointer_cast<Type>(it->second);

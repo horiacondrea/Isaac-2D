@@ -27,12 +27,13 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "..\Include\ITriggerCollection.h"
+#include "ITriggerCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
 
-  class __declspec(dllexport) CBufferITriggerCollection : public Foundation::Interfaces::ITriggerCollection
+  class EXPORT_API CBufferITriggerCollection : public Foundation::Interfaces::ITriggerCollection
   {
   public:
     CBufferITriggerCollection();

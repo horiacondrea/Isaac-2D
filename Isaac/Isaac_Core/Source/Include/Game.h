@@ -29,11 +29,12 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "StateMachine.h"
 #include "Orchestrator.h"
 #include <IDynamicAspect.h>
 #include <IStateCollection.h>
+#include "common/defines.h"
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -53,7 +54,7 @@ namespace Core
   // those componenets that are resposible for them.
   ////////////////////////////////////////////////////////////////////////////
   */
-  class __declspec(dllexport) CGame
+  class EXPORT_API CGame
   {
   public:
 

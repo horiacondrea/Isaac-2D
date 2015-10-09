@@ -27,12 +27,13 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "..\Include\IPECollection.h"
-#include "..\Include\ITriggerCollection.h"
+#include "IPECollection.h"
+#include "ITriggerCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
-  class  __declspec(dllexport) CBufferIPECollection : public Interfaces::IPECollection
+  class  EXPORT_API CBufferIPECollection : public Interfaces::IPECollection
   {
   public:
     CBufferIPECollection();

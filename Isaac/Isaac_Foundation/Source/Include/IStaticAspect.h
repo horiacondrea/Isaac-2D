@@ -30,6 +30,7 @@ Revision | Who      | Date       | Comment
 #include "BufferIStateCollection.h"
 #include "BufferITriggerCollection.h"
 #include "BufferITransientData.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -42,7 +43,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IStaticAspect : public Foundation::CBufferIStateCollection,
+    class EXPORT_API IStaticAspect : public Foundation::CBufferIStateCollection,
       public Foundation::CBufferITriggerCollection,
       public Foundation::CBufferITransientData
     {

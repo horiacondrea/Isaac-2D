@@ -28,12 +28,13 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <ICheckBox.h>
+#include "common/defines.h"
 
 namespace CModel
 {
-  class __declspec(dllexport) CheckBox : public IModel::ICheckBox
+  class EXPORT_API CheckBox : public IModel::ICheckBox
   {
   public:
     CheckBox(const IModel::IFrame* ac_Box, IModel::IFrame* av_Check, const bool& ac_bCheck);

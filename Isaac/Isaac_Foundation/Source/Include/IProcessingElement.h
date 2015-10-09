@@ -27,10 +27,11 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "BufferITriggerCollection.h"
 #include "ITransientData.h"
 #include "ITrigger.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -43,7 +44,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IProcessingElement
+    class EXPORT_API IProcessingElement
     {
     public:
 
@@ -67,7 +68,7 @@ namespace Foundation
 
       virtual void mp_InitProcess(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Interfaces::ITransientData>&) = 0;
 
-      virtual void mp_InitTriggers(std::shared_ptr<Interfaces::ITriggerCollection>& ac_xGlobalTriggers, std::shared_ptr<Interfaces::ITriggerCollection>& ac_xLocalTriggers) = 0;
+      virtual void mp_InitTriggers(std::shared_ptr<Interfaces::ITriggerCollection>& ac_xGlobalTriggers, const std::shared_ptr<Interfaces::ITriggerCollection>& ac_xLocalTriggers) = 0;
 
       virtual void mp_UpdateState(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Interfaces::ITransientData>&,
         sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;

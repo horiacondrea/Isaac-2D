@@ -1,3 +1,4 @@
+INCLUDE_DIRECTORIES(${Isaac2D_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${Isaac2D_SOURCE_DIR}/Isaac_Core/Source/Include)
 INCLUDE_DIRECTORIES(${Isaac2D_SOURCE_DIR}/Isaac_Foundation/Source/Include)
 

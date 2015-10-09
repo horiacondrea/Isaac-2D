@@ -1,4 +1,4 @@
-#include "..\Include\StaticAspect.h"
+#include "StaticAspect.h"
 #include <ClickOnShape.h>
 
 

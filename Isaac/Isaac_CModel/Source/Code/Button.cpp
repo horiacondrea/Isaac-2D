@@ -26,7 +26,8 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | August 2015 | Created
 */
 
-#include "..\Include\Button.h"
+#include "Button.h"
+#include <cassert>
 
 
 namespace CModel
@@ -34,8 +35,8 @@ namespace CModel
 
   Button::Button(const std::string ac_szButtonText, const std::string ac_szButtonTextFont)
   {
-    _ASSERT(!(ac_szButtonText == ""));
-    _ASSERT(!(ac_szButtonTextFont == ""));
+    assert(!(ac_szButtonText == ""));
+    assert(!(ac_szButtonTextFont == ""));
 
  
     mv_LabelFont = std::make_shared<sf::Font>();
@@ -45,7 +46,7 @@ namespace CModel
 
     if (!mv_LabelFont->loadFromFile(ac_szButtonTextFont))
     {
-      _ASSERT(false);
+      assert(false);
     }
     else
     {

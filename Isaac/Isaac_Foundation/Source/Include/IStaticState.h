@@ -27,11 +27,12 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "ITriggerCollection.h"
 #include "ITransientData.h"
 #include "IState.h"
 #include <memory>
+#include <common/defines.h>
 
 namespace Foundation
 {
@@ -44,7 +45,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IStaticState : public IState
+    class EXPORT_API IStaticState : public IState
     {
     public:
 

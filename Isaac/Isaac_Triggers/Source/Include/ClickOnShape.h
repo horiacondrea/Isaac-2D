@@ -28,14 +28,15 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <ITrigger.h>
-#include "SFML\Graphics.hpp"
+#include "SFML/Graphics.hpp"
 #include <memory>
+#include "common/defines.h"
 
 namespace Triggers
 {
 
 #pragma once
-  class __declspec(dllexport) CClickOnShape : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CClickOnShape : public Foundation::Interfaces::ITrigger
   {
 
     std::shared_ptr<sf::Shape> mv_xElement;

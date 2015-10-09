@@ -28,10 +28,11 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <IMenu.h>
+#include "common/defines.h"
 
 namespace CModel
 {
-  class __declspec(dllexport) Menu: public IModel::IMenu
+  class EXPORT_API Menu: public IModel::IMenu
   {
   public:
     Menu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset);

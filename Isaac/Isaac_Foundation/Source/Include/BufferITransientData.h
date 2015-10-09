@@ -27,11 +27,12 @@ Revision | Who      | Date       | Comment
 */
 #pragma once
 
-#include "..\Include\ITransientData.h"
+#include "ITransientData.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
-  class __declspec(dllexport) CBufferITransientData : public Interfaces::ITransientData
+  class EXPORT_API CBufferITransientData : public Interfaces::ITransientData
   {
   public:
     CBufferITransientData();

@@ -28,8 +28,9 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include "IMapCollection.h"
-#include <boost\any.hpp>
-#include <boost\assert.hpp>
+#include <boost/any.hpp>
+#include <boost/assert.hpp>
+#include "common/defines.h"
 
 #pragma warning( disable : 4715 ) // not all control paths return (bla bla)
 
@@ -44,7 +45,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) ITransientData : public Interfaces::IMapCollection<const boost::any>
+    class EXPORT_API ITransientData : public Interfaces::IMapCollection<const boost::any>
     {
     protected:
 

@@ -26,7 +26,7 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | Feb   2014 | Created
 */
 
-#include "..\Include\StateMachine.h"
+#include "StateMachine.h"
 #include <IDynamicState.h>
 
 namespace Core

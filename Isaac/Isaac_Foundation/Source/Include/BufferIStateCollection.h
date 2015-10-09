@@ -27,12 +27,13 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "..\Include\IStateCollection.h"
+#include "IStateCollection.h"
+#include "common/defines.h"
 
 
 namespace Foundation
 {
-  class __declspec(dllexport) CBufferIStateCollection : public Interfaces::IStateCollection
+  class EXPORT_API CBufferIStateCollection : public Interfaces::IStateCollection
   {
 
   public:

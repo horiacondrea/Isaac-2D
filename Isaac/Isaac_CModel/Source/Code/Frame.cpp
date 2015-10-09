@@ -26,7 +26,7 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | August 2015 | Created
 */
 
-#include "..\Include\Frame.h"
+#include "Frame.h"
 
 namespace CModel
 {

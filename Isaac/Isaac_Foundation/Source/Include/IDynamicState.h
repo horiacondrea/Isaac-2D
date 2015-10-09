@@ -27,12 +27,13 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "ITriggerCollection.h"
 #include "ITransientData.h"
 #include "BufferIPECollection.h"
 #include "IState.h"
 #include <memory>
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -45,7 +46,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IDynamicState : public Interfaces::IState,
+    class EXPORT_API IDynamicState : public Interfaces::IState,
       public Foundation::CBufferIPECollection
     {
     public:
@@ -87,7 +88,7 @@ namespace Foundation
               const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
               if (lc_xProcess != nullptr)
               {
-                auto& lc_xLocalTriggers = std::const_pointer_cast<Interfaces::ITriggerCollection>(mf_xGetAllTriggers());
+                const auto& lc_xLocalTriggers = std::const_pointer_cast<Interfaces::ITriggerCollection>(mf_xGetAllTriggers());
                 BOOST_ASSERT_MSG(lc_xLocalTriggers != nullptr, "LocalTriggers is NULL");
                 if (lc_xLocalTriggers != nullptr)
                 {
@@ -131,7 +132,7 @@ namespace Foundation
         std::shared_ptr<const Interfaces::IProcessingElement> lc_xNewPE = mf_bCheckAllPE(av_eventSFMLEvent);
         if (lc_xNewPE != nullptr)
         {
-          auto & lv_xNewProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(lc_xNewPE);
+          const auto & lv_xNewProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(lc_xNewPE);
 
           BOOST_ASSERT_MSG(lv_xNewProcess != nullptr, "Process is NULL");
 

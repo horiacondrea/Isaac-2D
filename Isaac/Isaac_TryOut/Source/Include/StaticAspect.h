@@ -4,10 +4,11 @@
 #include "StateTwo.h"
 #include "StateThree.h"
 #include "DynamicState.h"
+#include <common/defines.h>
 
 #include <IStaticAspect.h>
 
-class __declspec(dllexport) StaticAspect : public Foundation::Interfaces::IStaticAspect
+class EXPORT_API StaticAspect : public Foundation::Interfaces::IStaticAspect
 {
 public:
   StaticAspect();

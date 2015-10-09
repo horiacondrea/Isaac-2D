@@ -28,6 +28,7 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include "IState.h"
 #include "IMapSmartCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -40,7 +41,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IStateCollection : public Interfaces::IMapSmartCollection<const Interfaces::IState>
+    class EXPORT_API IStateCollection : public Interfaces::IMapSmartCollection<const Interfaces::IState>
     {
     public:
 

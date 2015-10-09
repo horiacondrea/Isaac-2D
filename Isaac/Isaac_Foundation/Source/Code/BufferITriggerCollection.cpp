@@ -26,8 +26,8 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | March 2014 | Created
 */
 
-#include "..\Include\BufferITriggerCollection.h"
-#include <boost\assert.hpp>
+#include "BufferITriggerCollection.h"
+#include <boost/assert.hpp>
 #include <memory>
 
 namespace Foundation

@@ -1,4 +1,4 @@
-#include "..\Include\PETwo.h"
+#include "PETwo.h"
 
 
 PETwo::PETwo(Foundation::Interfaces::IProcessingElement::ProcessType ac_enumPEType,
@@ -14,7 +14,7 @@ void PETwo::mp_InitProcess(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
 }
 
 void PETwo::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl,
-  std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
+  const std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
 {
 
 }

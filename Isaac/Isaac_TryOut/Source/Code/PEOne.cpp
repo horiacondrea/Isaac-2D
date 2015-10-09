@@ -1,4 +1,4 @@
-#include "..\Include\PEOne.h"
+#include "PEOne.h"
 
 
 PEOne::PEOne(Foundation::Interfaces::IProcessingElement::ProcessType ac_enumPEType,
@@ -15,7 +15,7 @@ void PEOne::mp_InitProcess(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
 }
 
 void PEOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl,
-  std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
+  const std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
 {
 
 }

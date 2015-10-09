@@ -29,6 +29,7 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include "IProcessingElement.h"
 #include "IMapSmartCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
@@ -41,7 +42,7 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class __declspec(dllexport) IPECollection : public Interfaces::IMapSmartCollection<const Interfaces::IProcessingElement>
+    class EXPORT_API IPECollection : public Interfaces::IMapSmartCollection<const Interfaces::IProcessingElement>
     {
     public:
 

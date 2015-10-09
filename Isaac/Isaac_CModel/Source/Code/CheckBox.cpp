@@ -25,7 +25,7 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | August 2015 | Created
 */
-#include "..\Include\CheckBox.h"
+#include "CheckBox.h"
 #include <iostream>
 
 namespace CModel

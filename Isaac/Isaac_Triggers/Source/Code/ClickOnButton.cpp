@@ -26,7 +26,7 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | August 2014 | Created
 */
 
-#include "..\Include\ClickOnButton.h"
+#include "ClickOnButton.h"
 
 namespace Triggers
 {

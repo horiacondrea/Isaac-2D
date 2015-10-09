@@ -26,8 +26,8 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | April 2014 | Created
 */
 
-#include "../Include/BufferIPECollection.h"
-#include <boost\assert.hpp>
+#include "BufferIPECollection.h"
+#include <boost/assert.hpp>
 
 namespace Foundation
 {

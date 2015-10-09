@@ -27,12 +27,13 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "../Include/ITransitionCollection.h"
+#include "ITransitionCollection.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
 
-  class __declspec(dllexport) BufferITransitionCollection : public Interfaces::ITransitionCollection
+  class EXPORT_API BufferITransitionCollection : public Interfaces::ITransitionCollection
   {
   public:
     BufferITransitionCollection();

@@ -28,14 +28,15 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <IFrame.h>
+#include "common/defines.h"
 
 
 namespace CModel
 {
 
-  class __declspec(dllexport) Frame : public IModel::IFrame
+  class EXPORT_API Frame : public IModel::IFrame
   {
 
   public:

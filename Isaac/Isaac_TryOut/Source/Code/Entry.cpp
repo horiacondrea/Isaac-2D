@@ -1,4 +1,4 @@
-#include "..\include\Entry.h"
+#include "Entry.h"
 
 int CreateGame()
 {

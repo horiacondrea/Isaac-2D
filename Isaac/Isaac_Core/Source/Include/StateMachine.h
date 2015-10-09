@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "Orchestrator.h"
 #include <ITransientData.h>
 #include <list>

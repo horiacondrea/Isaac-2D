@@ -29,10 +29,11 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include "IState.h"
 #include "ITrigger.h"
+#include "common/defines.h"
 
 namespace Foundation
 {
-  class __declspec(dllexport) CTransition
+  class EXPORT_API CTransition
   {
   protected:
     const std::shared_ptr< const Interfaces::IState >     mc_xSourceState;

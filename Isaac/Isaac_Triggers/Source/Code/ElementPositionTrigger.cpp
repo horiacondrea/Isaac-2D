@@ -26,7 +26,7 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | March 2014 | Created
 */
 
-#include "..\Include\ElementPositionTrigger.h"
+#include "ElementPositionTrigger.h"
 
 namespace Triggers
 {

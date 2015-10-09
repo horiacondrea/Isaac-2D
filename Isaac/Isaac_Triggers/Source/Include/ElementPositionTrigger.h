@@ -28,7 +28,8 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <ITrigger.h>
-#include "SFML\Graphics.hpp"
+#include "SFML/Graphics.hpp"
+#include "common/defines.h"
 
 namespace Triggers
 {
@@ -46,7 +47,7 @@ namespace Triggers
     en_Unknow
   };
 
-  class __declspec(dllexport) CElementPositionTrigger : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CElementPositionTrigger : public Foundation::Interfaces::ITrigger
   {
     const Position mc_enumPosition;
 //    const Axis mc_enumAxis;

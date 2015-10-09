@@ -1,8 +1,8 @@
-#include "..\Include/DynamicAspect.h"
+#include "DynamicAspect.h"
 #include <ElementPositionTrigger.h>
-#include "..\Include\PEOne.h"
-#include "..\Include\PETwo.h"
-#include "..\Include\PEThree.h"
+#include "PEOne.h"
+#include "PETwo.h"
+#include "PEThree.h"
 
 
 DynamicAspect::DynamicAspect()

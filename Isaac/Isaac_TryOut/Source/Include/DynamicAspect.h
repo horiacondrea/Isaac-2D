@@ -1,10 +1,11 @@
 #pragma once
 #include <IDynamicAspect.h>
+#include <common/defines.h>
 #ifdef DEBUG
 #include <vld.h>
 #endif
 
-class __declspec(dllexport) DynamicAspect : public Foundation::Interfaces::IDynamicAspect
+class EXPORT_API DynamicAspect : public Foundation::Interfaces::IDynamicAspect
 {
 public:
   DynamicAspect();
