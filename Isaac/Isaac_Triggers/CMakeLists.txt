@@ -9,4 +9,4 @@ file(GLOB_RECURSE SRCS "*.cpp")
 add_library(Isaac_Triggers SHARED ${SRCS} ${INCS})
 target_link_libraries(Isaac_Triggers Isaac_IModel)
 
-INSTALL(TARGETS Isaac_Triggers DESTINATION ${Isaac2D_SOURCE_DIR}/../output)
+INSTALL(TARGETS Isaac_Triggers DESTINATION ${Isaac2D_SOURCE_DIR}/../Output)

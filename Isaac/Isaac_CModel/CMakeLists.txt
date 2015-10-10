@@ -8,4 +8,4 @@ file(GLOB_RECURSE SRCS "*.cpp")
 add_library(Isaac_CModel SHARED ${SRCS} ${INCS})
 target_link_libraries(Isaac_CModel Isaac_IModel)
 
-INSTALL(TARGETS Isaac_CModel DESTINATION ${Isaac2D_SOURCE_DIR}/../output)
+INSTALL(TARGETS Isaac_CModel DESTINATION ${Isaac2D_SOURCE_DIR}/../Output)
