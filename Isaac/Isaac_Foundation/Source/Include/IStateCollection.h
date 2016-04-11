@@ -45,7 +45,7 @@ namespace Foundation
     {
     public:
 
-      virtual const std::shared_ptr<const Interfaces::IState>& mf_xGetStateByName(const char*) const = 0;
+      virtual const std::shared_ptr<const Interfaces::IState>& mf_xGetStateByName(std::string) const = 0;
 
       virtual ~IStateCollection()
       {

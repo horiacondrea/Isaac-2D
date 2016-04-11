@@ -49,14 +49,14 @@ namespace Foundation
     {
     public:
 
-      virtual bool mf_bRemoveTrigger(const char* ac_szTriggerIdentifier) = 0;
+      virtual bool mf_bRemoveTrigger(std::string ac_szTriggerIdentifier) = 0;
 
-      virtual const std::shared_ptr<const Interfaces::ITrigger>& mf_xGetTriggerByName(const char* ac_szTriggerIdentifier) const = 0;
+      virtual const std::shared_ptr<const Interfaces::ITrigger>& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const = 0;
 
       virtual void mp_AddTrigger(const std::shared_ptr<const Interfaces::ITrigger>& ac_xTrigger) const = 0;
 
       template<class Type>
-      std::shared_ptr<Type> mf_xGetTriggerByNameAndType(const char* ac_szTriggerIdentifier) const
+      std::shared_ptr<Type> mf_xGetTriggerByNameAndType(std::string ac_szTriggerIdentifier) const
       {
         const auto& it = mv_mapSmartCollection->find(ac_szTriggerIdentifier);
         if (it->second != nullptr)

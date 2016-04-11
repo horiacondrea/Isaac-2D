@@ -50,7 +50,7 @@ namespace Core
     mp_OrganizeDynamicStates();
   }
 
-  std::pair<std::shared_ptr< const Foundation::Interfaces::IState >, const char*>  COrchestrator::mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
+  std::pair<std::shared_ptr< const Foundation::Interfaces::IState >, std::string>  COrchestrator::mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
   {
     av_bHasAnyTriggerDisturbed = false;
     if (mc_xTransitionCollection->mp_GetSize() == 0)
@@ -67,7 +67,7 @@ namespace Core
       }
       else
       {
-        std::list<const char*> av_listStateNames;
+        std::list<std::string> av_listStateNames;
         std::shared_ptr<const Foundation::Interfaces::IState> lv_xLocalState = mc_xCurrentState;
         av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
         if (mc_xCurrentState->mf_bIsSubState())
@@ -110,7 +110,7 @@ namespace Core
 
     mv_xTriggersPerState = std::make_shared<Foundation::CBufferITriggerCollection>();
 
-    std::list<const char*> av_listStateNames;
+    std::list<std::string> av_listStateNames;
     std::shared_ptr<const Foundation::Interfaces::IState> lv_xLocalState = mc_xCurrentState;
     av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
     if (mc_xCurrentState->mf_bIsSubState())
@@ -148,12 +148,12 @@ namespace Core
     }
   }
 
-  const bool COrchestrator::mf_bGetDynamicStateStatus(const char* ac_szDynamicStateName) const
+  const bool COrchestrator::mf_bGetDynamicStateStatus(std::string ac_szDynamicStateName) const
   {
-    BOOST_ASSERT_MSG(ac_szDynamicStateName != nullptr, "Dynamic State Name is undefined");
+    BOOST_ASSERT_MSG(!ac_szDynamicStateName.empty(), "Dynamic State Name is undefined");
 
     bool result = false;
-    if (ac_szDynamicStateName != nullptr)
+    if (!ac_szDynamicStateName.empty())
     {
       if (mv_mapDynamicMapMirror.size() > 0)
       {

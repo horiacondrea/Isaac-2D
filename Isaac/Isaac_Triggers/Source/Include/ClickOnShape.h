@@ -43,7 +43,7 @@ namespace Triggers
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
 
   public:
-    CClickOnShape(const char* ac_szTriggerIdentifier);
+    CClickOnShape(std::string ac_szTriggerIdentifier);
 
     void InitTrigger(std::shared_ptr<sf::Shape> av_xElement , std::shared_ptr<sf::RenderWindow> av_xMainWindow);
 

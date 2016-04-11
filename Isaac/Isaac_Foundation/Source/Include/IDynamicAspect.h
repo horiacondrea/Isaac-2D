@@ -71,16 +71,16 @@ namespace Foundation
       std::shared_ptr<const Interfaces::IStaticAspect> mv_xStaticAspect;
       mutable std::shared_ptr<const Interfaces::IState> mv_pInitialState;
 
-      const std::shared_ptr<const Foundation::CTransition> mf_xDefineTransition(const char* ac_szSourceStateIdentifier,
-        const char* ac_szTriggerIdentifier,
-        const char* ac_szDestinationStateIdentifier) const
+      const std::shared_ptr<const Foundation::CTransition> mf_xDefineTransition(std::string ac_szSourceStateIdentifier,
+        std::string ac_szTriggerIdentifier,
+        std::string ac_szDestinationStateIdentifier) const
       {
         return std::make_shared<Foundation::CTransition>(mv_xStaticAspect->mf_xGetStateByName(ac_szSourceStateIdentifier),
           mv_xStaticAspect->mf_xGetTriggerByName(ac_szTriggerIdentifier),
           mv_xStaticAspect->mf_xGetStateByName(ac_szDestinationStateIdentifier));
       }
 
-      std::shared_ptr<const Interfaces::IState> mf_xDefineInitialState(const char* ac_szInitialStateIdentifier) const
+      std::shared_ptr<const Interfaces::IState> mf_xDefineInitialState(std::string ac_szInitialStateIdentifier) const
       {
         return mv_xStaticAspect->mf_xGetStateByName(ac_szInitialStateIdentifier);
       }

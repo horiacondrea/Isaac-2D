@@ -1,1 +1,1 @@
-Isaac_Loader Isaac_TryOut.dll CreateGame
+Isaac_Loader Isaac_TryOut CreateGame

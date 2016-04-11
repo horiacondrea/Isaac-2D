@@ -75,7 +75,7 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const char* ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, std::string ac_szTriggerName) = 0;
 
       void mp_addStartTrigger(std::shared_ptr<const Interfaces::ITrigger>& ac_xStartTrigger) const
       {
@@ -107,7 +107,7 @@ namespace Foundation
         return mt_ProcessType;
       }
 
-      virtual const char* mf_szGetPEIdentifier() const
+      virtual std::string mf_szGetPEIdentifier() const
       {
         return mc_szProcessElementIdentifier;
       }
@@ -127,53 +127,53 @@ namespace Foundation
         return mv_xStopTriggers;
       }
 
-      virtual void mp_CheckTriggers(const char* av_szNewPEActivated, sf::Event event) const
+      virtual void mp_CheckTriggers(std::string& av_szNewPEActivated, sf::Event event) const
       {
         switch (mt_ProcessType)
         {
         case Interfaces::IProcessingElement::en_Permanent:
         {
-                                                           mv_bIsActive = true;
+          mv_bIsActive = true;
         }
           break;
         case Interfaces::IProcessingElement::en_PermanentWithStop:
         {
-                                                                   mv_bIsActive = true;
-                                                                   if (mv_bIsActive)
-                                                                   {
-                                                                     for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
-                                                                     {
-                                                                       if (item.second->mf_bWas_This_Trigger_Disturbed(event))
-                                                                       {
-                                                                         mv_bIsActive = false;
-                                                                       }
-                                                                     }
-                                                                   }
+          mv_bIsActive = true;
+          if (mv_bIsActive)
+          {
+            for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
+            {
+              if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+              {
+                mv_bIsActive = false;
+              }
+            }
+          }
         }
           break;
         case Interfaces::IProcessingElement::en_Continuous:
         {
-                                                            if (mv_bIsActive)
-                                                            {
-                                                              for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
-                                                              {
-                                                                if (item.second->mf_bWas_This_Trigger_Disturbed(event))
-                                                                {
-                                                                  mv_bIsActive = false;
-                                                                }
-                                                              }
-                                                            }
-                                                            else
-                                                            {
-                                                              for (const auto & item : *mv_xStartTriggers->mf_mapGetRawMap())
-                                                              {
-                                                                if (item.second->mf_bWas_This_Trigger_Disturbed(event))
-                                                                {
-                                                                  mv_bIsActive = true;
-                                                                  av_szNewPEActivated = mf_szGetPEIdentifier();
-                                                                }
-                                                              }
-                                                            }
+          if (mv_bIsActive)
+          {
+            for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
+            {
+              if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+              {
+                mv_bIsActive = false;
+              }
+            }
+          }
+          else
+          {
+            for (const auto & item : *mv_xStartTriggers->mf_mapGetRawMap())
+            {
+              if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+              {
+                mv_bIsActive = true;
+                av_szNewPEActivated = mf_szGetPEIdentifier();
+              }
+            }
+          }
         }
           break;
         case Interfaces::IProcessingElement::en_OneTimeProcess:
@@ -201,7 +201,7 @@ namespace Foundation
       }
 
     protected:
-      IProcessingElement(ProcessType at_ProcessType, const char* ac_szProcessElementIdentifier) :
+      IProcessingElement(ProcessType at_ProcessType, std::string ac_szProcessElementIdentifier) :
         mt_ProcessType(at_ProcessType),
         mc_szProcessElementIdentifier(ac_szProcessElementIdentifier)
       {
@@ -226,7 +226,7 @@ namespace Foundation
 
       ProcessType mt_ProcessType;
 
-      const char* mc_szProcessElementIdentifier;
+      std::string mc_szProcessElementIdentifier;
 
       mutable bool mv_bIsActive;
       bool mv_bHasOneTimeRun;

@@ -47,17 +47,17 @@ namespace Foundation
     class EXPORT_API ITrigger
     {
     protected:
-      const char* mc_szTriggerName;
+      std::string mc_szTriggerName;
 
     public:
-      ITrigger(const char* ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
+      ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
       {
 		  ;
       }
 
       const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
 
-      const char* mf_szGetTriggerName() const
+      std::string mf_szGetTriggerName() const
       {
         return mc_szTriggerName;
       }

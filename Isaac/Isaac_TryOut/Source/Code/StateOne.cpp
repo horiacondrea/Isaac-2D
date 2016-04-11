@@ -1,8 +1,8 @@
 #include "StateOne.h"
 #include <ITrigger.h>
+#include <iostream>
 
-
-StateOne::StateOne(const char* ac_szStateName) :
+StateOne::StateOne(std::string ac_szStateName) :
 Foundation::Interfaces::IStaticState(ac_szStateName)
 {
   ;
@@ -12,6 +12,8 @@ void StateOne::mp_InitState(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
   std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData)
 {
   mv_pRect = new sf::RectangleShape(sf::Vector2f(40, 40));
+
+  std::cout << "State one - Init" << std::endl;
 }
 
 void StateOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl)
@@ -22,7 +24,7 @@ void StateOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerC
 
   //std::shared_ptr<Triggers::CElementPositionTrigger> lv_pPosition = ac_xGlobalTriggersColl->mf_xGetTriggerByNameAndType<Triggers::CElementPositionTrigger>(_T("t1"));
 
-  lv_pPosition->mp_InitTrigger(mv_pRect, 800);
+  lv_pPosition->mp_InitTrigger(mv_pRect, 200);
 }
 
 void StateOne::mp_UpdateState(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
@@ -40,7 +42,7 @@ void StateOne::mp_DrawState(std::shared_ptr<sf::RenderWindow> av_xMainWindow) co
   av_xMainWindow->draw(*mv_pRect);
 }
 
-void StateOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
+void StateOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, std::string ac_szTriggerName)
 {
   delete mv_pRect;
 }

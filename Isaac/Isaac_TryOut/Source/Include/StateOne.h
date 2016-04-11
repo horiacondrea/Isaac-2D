@@ -9,7 +9,7 @@ private:
   sf::RectangleShape* mv_pRect;
 
 public:
-  StateOne(const char* ac_szStateName);
+  StateOne(std::string ac_szStateName);
 
   void mp_InitState(std::shared_ptr<sf::RenderWindow> av_xMainWindow, 
                     std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData);
@@ -23,7 +23,7 @@ public:
 
   void mp_DrawState(std::shared_ptr<sf::RenderWindow> av_pMainWindow) const;
 
-  void mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName);
+  void mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, std::string ac_szTriggerName);
 
   ~StateOne();
 };

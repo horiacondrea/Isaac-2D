@@ -49,12 +49,12 @@ namespace Foundation
     {
     protected:
 
-      virtual void mp_AddTransientData(const boost::any, const char* ac_szPortName) const = 0;
+      virtual void mp_AddTransientData(const boost::any, std::string ac_szPortName) const = 0;
 
     public:
 
       template<class Type>
-      Type mf_xGetTransientData(const char* ac_szDataIdentifier) const
+      Type mf_xGetTransientData(std::string ac_szDataIdentifier) const
       {
         const auto& it = mv_mapCollection->find(ac_szDataIdentifier);
         if (!it->second.empty())
@@ -77,7 +77,7 @@ namespace Foundation
       }
 
       template<class Type>
-      void mp_UpdateTransientData(const char* ac_szDataIdentifier, Type ac_data__Data) const
+      void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const
       {
         for (const auto& dataItem : *mv_mapCollection)
         {

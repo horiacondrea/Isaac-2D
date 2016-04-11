@@ -44,7 +44,7 @@ namespace Triggers
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
 
   public:
-    CClickOnButton(const char* ac_szTriggerIdentifier);
+    CClickOnButton(std::string ac_szTriggerIdentifier);
 
     void InitTrigger(const IModel::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow);
 

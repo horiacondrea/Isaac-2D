@@ -38,7 +38,7 @@ namespace Foundation
   public:
     CBufferIPECollection();
 
-    const std::shared_ptr<const Interfaces::IProcessingElement>& mf_xGetPEByName(const char* ac_szPEIdentifier) const;
+    const std::shared_ptr<const Interfaces::IProcessingElement>& mf_xGetPEByName(std::string ac_szPEIdentifier) const;
 
     std::shared_ptr<const Interfaces::ITriggerCollection> mf_xGetAllStartTriggers() const;
 

@@ -39,7 +39,7 @@ namespace Foundation
 
   protected:
 
-    void mp_AddTransientData(const boost::any ac_data__Data, const char* ac_szDataIdentifier) const;
+    void mp_AddTransientData(const boost::any ac_data__Data, std::string ac_szDataIdentifier) const;
 
     ~CBufferITransientData();
   };

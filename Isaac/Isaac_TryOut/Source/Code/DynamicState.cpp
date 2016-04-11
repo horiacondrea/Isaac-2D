@@ -4,8 +4,9 @@
 #include "PEThree.h"
 #include <ElementPositionTrigger.h>
 
+#include <iostream>
 
-DynamicState::DynamicState(const char* ac_szStateName) :
+DynamicState::DynamicState(std::string ac_szStateName) :
 Foundation::Interfaces::IDynamicState(ac_szStateName)
 {
   ;
@@ -13,6 +14,8 @@ Foundation::Interfaces::IDynamicState(ac_szStateName)
 
 void DynamicState::mp_DefineProcess() const
 {
+  std::cout << "Dynamic state - defining  processes" << std::endl;
+
   std::shared_ptr< Foundation::Interfaces::IProcessingElement> pe1 = std::make_shared<PEOne>(Foundation::Interfaces::IProcessingElement::en_Permanent, "pe1");
 
   std::shared_ptr< Foundation::Interfaces::IProcessingElement> pe2 = std::make_shared<PETwo>(Foundation::Interfaces::IProcessingElement::en_Continuous, "pe2");

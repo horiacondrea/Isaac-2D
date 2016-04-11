@@ -35,7 +35,7 @@ namespace Foundation
 
   CBufferITriggerCollection::CBufferITriggerCollection()
   {
-    mv_mapSmartCollection = new std::map<const char*, const std::shared_ptr<const Interfaces::ITrigger>>();
+    mv_mapSmartCollection = new std::map<std::string, const std::shared_ptr<const Interfaces::ITrigger>>();
   }
 
   void CBufferITriggerCollection::mp_AddTrigger(const std::shared_ptr<const Interfaces::ITrigger>& ac_xTrigger) const
@@ -43,14 +43,14 @@ namespace Foundation
     BOOST_ASSERT_MSG(ac_xTrigger != nullptr, "Trigger is null");
     if (ac_xTrigger != nullptr)
     {
-      mv_mapSmartCollection->insert(std::map<const char*, const std::shared_ptr<const Interfaces::ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
+      mv_mapSmartCollection->insert(std::map<std::string, const std::shared_ptr<const Interfaces::ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
     }
   }
 
-  bool CBufferITriggerCollection::mf_bRemoveTrigger(const char* ac_szTriggerIdentifier)
+  bool CBufferITriggerCollection::mf_bRemoveTrigger(std::string ac_szTriggerIdentifier)
   {
-    BOOST_ASSERT_MSG(ac_szTriggerIdentifier != nullptr, "Empty string provided");
-    if (ac_szTriggerIdentifier != nullptr)
+    BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
+    if (!ac_szTriggerIdentifier.empty())
     {
       mv_mapSmartCollection->erase(ac_szTriggerIdentifier);
       return true;
@@ -58,10 +58,10 @@ namespace Foundation
     return false;
   }
 
-  const std::shared_ptr<const Interfaces::ITrigger>& CBufferITriggerCollection::mf_xGetTriggerByName(const char* ac_szTriggerIdentifier) const
+  const std::shared_ptr<const Interfaces::ITrigger>& CBufferITriggerCollection::mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const
   {
-    BOOST_ASSERT_MSG(ac_szTriggerIdentifier != nullptr, "Empty string provided");
-    if (ac_szTriggerIdentifier != nullptr)
+    BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
+    if (!ac_szTriggerIdentifier.empty())
     {
       auto it = mv_mapSmartCollection->find(ac_szTriggerIdentifier);
       return it->second;

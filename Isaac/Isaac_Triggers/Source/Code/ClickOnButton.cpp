@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Triggers
 {
 
-  CClickOnButton::CClickOnButton(const char* ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
+  CClickOnButton::CClickOnButton(std::string ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
   {
 
   }

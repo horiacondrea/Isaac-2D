@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Triggers
 {
 
-  CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, const char* ac_szTriggerName) :
+  CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, std::string ac_szTriggerName) :
     mc_enumPosition(ac_enumPosition) ,
    Foundation::Interfaces::ITrigger(ac_szTriggerName)
   {
@@ -59,26 +59,26 @@ namespace Triggers
       {
       case en_GraterThen:
       {
-                          if (mc_pShape->getPosition().x > mc_dfPosition)
-                          {
-                            return true;
-                          }
-                          else
-                          {
-                            return false;
-                          }
+        if (mc_pShape->getPosition().x > mc_dfPosition)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
         break;
       case en_LessThen:
       {
-                        if (mc_pShape->getPosition().x < mc_dfPosition)
-                        {
-                          return true;
-                        }
-                        else
-                        {
-                          return false;
-                        }
+        if (mc_pShape->getPosition().x < mc_dfPosition)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
       default:
         break;

@@ -34,13 +34,13 @@ namespace Foundation
 
   CBufferIPECollection::CBufferIPECollection()
   {
-    mv_mapSmartCollection = new std::map<const char*, const std::shared_ptr<const Interfaces::IProcessingElement>>();
+    mv_mapSmartCollection = new std::map<std::string, const std::shared_ptr<const Interfaces::IProcessingElement>>();
   }
 
-  const std::shared_ptr<const Interfaces::IProcessingElement>& CBufferIPECollection::mf_xGetPEByName(const char* ac_szPEIdentifier) const
+  const std::shared_ptr<const Interfaces::IProcessingElement>& CBufferIPECollection::mf_xGetPEByName(std::string ac_szPEIdentifier) const
   {
-    BOOST_ASSERT_MSG(ac_szPEIdentifier != nullptr, "Empty string provided");
-    if (ac_szPEIdentifier != nullptr)
+    BOOST_ASSERT_MSG(!ac_szPEIdentifier.empty(), "Empty string provided");
+    if (!ac_szPEIdentifier.empty())
     {
       const auto& it = mv_mapSmartCollection->find(ac_szPEIdentifier);
       return it->second;
@@ -52,7 +52,7 @@ namespace Foundation
     BOOST_ASSERT_MSG(ac_xProcessingElement != nullptr, "Process to add is null");
     if (ac_xProcessingElement != nullptr)
     {
-      mv_mapSmartCollection->insert(std::map<const char*, const std::shared_ptr<const Interfaces::IProcessingElement>>::value_type(ac_xProcessingElement->mf_szGetPEIdentifier(), ac_xProcessingElement));
+      mv_mapSmartCollection->insert(std::map<std::string, const std::shared_ptr<const Interfaces::IProcessingElement>>::value_type(ac_xProcessingElement->mf_szGetPEIdentifier(), ac_xProcessingElement));
     }
   }
 

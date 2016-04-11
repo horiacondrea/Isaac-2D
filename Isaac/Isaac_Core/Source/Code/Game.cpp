@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 namespace Core
 {
 
-  void CGame::mp_Start(const char* av_szGameTitle, const unsigned int &av_nGameWidth = 800, const unsigned int &av_nGameHeigh = 600)
+  void CGame::mp_Start(std::string av_szGameTitle, const unsigned int &av_nGameWidth = 800, const unsigned int &av_nGameHeigh = 600)
   {
     mv_xMainWindow = std::make_shared<sf::RenderWindow>();
 
@@ -40,7 +40,7 @@ namespace Core
     BOOST_ASSERT_MSG(mc_xTransientData != nullptr, "Transient data is not defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is not defined");
 
-    if(av_szGameTitle            != nullptr  && 
+    if(!(av_szGameTitle.empty())            && 
       mc_xStateCollection        != nullptr &&
       mc_xStateCollection->mp_GetSize() > 0 && 
       mc_xTransientData          != nullptr &&

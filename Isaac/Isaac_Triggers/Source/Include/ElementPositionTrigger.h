@@ -59,7 +59,7 @@ namespace Triggers
     const bool mp_CalculateTrigger() const;
 
   public:
-    CElementPositionTrigger(const Position ac_enumPosition , const char* ac_szTriggerName);
+    CElementPositionTrigger(const Position ac_enumPosition , std::string ac_szTriggerName);
     virtual ~CElementPositionTrigger();
 
     void mp_InitTrigger( sf::Shape* ac_pShape, const double ac_dfPosition);

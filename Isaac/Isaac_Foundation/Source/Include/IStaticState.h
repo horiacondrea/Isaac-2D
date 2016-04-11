@@ -58,7 +58,7 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, std::string ac_szTriggerName) = 0;
 
       virtual bool mp_bIsDynamicState() const
       {
@@ -70,7 +70,7 @@ namespace Foundation
       }
 
     protected:
-      IStaticState(const char* ac_szStateName) : IState(ac_szStateName)
+      IStaticState(std::string ac_szStateName) : IState(ac_szStateName)
       {
         ;
       }

@@ -37,12 +37,10 @@ Revision | Who      | Date       | Comment
 
 namespace Foundation
 {
-  /*                               Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
+  /*!                              Interfaces
+  * In the Interfaces namespace you will find the most important interfaces
+  * used in the Framework. You can modify these files if you want, but first
+  * make sure you understand how these works.
   */
   namespace Interfaces
   {
@@ -165,7 +163,7 @@ namespace Foundation
         }
       }
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, const char* ac_szTriggerName)
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>& av_xTransientData, std::string ac_szTriggerName)
       {
         if (mp_GetSize() > 0)
         {
@@ -215,7 +213,7 @@ namespace Foundation
       }
 
     protected:
-      IDynamicState(const char* ac_szStateName) : IState(ac_szStateName)
+      IDynamicState(std::string ac_szStateName) : IState(ac_szStateName)
       {
         ;
       }
@@ -223,14 +221,15 @@ namespace Foundation
     private:
       std::shared_ptr<const Interfaces::IProcessingElement> mf_bCheckAllPE(sf::Event event) const
       {
-        const char* lc_szPEActivated = nullptr;
+        std::string lc_szPEActivated;
         for (const auto& item : *mf_mapGetRawMap())
         {
           item.second->mp_CheckTriggers(lc_szPEActivated, event);
-          if (lc_szPEActivated != nullptr)
+          if (!lc_szPEActivated.empty())
           {
             return item.second;
           }
+          return nullptr;
         }
       }
 

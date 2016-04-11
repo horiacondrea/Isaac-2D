@@ -38,31 +38,25 @@ Revision | Who      | Date       | Comment
 
 /////////////////////////////////////////////////////////////////////////////
 
-/*                                Core 
-/////////////////////////////////////////////////////////////////////////////
-// In the Core namespace you will find the most important components, this
-// components are directly implicated in the behavior that your game will
-// have.
-/////////////////////////////////////////////////////////////////////////////
+/*!                                Core 
+In the Core namespace you will find the most important components, this
+components are directly implicated in the behavior that your game will
+have.
 */
 namespace Core 
 {
-  /*                                CGame
-  ////////////////////////////////////////////////////////////////////////////
-  // This is the main class for this Framework. In CGame all the information
-  // that you already define will gather here and it will spread towards
-  // those componenets that are resposible for them.
-  ////////////////////////////////////////////////////////////////////////////
+  /*!                                CGame
+   This is the main class for this Framework. In CGame all the information
+   that you already define will gather here and it will spread towards
+   those componenets that are resposible for them.
   */
   class EXPORT_API CGame
   {
   public:
 
-    /*                        mp_DefineGameAspect
-    /////////////////////////////////////////////////////////////////////////
-    // This methid will fill almost all the member variables in this class 
-    // with data provided by you in the Static Aspect and Dynamic Aspect.
-    /////////////////////////////////////////////////////////////////////////
+    /*!                        mp_DefineGameAspect
+     This methid will fill almost all the member variables in this class 
+     with data provided by you in the Static Aspect and Dynamic Aspect.
     */
     void mp_DefineGameAspect(const std::shared_ptr<const Foundation::Interfaces::IDynamicAspect>& ac_xGameAspect);
 
@@ -74,7 +68,7 @@ namespace Core
     // and the Orchestrator
     /////////////////////////////////////////////////////////////////////////
     */
-    void mp_Start(const char* ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
+    void mp_Start(std::string ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
 
 
     // This class is Singleton, so you can only have one 'instance'

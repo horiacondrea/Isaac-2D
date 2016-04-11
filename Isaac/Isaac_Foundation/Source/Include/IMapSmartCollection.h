@@ -57,7 +57,7 @@ namespace Foundation
         return mv_mapSmartCollection->size();
       }
 
-      std::map<const char*, const std::shared_ptr<Type>>* mf_mapGetRawMap() const
+      std::map<std::string, const std::shared_ptr<Type>>* mf_mapGetRawMap() const
       {
         return mv_mapSmartCollection;
       }
@@ -68,7 +68,7 @@ namespace Foundation
       }
 
     protected:
-      mutable std::map<const char*, const std::shared_ptr<Type>>* mv_mapSmartCollection;
+      mutable std::map<std::string, const std::shared_ptr<Type>>* mv_mapSmartCollection;
     };
   }
 }

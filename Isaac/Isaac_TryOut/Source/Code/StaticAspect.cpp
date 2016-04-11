@@ -21,7 +21,7 @@ void StaticAspect::mp_Define_States() const
   mp_AddState(s4);
 
 
-  s2->mp_SetFatherState(s3);
+  //s2->mp_SetFatherState(s3);
   //s1->mp_SetFatherState(s3);
 }
 

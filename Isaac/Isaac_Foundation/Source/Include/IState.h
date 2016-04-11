@@ -60,11 +60,11 @@ namespace Foundation
 
       virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, const char* ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, std::string ac_szTriggerName) = 0;
 
       virtual bool mp_bIsDynamicState() const = 0;
 
-      virtual const char* mf_szGetStateName() const
+      virtual std::string mf_szGetStateName() const
       {
         return mc_szStateName;
       }
@@ -103,7 +103,7 @@ namespace Foundation
 
     protected:
 
-      IState(const char* ac_szStateName) : mc_szStateName(ac_szStateName)
+      IState(std::string ac_szStateName) : mc_szStateName(ac_szStateName)
       {
         
       }
@@ -111,7 +111,7 @@ namespace Foundation
       mutable std::shared_ptr<const Interfaces::IState> mv_xFatherState;
       mutable bool mv_bIsFatherStateActive;
 
-      const char* mc_szStateName;
+      std::string mc_szStateName;
     };
   }
 }
