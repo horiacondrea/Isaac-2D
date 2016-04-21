@@ -6,23 +6,23 @@ StaticAspect::StaticAspect()
 {
 }
 
-void StaticAspect::mp_Define_States() const
+void StaticAspect::mp_Define_Scenes() const
 {
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s1 = std::make_shared<StateOne>(("State1"));
-  mp_AddState(s1);
+  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s1 = std::make_shared<SceneOne>(("Scene1"));
+  mp_AddScene(s1);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s2 = std::make_shared<StateTwo>(("State2"));
-  mp_AddState(s2);
+  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s2 = std::make_shared<SceneTwo>(("Scene2"));
+  mp_AddScene(s2);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticState> s3 = std::make_shared<StateThree>(("State3"));
-  mp_AddState(s3);
+  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s3 = std::make_shared<SceneThree>(("Scene3"));
+  mp_AddScene(s3);
 
-  const std::shared_ptr<const Foundation::Interfaces::IDynamicState> s4 = std::make_shared<DynamicState>(("Dyn"));
-  mp_AddState(s4);
+  const std::shared_ptr<const Foundation::Interfaces::IDynamicScene> s4 = std::make_shared<DynamicScene>(("Dyn"));
+  mp_AddScene(s4);
 
 
-  //s2->mp_SetFatherState(s3);
-  //s1->mp_SetFatherState(s3);
+  //s2->mp_SetFatherScene(s3);
+  //s1->mp_SetFatherScene(s3);
 }
 
 void StaticAspect::mp_Define_Triggers() const

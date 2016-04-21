@@ -28,8 +28,8 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include "IStaticAspect.h"
-#include "BufferITransitionCollection.h"
-#include "common/defines.h"
+#include <TransitionCollection.h>
+#include "defines.h"
 
 
 namespace Foundation
@@ -48,41 +48,41 @@ namespace Foundation
     // IDynamicAspect is probably one of the most important interfaces from this
     // namespace. You will for sure have a class that will inherit this interfaces
     // in you game, in order to define yout game transitions, your game transient
-    // data and the initial state of the game.
+    // data and the initial Scene of the game.
     /////////////////////////////////////////////////////////////////////////////
     */
-    class EXPORT_API IDynamicAspect : public Foundation::BufferITransitionCollection
+    class EXPORT_API IDynamicAspect : public Foundation::CTransitionCollection
 
     {
       // Public Methods
     public:
 
-      /* mp_Define_States_Transitions | mp_Define_Transient_Data | mp_Define_Initial_State
+      /* mp_Define_Scenes_Transitions | mp_Define_Transient_Data | mp_Define_Initial_Scene
       /////////////////////////////////////////////////////////////////////////////////////////
       // These names says everything
       /////////////////////////////////////////////////////////////////////////////////////////
       */
-      virtual void mp_Define_States_Transitions() const = 0;
+      virtual void mp_Define_Scenes_Transitions() const = 0;
 
-      virtual void mp_Define_Initial_State() const = 0;
+      virtual void mp_Define_Initial_Scene() const = 0;
 
       // Protected member variables
     protected:
       std::shared_ptr<const Interfaces::IStaticAspect> mv_xStaticAspect;
-      mutable std::shared_ptr<const Interfaces::IState> mv_pInitialState;
+      mutable std::shared_ptr<const Interfaces::IScene> mv_pInitialScene;
 
-      const std::shared_ptr<const Foundation::CTransition> mf_xDefineTransition(std::string ac_szSourceStateIdentifier,
+      const std::shared_ptr<const Foundation::CTransition> mf_xDefineTransition(std::string ac_szSourceSceneIdentifier,
         std::string ac_szTriggerIdentifier,
-        std::string ac_szDestinationStateIdentifier) const
+        std::string ac_szDestinationSceneIdentifier) const
       {
-        return std::make_shared<Foundation::CTransition>(mv_xStaticAspect->mf_xGetStateByName(ac_szSourceStateIdentifier),
+        return std::make_shared<Foundation::CTransition>(mv_xStaticAspect->mf_xGetSceneByName(ac_szSourceSceneIdentifier),
           mv_xStaticAspect->mf_xGetTriggerByName(ac_szTriggerIdentifier),
-          mv_xStaticAspect->mf_xGetStateByName(ac_szDestinationStateIdentifier));
+          mv_xStaticAspect->mf_xGetSceneByName(ac_szDestinationSceneIdentifier));
       }
 
-      std::shared_ptr<const Interfaces::IState> mf_xDefineInitialState(std::string ac_szInitialStateIdentifier) const
+      std::shared_ptr<const Interfaces::IScene> mf_xDefineInitialScene(std::string ac_szInitialSceneIdentifier) const
       {
-        return mv_xStaticAspect->mf_xGetStateByName(ac_szInitialStateIdentifier);
+        return mv_xStaticAspect->mf_xGetSceneByName(ac_szInitialSceneIdentifier);
       }
 
       // Public Methods
@@ -100,9 +100,9 @@ namespace Foundation
           mv_xStaticAspect = ac_xStaticAspect;
       }
 
-      virtual const std::shared_ptr<const Interfaces::IState>& mp_GetInitialState() const
+      virtual const std::shared_ptr<const Interfaces::IScene>& mp_GetInitialScene() const
       {
-        return mv_pInitialState;
+        return mv_pInitialScene;
       }
 
       virtual ~IDynamicAspect()

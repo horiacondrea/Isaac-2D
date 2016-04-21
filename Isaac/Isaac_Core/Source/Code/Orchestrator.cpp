@@ -27,70 +27,70 @@ Revision | Who      | Date       | Comment
 */
 
 #include "Orchestrator.h"
-#include <BufferITriggerCollection.h>
-#include <IDynamicState.h>
+#include <TriggerCollection.h>
+#include <IDynamicScene.h>
 #include <list>
 
-namespace Core
+namespace isaac
 {
-  COrchestrator::COrchestrator(std::shared_ptr<const Foundation::Interfaces::IState>& ac_xInitialState, 
-                               std::shared_ptr<const Foundation::Interfaces::IStateCollection>& ac_xStateCollection,
-                               std::shared_ptr<const Foundation::Interfaces::ITransitionCollection>& ac_xTransitionCollection) :
-    mc_xInitialState(ac_xInitialState),
-    mc_xStateCollection(ac_xStateCollection),
+  COrchestrator::COrchestrator(std::shared_ptr<const Foundation::Interfaces::IScene>& ac_xInitialScene, 
+                               std::shared_ptr<const Foundation::CSceneCollection>& ac_xCSceneCollection,
+                               std::shared_ptr<const Foundation::CTransitionCollection>& ac_xTransitionCollection) :
+    mc_xInitialScene(ac_xInitialScene),
+    mc_xCSceneCollection(ac_xCSceneCollection),
     mc_xTransitionCollection(ac_xTransitionCollection)
   {
-    BOOST_ASSERT_MSG(mc_xInitialState != nullptr, "InitialState is null");
-    BOOST_ASSERT_MSG(mc_xStateCollection != nullptr, "State collection is null");
-    BOOST_ASSERT_MSG(mc_xStateCollection->mp_GetSize() != 0, "There is no state defined");
+    BOOST_ASSERT_MSG(mc_xInitialScene != nullptr, "InitialScene is null");
+    BOOST_ASSERT_MSG(mc_xCSceneCollection != nullptr, "Scene collection is null");
+    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() != 0, "There is no Scene defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is null");
 
     mv_bIsThisFirstTimeHere = true;
     mv_szLastTriggerName = "NoTrigger";
-    mp_OrganizeDynamicStates();
+    mp_OrganizeDynamicScenes();
   }
 
-  std::pair<std::shared_ptr< const Foundation::Interfaces::IState >, std::string>  COrchestrator::mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
+  std::pair<std::shared_ptr< const Foundation::Interfaces::IScene >, std::string>  COrchestrator::mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
   {
     av_bHasAnyTriggerDisturbed = false;
     if (mc_xTransitionCollection->mp_GetSize() == 0)
     {
-      mc_xCurrentState = mc_xInitialState;
+      mc_xCurrentScene = mc_xInitialScene;
     }
     else
     {
       if (mv_bIsThisFirstTimeHere)
       {
-        mc_xCurrentState = mc_xInitialState;
+        mc_xCurrentScene = mc_xInitialScene;
         mv_bIsThisFirstTimeHere = false;
         av_bHasAnyTriggerDisturbed = false;
       }
       else
       {
-        std::list<std::string> av_listStateNames;
-        std::shared_ptr<const Foundation::Interfaces::IState> lv_xLocalState = mc_xCurrentState;
-        av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
-        if (mc_xCurrentState->mf_bIsSubState())
+        std::list<std::string> av_listSceneNames;
+        std::shared_ptr<const Foundation::Interfaces::IScene> lv_xLocalScene = mc_xCurrentScene;
+        av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
+        if (mc_xCurrentScene->mf_bIsSubScene())
         {
           do
           {
-            lv_xLocalState = lv_xLocalState->mf_xGetFatherState();
-            av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
-          } while (lv_xLocalState->mf_bIsSubState());
+            lv_xLocalScene = lv_xLocalScene->mf_xGetFatherScene();
+            av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
+          } while (lv_xLocalScene->mf_bIsSubScene());
         }
 
-        for (const auto& lv_pTransition : *mc_xTransitionCollection->mf_mapGetRawMap())
+        for (const auto& lv_pTransition : mc_xTransitionCollection->mf_mapGetRawMap())
         {
-          for (const auto& item : av_listStateNames)
+          for (const auto& item : av_listSceneNames)
           {
-            if (lv_pTransition.second->mf_xGetSourceState()->mf_szGetStateName() == item)
+            if (lv_pTransition.second->mf_xGetSourceScene()->mf_szGetSceneName() == item)
             {
               if (lv_pTransition.second->mf_bCheckTransition(av_Event))
               {
-                mc_xCurrentState = lv_pTransition.second->mf_xGetDestinationState();
+                mc_xCurrentScene = lv_pTransition.second->mf_xGetDestinationScene();
                 mv_szLastTriggerName = lv_pTransition.second->mf_xGetTrigger()->mf_szGetTriggerName();
                 av_bHasAnyTriggerDisturbed = true;
-                return std::make_pair(mc_xCurrentState, mv_szLastTriggerName);
+                return std::make_pair(mc_xCurrentScene, mv_szLastTriggerName);
                 break;
               }
               else
@@ -102,77 +102,76 @@ namespace Core
         }
       }
     }
-    return std::make_pair(mc_xCurrentState, mv_szLastTriggerName);
+    return std::make_pair(mc_xCurrentScene, mv_szLastTriggerName);
   }
 
-  std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& COrchestrator::mf_xGetTriggersPerState() const
+  std::shared_ptr<Foundation::CTriggerCollection>& COrchestrator::mf_xGetTriggersPerScene() const
   {
 
-    mv_xTriggersPerState = std::make_shared<Foundation::CBufferITriggerCollection>();
+    mv_xTriggersPerScene = std::make_shared<Foundation::CTriggerCollection>();
 
-    std::list<std::string> av_listStateNames;
-    std::shared_ptr<const Foundation::Interfaces::IState> lv_xLocalState = mc_xCurrentState;
-    av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
-    if (mc_xCurrentState->mf_bIsSubState())
+    std::list<std::string> av_listSceneNames;
+    std::shared_ptr<const Foundation::Interfaces::IScene> lv_xLocalScene = mc_xCurrentScene;
+    av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
+    if (mc_xCurrentScene->mf_bIsSubScene())
     {
-      do
-      {
-        lv_xLocalState = lv_xLocalState->mf_xGetFatherState();
-        av_listStateNames.push_back(lv_xLocalState->mf_szGetStateName());
-      } while (lv_xLocalState->mf_bIsSubState());
+      do {
+        lv_xLocalScene = lv_xLocalScene->mf_xGetFatherScene();
+        av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
+      } while (lv_xLocalScene->mf_bIsSubScene());
     }
 
-    for (const auto& lv_pTransition : *mc_xTransitionCollection->mf_mapGetRawMap())
+    for (const auto& lv_pTransition : mc_xTransitionCollection->mf_mapGetRawMap())
     {
-      for (const auto & item : av_listStateNames)
+      for (const auto & item : av_listSceneNames)
       {
-        if (lv_pTransition.second->mf_xGetSourceState()->mf_szGetStateName() == item)
+        if (lv_pTransition.second->mf_xGetSourceScene()->mf_szGetSceneName() == item)
         {
-          const std::shared_ptr<const Foundation::Interfaces::ITrigger> lv_pTrigger = lv_pTransition.second->mf_xGetTrigger();
-          mv_xTriggersPerState->mp_AddTrigger(lv_pTrigger);
+          const auto& lv_pTrigger = lv_pTransition.second->mf_xGetTrigger();
+          mv_xTriggersPerScene->mp_AddTrigger(lv_pTrigger);
         }
       }
     }
-    return mv_xTriggersPerState;
+    return mv_xTriggersPerScene;
   }
 
-  void COrchestrator::mp_OrganizeDynamicStates() const
+  void COrchestrator::mp_OrganizeDynamicScenes() const
   {
-    BOOST_ASSERT_MSG(mc_xStateCollection->mp_GetSize() != 0, "There is no state defined");
-    for (const auto& item : *mc_xStateCollection->mf_mapGetRawMap())
+    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() != 0, "There is no Scene defined");
+    for (const auto& item : mc_xCSceneCollection->mf_mapGetRawMap())
     {
-      if (item.second->mp_bIsDynamicState())
+      if (item.second->mp_bIsDynamicScene())
       {
         mv_mapDynamicMapMirror.emplace(item.first, false);
       }
     }
   }
 
-  const bool COrchestrator::mf_bGetDynamicStateStatus(std::string ac_szDynamicStateName) const
+  const bool COrchestrator::mf_bGetDynamicSceneStatus(std::string ac_szDynamicSceneName) const
   {
-    BOOST_ASSERT_MSG(!ac_szDynamicStateName.empty(), "Dynamic State Name is undefined");
+    BOOST_ASSERT_MSG(!ac_szDynamicSceneName.empty(), "Dynamic Scene Name is undefined");
 
     bool result = false;
-    if (!ac_szDynamicStateName.empty())
+    if (!ac_szDynamicSceneName.empty())
     {
       if (mv_mapDynamicMapMirror.size() > 0)
       {
-        const auto& item = mv_mapDynamicMapMirror.find(ac_szDynamicStateName);
+        const auto& item = mv_mapDynamicMapMirror.find(ac_szDynamicSceneName);
         if (item->second)
         {
           result = false;
-          const std::shared_ptr<const Foundation::Interfaces::IState> lc_xDynamicState = mc_xStateCollection->mf_xGetStateByName(ac_szDynamicStateName);
-          if (lc_xDynamicState->mp_bIsDynamicState())
+          const auto& lc_xDynamicScene = mc_xCSceneCollection->mf_xGetSceneByName(ac_szDynamicSceneName);
+          if (lc_xDynamicScene->mp_bIsDynamicScene())
           {
-            std::shared_ptr<const Foundation::Interfaces::IDynamicState> lc_xCurrentDynState = std::static_pointer_cast<const Foundation::Interfaces::IDynamicState>(lc_xDynamicState);
-            lc_xCurrentDynState->mp_ResetProcessingElements();
+            auto& lc_xCurrentDynScene = std::static_pointer_cast<const Foundation::Interfaces::IDynamicScene>(lc_xDynamicScene);
+            lc_xCurrentDynScene->mp_ResetProcessingElements();
           }
         }
         else
         {
           result = true;
-          mv_mapDynamicMapMirror.erase(ac_szDynamicStateName);
-          mv_mapDynamicMapMirror.emplace(ac_szDynamicStateName, true);
+          mv_mapDynamicMapMirror.erase(ac_szDynamicSceneName);
+          mv_mapDynamicMapMirror.emplace(ac_szDynamicSceneName, true);
         }
       }
     }

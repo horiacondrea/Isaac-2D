@@ -5,14 +5,14 @@
 
 
 PEOne::PEOne(Foundation::Interfaces::IProcessingElement::ProcessType ac_enumPEType,
-  std::string ac_szStateName) :
-  Foundation::Interfaces::IProcessingElement(ac_enumPEType, ac_szStateName)
+  std::string ac_szSceneName) :
+  Foundation::Interfaces::IProcessingElement(ac_enumPEType, ac_szSceneName)
 {
     ;
 }
 
 void PEOne::mp_InitProcess(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
-  std::shared_ptr<const Foundation::Interfaces::ITransientData>& ac_xTransientData)
+  std::shared_ptr<const Foundation::CTransientDataCollection>& ac_xTransientData)
 {
   mv_xShape = std::make_shared<sf::ConvexShape>();
 
@@ -27,8 +27,8 @@ void PEOne::mp_InitProcess(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
   std::cout << "PE one- Init" << std::endl;
 }
 
-void PEOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xGlobalTriggersColl,
-  const std::shared_ptr<Foundation::Interfaces::ITriggerCollection>& ac_xLoacalTriggersColl)
+void PEOne::mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>& ac_xGlobalTriggersColl,
+  const std::shared_ptr<Foundation::CTriggerCollection>& ac_xLoacalTriggersColl)
 {
   const std::shared_ptr<const Foundation::Interfaces::ITrigger> lv_pTrigger = ac_xLoacalTriggersColl->mf_xGetTriggerByName(("tpe"));
   const std::shared_ptr<Triggers::CElementPositionTrigger> lv_pPosition =
@@ -37,20 +37,20 @@ void PEOne::mp_InitTriggers(std::shared_ptr<Foundation::Interfaces::ITriggerColl
   lv_pPosition->mp_InitTrigger(mv_xShape.get(), 500);
 }
 
-void PEOne::mp_UpdateState(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
-  std::shared_ptr<const Foundation::Interfaces::ITransientData>& ac_xTransientData,
+void PEOne::mp_UpdateScene(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,
+  std::shared_ptr<const Foundation::CTransientDataCollection>& ac_xTransientData,
   sf::Event av_eventSFMLEvent,
   bool& av_bReturnedBool_WindowClosed)
 {
   mv_xShape->move(1, 0);
 }
 
-void PEOne::mp_DrawState(std::shared_ptr<sf::RenderWindow> ac_xMainWindow) const
+void PEOne::mp_DrawScene(std::shared_ptr<sf::RenderWindow> ac_xMainWindow) const
 {
   ac_xMainWindow->draw(*mv_xShape);
 }
 
-void PEOne::mp_Release(std::shared_ptr<const Foundation::Interfaces::ITransientData>& av_xTransientData, std::string ac_szTriggerName)
+void PEOne::mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
 {
 
 }

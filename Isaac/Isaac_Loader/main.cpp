@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <vld.h>
+#include <vld.h>
 //#include <Game.h>
 #include <LibraryUtils.h>
 #include <memory>
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
     std::cout << "Loading dynamic library : " << lc_szLibraryPath << std::endl;
     
-    auto libUtil = std::make_shared<LibraryUtils>(lc_szLibraryPath);
+    auto libUtil = std::make_shared<isaac::LibraryUtils>(lc_szLibraryPath);
     
     if ( false == libUtil->Load())
     //HINSTANCE hGetProcIDDLL = LoadLibrary(lc_szLibraryPath.c_str());

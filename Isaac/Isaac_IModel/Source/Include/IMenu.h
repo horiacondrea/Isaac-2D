@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 
 #pragma once
-#include "common/defines.h"
+#include "defines.h"
 #include "IButton.h"
 #include <SFML/Graphics.hpp>
 
@@ -49,13 +49,13 @@ namespace IModel
 
   public:
 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates States) const
     {
-      states.transform *= getTransform();
+      States.transform *= getTransform();
 
       for (const auto& button : mv_mapMenu)
       {
-        target.draw(*button.second, states);
+        target.draw(*button.second, States);
       }
     }
 

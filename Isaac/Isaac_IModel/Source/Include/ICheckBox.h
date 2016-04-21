@@ -28,7 +28,7 @@ Revision | Who      | Date           | Comment
 
 #pragma once
 
-#include "common/defines.h"
+#include "defines.h"
 #include <SFML/Graphics.hpp>
 #include "IFrame.h"
 
@@ -48,7 +48,7 @@ namespace IModel
     virtual void mp_SetCheckBox(const bool& ac_bCheck) = 0;
 
    private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates States) const;
 
   protected:
     const IFrame* mc_Box;

@@ -9,13 +9,13 @@ DynamicAspect::DynamicAspect()
 {
 }
 
-void DynamicAspect::mp_Define_States_Transitions() const
+void DynamicAspect::mp_Define_Scenes_Transitions() const
 {
-  const std::shared_ptr<const Foundation::CTransition> tra1 = mf_xDefineTransition(("State1"), ("t1"), ("State3"));
+  const std::shared_ptr<const Foundation::CTransition> tra1 = mf_xDefineTransition(("Scene1"), ("t1"), ("Scene3"));
 																									   
-  const std::shared_ptr<const Foundation::CTransition> tra2 = mf_xDefineTransition(("State2"), ("t2"), ("State1"));
+  const std::shared_ptr<const Foundation::CTransition> tra2 = mf_xDefineTransition(("Scene2"), ("t2"), ("Scene1"));
 																									   
-  const std::shared_ptr<const Foundation::CTransition> tra3 = mf_xDefineTransition(("State3"), ("t3"), ("Dyn"));
+  const std::shared_ptr<const Foundation::CTransition> tra3 = mf_xDefineTransition(("Scene3"), ("t3"), ("Dyn"));
 																									   
   const std::shared_ptr<const Foundation::CTransition> tra4 = mf_xDefineTransition(("Dyn"),    ("t4"), ("Dyn"));
 
@@ -25,9 +25,9 @@ void DynamicAspect::mp_Define_States_Transitions() const
   mp_AddTransition(("tra4"), tra4);
 }
 
-void DynamicAspect::mp_Define_Initial_State() const
+void DynamicAspect::mp_Define_Initial_Scene() const
 {
-  mv_pInitialState = mf_xDefineInitialState(("State1"));
+  mv_pInitialScene = mf_xDefineInitialScene(("Scene1"));
 }
 
 DynamicAspect::~DynamicAspect()

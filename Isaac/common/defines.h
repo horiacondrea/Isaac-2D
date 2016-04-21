@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 #ifdef __cplusplus
 #define EXTERN_C extern "C"
@@ -12,3 +13,4 @@
 #else
     #define EXPORT_API
 #endif
+

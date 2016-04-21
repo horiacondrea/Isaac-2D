@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 
 #include <SFML/Graphics.hpp>
 #include <IFrame.h>
-#include "common/defines.h"
+#include "defines.h"
 
 
 namespace CModel

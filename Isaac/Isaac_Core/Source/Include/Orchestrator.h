@@ -29,77 +29,77 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <ITriggerCollection.h>
-#include <IState.h>
-#include <IStateCollection.h>
-#include <ITransitionCollection.h>
+#include <IScene.h>
+#include <SceneCollection.h>
+#include <TransitionCollection.h>
 /////////////////////////////////////////////////////////////////////////////
 
-/*                             Core
-/////////////////////////////////////////////////////////////////////////////
-// In the Core namespace you will find the most important components, this
-// components are directly implicated in the behavior that your game will
-// have.
-/////////////////////////////////////////////////////////////////////////////
+/*!                          
+In the Core namespace you will find the most important components, this
+components are directly implicated in the behavior that your game will
+have.
 */
-namespace Core
+namespace isaac
 {
-  /*                             COrchestrator
-  /////////////////////////////////////////////////////////////////////////////
-  // COrchestrator class analyzes the data the you provide in order to supply
-  // StateMachine with consistent information regarding the Active State and
-  // the Triggers that are available in the Active State.
-  /////////////////////////////////////////////////////////////////////////////
+  /*!                            
+  COrchestrator class analyzes the data the you provide in order to supply
+  SceneMachine with consistent information regarding the Active Scene and
+  the Triggers that are available in the Active Scene.
   */
   class COrchestrator
   {
     // Private variables //
-    std::shared_ptr< const Foundation::Interfaces::IState > mc_xInitialState;
-    std::shared_ptr< const Foundation::Interfaces::IStateCollection > mc_xStateCollection;
-    std::shared_ptr< const Foundation::Interfaces::ITransitionCollection > mc_xTransitionCollection;
+    std::shared_ptr< const Foundation::Interfaces::IScene > mc_xInitialScene;
+    std::shared_ptr< const Foundation::CSceneCollection > mc_xCSceneCollection;
+    std::shared_ptr< const Foundation::CTransitionCollection > mc_xTransitionCollection;
 
-    std::shared_ptr< const Foundation::Interfaces::IState > mc_xCurrentState;
+    std::shared_ptr< const Foundation::Interfaces::IScene > mc_xCurrentScene;
 
     mutable bool mv_bIsThisFirstTimeHere;
-    mutable std::shared_ptr< Foundation::Interfaces::ITriggerCollection > mv_xTriggersPerState;
+    mutable std::shared_ptr< Foundation::CTriggerCollection > mv_xTriggersPerScene;
     mutable std::map<std::string, const bool> mv_mapDynamicMapMirror;
     std::string mv_szLastTriggerName;
 
   public:
 
+    // Public Methods //
+
     // Constructor
-    COrchestrator(std::shared_ptr< const Foundation::Interfaces::IState >& ac_xInitialState,
-                  std::shared_ptr< const Foundation::Interfaces::IStateCollection >& ac_xStateCollection,
-                  std::shared_ptr< const Foundation::Interfaces::ITransitionCollection >& ac_xTransitionCollection);
+    COrchestrator(std::shared_ptr< const Foundation::Interfaces::IScene >& ac_xInitialScene,
+                  std::shared_ptr< const Foundation::CSceneCollection >& ac_xCSceneCollection,
+                  std::shared_ptr< const Foundation::CTransitionCollection >& ac_xTransitionCollection);
 
     // D-tor
     //// We are not going to destroy anything, since we use only smart pointers.
     ~COrchestrator();
 
-    /*                         mf_pGetStateToBeDisplayed
-    /////////////////////////////////////////////////////////////////////////////
-    // This method check the triggers that are available in the Active State
-    // and determine what state will be next. If the Initial State is the Active
-    // State this will be displayed.
-    // Also mf_pGetStateToBeDisplayed will return a bool that will allow as to 
-    // see if any trigger has been disturbed.
-    /////////////////////////////////////////////////////////////////////////////
+    /*!                        
+    This method check the triggers that are available in the Active Scene
+    and determine what Scene will be next. If the Initial Scene is the Active
+    Scene this will be displayed.
+    Also mf_pGetSceneToBeDisplayed will return a bool that will allow as to 
+    see if any trigger has been disturbed.
     */
-    std::pair< std::shared_ptr< const Foundation::Interfaces::IState >, std::string> mf_xGetStateToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
+    std::pair< std::shared_ptr< const Foundation::Interfaces::IScene >, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
 
-    /*                         mf_pGetTriggersPerState
-    /////////////////////////////////////////////////////////////////////////////
-    // GetTriggersPerState returns the Triggers that are available  for the
-    // Active State, in order to init them in the state.
-    /////////////////////////////////////////////////////////////////////////////
+    /*!                        
+    GetTriggersPerScene returns the Triggers that are available  for the
+    Active Scene, in order to init them in the Scene.
     */
-    std::shared_ptr< Foundation::Interfaces::ITriggerCollection >& mf_xGetTriggersPerState() const;
+    std::shared_ptr< Foundation::CTriggerCollection >& mf_xGetTriggersPerScene() const;
 
-    const bool mf_bGetDynamicStateStatus(std::string ac_szDynamicStateName) const;
+    /*!
+    Get Dynamic Scene Status will return true if for a specific Scene name the processes
+    are defined and will return false if the processes are not defined
+    */
+    const bool mf_bGetDynamicSceneStatus(std::string ac_szDynamicSceneName) const;
 
   private:
-
-    void mp_OrganizeDynamicStates() const;
+    // Private Methods //
+    /*!
+    Organize dynamic Scenes in a map
+    */
+    void mp_OrganizeDynamicScenes() const;
 
   };
 

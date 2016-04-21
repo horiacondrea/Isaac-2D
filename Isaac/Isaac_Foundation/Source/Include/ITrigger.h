@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 #include <list>
 #include <boost/any.hpp>
 #include <SFML/Graphics.hpp>
-#include "common/defines.h"
+#include "defines.h"
 
 
 namespace Foundation

@@ -54,10 +54,10 @@ namespace Foundation
 
       const int mp_GetSize() const
       {
-        return mv_mapCollection->size();
+        return mv_mapCollection.size();
       }
 
-      std::map<std::string, Type>* mf_mapGetRawMap() const
+      std::map<std::string, Type> mf_mapGetRawMap() const
       {
         return mv_mapCollection;
       }
@@ -68,7 +68,7 @@ namespace Foundation
       }
 
     protected:
-      mutable std::map<std::string, Type>* mv_mapCollection;
+      mutable std::map<std::string, Type> mv_mapCollection;
     };
   }
 }

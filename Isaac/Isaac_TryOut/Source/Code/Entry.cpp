@@ -6,9 +6,9 @@ int CreateGame()
 
   lv_xDynAspect->mp_Insert_Static_Aspect(std::make_shared<StaticAspect>());
 
-  Core::CGame::instance().mp_DefineGameAspect(lv_xDynAspect);
+  isaac::CGame::instance().mp_DefineGameAspect(lv_xDynAspect);
 
-  Core::CGame::instance().mp_Start(("Game"), 800, 600);
+  isaac::CGame::instance().mp_Start(("Game"), 800, 600);
 
   return 0;
 }

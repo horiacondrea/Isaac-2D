@@ -27,7 +27,7 @@ Revision | Who      | Date       | Comment
 */
 
 #include "Menu.h"
-#include "common/defines.h"
+#include "defines.h"
 
 namespace CModel
 {

@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 
 #include <SFML/Graphics.hpp>
 #include <ICheckBox.h>
-#include "common/defines.h"
+#include "defines.h"
 
 namespace CModel
 {
@@ -47,7 +47,7 @@ namespace CModel
     virtual void mp_SetCheckBox(const bool& ac_bCheck);
 
   private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates States) const;
 
   
   };

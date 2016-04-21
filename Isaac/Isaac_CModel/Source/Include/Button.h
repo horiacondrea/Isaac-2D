@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include <IButton.h>
 #include <string>
-#include "common/defines.h"
+#include "defines.h"
 
 namespace CModel
 {

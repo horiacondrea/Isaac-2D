@@ -28,10 +28,10 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "BufferITriggerCollection.h"
-#include "ITransientData.h"
+#include <TriggerCollection.h>
+#include <TransientDataCollection.h>
 #include "ITrigger.h"
-#include "common/defines.h"
+#include "defines.h"
 
 namespace Foundation
 {
@@ -50,7 +50,7 @@ namespace Foundation
 
       /*                               ProcessType
       /////////////////////////////////////////////////////////////////////////////
-      // en_Permanent - actie while the state is active
+      // en_Permanent - actie while the Scene is active
       // en_Continuous - needs a trigger start and stop
       // en_OneTimeProcess - when the start triggerd will get disturbed this process
       //                     will run one time
@@ -66,16 +66,16 @@ namespace Foundation
         en_UnknowProcess
       };
 
-      virtual void mp_InitProcess(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Interfaces::ITransientData>&) = 0;
+      virtual void mp_InitProcess(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection>&) = 0;
 
-      virtual void mp_InitTriggers(std::shared_ptr<Interfaces::ITriggerCollection>& ac_xGlobalTriggers, const std::shared_ptr<Interfaces::ITriggerCollection>& ac_xLocalTriggers) = 0;
+      virtual void mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>& ac_xGlobalTriggers, const std::shared_ptr<Foundation::CTriggerCollection>& ac_xLocalTriggers) = 0;
 
-      virtual void mp_UpdateState(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Interfaces::ITransientData>&,
+      virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection> &,
         sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
 
-      virtual void mp_DrawState(std::shared_ptr<sf::RenderWindow>) const = 0;
+      virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
 
-      virtual void mp_Release(std::shared_ptr<const Interfaces::ITransientData>&, std::string ac_szTriggerName) = 0;
+      virtual void mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection> &, std::string ac_szTriggerName) = 0;
 
       void mp_addStartTrigger(std::shared_ptr<const Interfaces::ITrigger>& ac_xStartTrigger) const
       {
@@ -117,12 +117,12 @@ namespace Foundation
         return mv_bIsActive;
       }
 
-      virtual const std::shared_ptr<const Interfaces::ITriggerCollection>& mf_xGetStartTriggers() const
+      virtual const std::shared_ptr<const Foundation::CTriggerCollection>& mf_xGetStartTriggers() const
       {
         return mv_xStartTriggers;
       }
 
-      virtual const std::shared_ptr<const Interfaces::ITriggerCollection>& mf_xGetStopTriggers() const
+      virtual const std::shared_ptr<const Foundation::CTriggerCollection>& mf_xGetStopTriggers() const
       {
         return mv_xStopTriggers;
       }
@@ -141,7 +141,7 @@ namespace Foundation
           mv_bIsActive = true;
           if (mv_bIsActive)
           {
-            for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
+            for (const auto & item : mv_xStopTriggers->mf_mapGetRawMap())
             {
               if (item.second->mf_bWas_This_Trigger_Disturbed(event))
               {
@@ -155,7 +155,7 @@ namespace Foundation
         {
           if (mv_bIsActive)
           {
-            for (const auto & item : *mv_xStopTriggers->mf_mapGetRawMap())
+            for (const auto & item : mv_xStopTriggers->mf_mapGetRawMap())
             {
               if (item.second->mf_bWas_This_Trigger_Disturbed(event))
               {
@@ -165,7 +165,7 @@ namespace Foundation
           }
           else
           {
-            for (const auto & item : *mv_xStartTriggers->mf_mapGetRawMap())
+            for (const auto & item : mv_xStartTriggers->mf_mapGetRawMap())
             {
               if (item.second->mf_bWas_This_Trigger_Disturbed(event))
               {
@@ -213,12 +213,12 @@ namespace Foundation
         else if (mt_ProcessType == ProcessType::en_PermanentWithStop)
         {
           mv_bIsActive = true;
-          mv_xStopTriggers = std::make_shared<Foundation::CBufferITriggerCollection>();
+          mv_xStopTriggers = std::make_shared<Foundation::CTriggerCollection>();
         }
         else
         {
-          mv_xStartTriggers = std::make_shared<Foundation::CBufferITriggerCollection>();
-          mv_xStopTriggers = std::make_shared<Foundation::CBufferITriggerCollection>();
+          mv_xStartTriggers = std::make_shared<Foundation::CTriggerCollection>();
+          mv_xStopTriggers = std::make_shared<Foundation::CTriggerCollection>();
           mv_bIsActive = false;
           mv_bHasOneTimeRun = false;
         }
@@ -231,8 +231,8 @@ namespace Foundation
       mutable bool mv_bIsActive;
       bool mv_bHasOneTimeRun;
 
-      mutable std::shared_ptr<const Interfaces::ITriggerCollection> mv_xStartTriggers;
-      mutable std::shared_ptr<const Interfaces::ITriggerCollection> mv_xStopTriggers;
+      mutable std::shared_ptr<const Foundation::CTriggerCollection> mv_xStartTriggers;
+      mutable std::shared_ptr<const Foundation::CTriggerCollection> mv_xStopTriggers;
 
     };
   }

@@ -28,7 +28,7 @@ Revision | Who      | Date           | Comment
 
 #pragma once
 
-#include "common/defines.h"
+#include "defines.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -45,7 +45,7 @@ namespace IModel
     virtual const float mp_dfGetHeight() const = 0;
 
   private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates Scenes) const;
 
   protected:
     sf::Texture   mv_Texture;

@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 #include <ITrigger.h>
 #include "SFML/Graphics.hpp"
 #include <memory>
-#include "common/defines.h"
+#include "defines.h"
 
 namespace Triggers
 {

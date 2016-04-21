@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 #include "SFML/Graphics.hpp"
 #include <memory>
 #include <IButton.h>
-#include "common/defines.h"
+#include "defines.h"
 
 namespace Triggers
 {

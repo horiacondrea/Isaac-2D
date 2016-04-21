@@ -40,13 +40,13 @@ namespace IModel
       (mc_Box->mp_dfGetHeight() * 0.5) - (mv_Check->mp_dfGetHeight() * 0.5)));
   }
 
-  void ICheckBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
+  void ICheckBox::draw(sf::RenderTarget& target, sf::RenderStates States) const
   {
-    states.transform *= getTransform();
-    target.draw(*mc_Box, states);
+    States.transform *= getTransform();
+    target.draw(*mc_Box, States);
 
     if (mv_bChecked)
-      target.draw(*mv_Check, states);
+      target.draw(*mv_Check, States);
   }
 
   ICheckBox::~ICheckBox()

@@ -27,35 +27,35 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "IState.h"
+#include "IScene.h"
 #include "ITrigger.h"
-#include "common/defines.h"
+#include "defines.h"
 
 namespace Foundation
 {
   class EXPORT_API CTransition
   {
   protected:
-    const std::shared_ptr< const Interfaces::IState >     mc_xSourceState;
+    const std::shared_ptr< const Interfaces::IScene >     mc_xSourceScene;
     const std::shared_ptr< const Interfaces::ITrigger>     mc_xTrigger;
-    const std::shared_ptr< const Interfaces::IState >     mc_xDestinationState;
+    const std::shared_ptr< const Interfaces::IScene >     mc_xDestinationScene;
   public:
 
-    CTransition(const std::shared_ptr< const Interfaces::IState >& ac_xSourceState, 
+    CTransition(const std::shared_ptr< const Interfaces::IScene >& ac_xSourceScene, 
                 const std::shared_ptr< const Interfaces::ITrigger >& ac_xTrigger, 
-                const std::shared_ptr<const Interfaces::IState >& ac_xDestinationState) :
-      mc_xSourceState(ac_xSourceState) ,
+                const std::shared_ptr<const Interfaces::IScene >& ac_xDestinationScene) :
+      mc_xSourceScene(ac_xSourceScene) ,
       mc_xTrigger(ac_xTrigger) ,
-      mc_xDestinationState(ac_xDestinationState)
+      mc_xDestinationScene(ac_xDestinationScene)
     {
-      BOOST_ASSERT_MSG(mc_xSourceState != nullptr, "Source State is null");
+      BOOST_ASSERT_MSG(mc_xSourceScene != nullptr, "Source Scene is null");
       BOOST_ASSERT_MSG(mc_xTrigger != nullptr, "Trigger is null");
-      BOOST_ASSERT_MSG(mc_xDestinationState != nullptr, "Destination State is null");
+      BOOST_ASSERT_MSG(mc_xDestinationScene != nullptr, "Destination Scene is null");
     }
 
-    const std::shared_ptr< const Interfaces::IState >& mf_xGetSourceState() const
+    const std::shared_ptr< const Interfaces::IScene >& mf_xGetSourceScene() const
     { 
-      return mc_xSourceState;
+      return mc_xSourceScene;
     }
 
     const std::shared_ptr <const Interfaces::ITrigger >& mf_xGetTrigger() const
@@ -63,9 +63,9 @@ namespace Foundation
       return mc_xTrigger;
     }
 
-    const std::shared_ptr< const Interfaces::IState >& mf_xGetDestinationState() const
+    const std::shared_ptr< const Interfaces::IScene >& mf_xGetDestinationScene() const
     {
-      return mc_xDestinationState;
+      return mc_xDestinationScene;
     }
 
     const bool mf_bCheckTransition(sf::Event event) const

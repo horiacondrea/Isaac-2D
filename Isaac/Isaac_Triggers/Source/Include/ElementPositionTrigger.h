@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include <ITrigger.h>
 #include "SFML/Graphics.hpp"
-#include "common/defines.h"
+#include "defines.h"
 
 namespace Triggers
 {

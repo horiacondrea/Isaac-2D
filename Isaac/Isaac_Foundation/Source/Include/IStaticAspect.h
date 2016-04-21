@@ -27,10 +27,10 @@ Revision | Who      | Date       | Comment
 */
 
 #pragma once
-#include "BufferIStateCollection.h"
-#include "BufferITriggerCollection.h"
-#include "BufferITransientData.h"
-#include "common/defines.h"
+#include <SceneCollection.h>
+#include <TriggerCollection.h>
+#include <TransientDataCollection.h>
+#include "defines.h"
 
 namespace Foundation
 {
@@ -43,14 +43,14 @@ namespace Foundation
   */
   namespace Interfaces
   {
-    class EXPORT_API IStaticAspect : public Foundation::CBufferIStateCollection,
-      public Foundation::CBufferITriggerCollection,
-      public Foundation::CBufferITransientData
+    class EXPORT_API IStaticAspect : public Foundation::CSceneCollection,
+      public Foundation::CTriggerCollection,
+      public Foundation::CTransientDataCollection
     {
 
     public:
 
-      virtual void mp_Define_States() const = 0;
+      virtual void mp_Define_Scenes() const = 0;
 
       virtual void mp_Define_Triggers() const = 0;
 

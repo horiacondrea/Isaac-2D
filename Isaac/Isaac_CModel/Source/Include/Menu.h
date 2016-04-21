@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 #include <IMenu.h>
-#include "common/defines.h"
+#include "defines.h"
 
 namespace CModel
 {

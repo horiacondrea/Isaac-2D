@@ -1,31 +1,41 @@
 #pragma once
-#include "common/defines.h"
+#include "defines.h"
 #include <string>
 
-class EXPORT_API LibraryUtils
-{
-public:
-	explicit LibraryUtils(const std::string &name);
-	~LibraryUtils();
+namespace isaac {
 
-	bool Load();
-	
-	bool CallEntryFunction(const std::string &functionName);
+  class EXPORT_API LibraryUtils
+  {
+  public:
+    explicit LibraryUtils(const std::string &name);
+    ~LibraryUtils();
 
-	bool Unload();
+    bool Load();
 
-	bool IsLoaded();
+    bool CallEntryFunction(const std::string &functionName);
 
-	/// Return the path to the plugin file on disk
-	std::string GetFileName();
-	/// Return the display name for the plugin
-	std::string GetDisplayName();
+    bool Unload();
 
-	// Make this object be noncopyable as it holds a pointer
-	LibraryUtils(const LibraryUtils &)  = delete;
-	const LibraryUtils &operator =(const LibraryUtils &) = delete;
+    bool IsLoaded();
 
-private:
-	class Impl;
-	Impl *mImpl;
-};
+    /*!
+    Return the path to the plugin file on disk
+    */
+    std::string GetFileName();
+    /*!
+    Return the display name for the plugin
+    */
+    std::string GetDisplayName();
+
+    // Make this object be noncopyable as it holds a pointer
+    LibraryUtils(const LibraryUtils &) = delete;
+    const LibraryUtils &operator =(const LibraryUtils &) = delete;
+
+  private:
+    // Private variables //
+
+    class Impl;
+
+    Impl *mImpl;
+  };
+}

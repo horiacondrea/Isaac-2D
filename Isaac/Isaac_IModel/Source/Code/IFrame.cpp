@@ -46,11 +46,11 @@ namespace IModel
     }
   }
 
-  void IFrame::draw(sf::RenderTarget& target, sf::RenderStates states) const
+  void IFrame::draw(sf::RenderTarget& target, sf::RenderStates States) const
   {
-    states.transform *= getTransform();
+    States.transform *= getTransform();
 
-    target.draw(*mv_Sprite, states);
+    target.draw(*mv_Sprite, States);
   }
 
   IFrame::~IFrame()

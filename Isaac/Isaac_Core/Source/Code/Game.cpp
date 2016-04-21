@@ -28,35 +28,34 @@ Revision | Who      | Date       | Comment
 
 #include "../Include/Game.h"
 
-namespace Core
+namespace isaac
 {
-
   void CGame::mp_Start(std::string av_szGameTitle, const unsigned int &av_nGameWidth = 800, const unsigned int &av_nGameHeigh = 600)
   {
     mv_xMainWindow = std::make_shared<sf::RenderWindow>();
 
-    BOOST_ASSERT_MSG(mc_xStateCollection != nullptr , "State collection is not defined");
-    BOOST_ASSERT_MSG(mc_xStateCollection->mp_GetSize() > 0 , "There is no state defined");
+    BOOST_ASSERT_MSG(mc_xCSceneCollection != nullptr , "Scene collection is not defined");
+    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() > 0, "There is no Scene defined");
     BOOST_ASSERT_MSG(mc_xTransientData != nullptr, "Transient data is not defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is not defined");
 
     if(!(av_szGameTitle.empty())            && 
-      mc_xStateCollection        != nullptr &&
-      mc_xStateCollection->mp_GetSize() > 0 && 
+      mc_xCSceneCollection        != nullptr &&
+      mc_xCSceneCollection->mp_GetSize() > 0 &&
       mc_xTransientData          != nullptr &&
       mc_xTransitionCollection   != nullptr && 
       mv_xMainWindow             != nullptr )
     {
       mv_xMainWindow->create(sf::VideoMode(av_nGameWidth, av_nGameHeigh), av_szGameTitle, sf::Style::Close);
 
-      mv_xStateOrchestrator = std::make_shared<Core::COrchestrator>(mc_xInitialState, mc_xStateCollection, mc_xTransitionCollection);
-      mv_xStateMachine = std::make_shared<Core::CStateMachine>(mv_xMainWindow, mv_xStateOrchestrator, mc_xTransientData);
+      mv_xSceneOrchestrator = std::make_shared<isaac::COrchestrator>(mc_xInitialScene, mc_xCSceneCollection, mc_xTransitionCollection);
+      mv_xSceneMachine = std::make_shared<isaac::CSceneMachine>(mv_xMainWindow, mv_xSceneOrchestrator, mc_xTransientData);
 
       sf::Clock clock;
       float lastTime = 0;
 
-      while (mv_xMainWindow->isOpen())
-      {
+      while (mv_xMainWindow->isOpen()) {
+
         mp_GameLoop();
         mv_xMainWindow->setFramerateLimit(60);
 
@@ -65,7 +64,6 @@ namespace Core
         lastTime = currentTime;
       }
     }
-
   }
 
   void CGame::mp_GameLoop()
@@ -73,8 +71,8 @@ namespace Core
     sf::Event event;
     mv_xMainWindow->pollEvent(event);
 
-    mv_xStateMachine->mp_InitCurrentState(event);
-    mv_xStateMachine->mp_ActivateCurrentState(event);
+    mv_xSceneMachine->mp_InitCurrentScene(event);
+    mv_xSceneMachine->mp_ActivateCurrentScene(event);
 
     mv_xMainWindow->display();
     mv_xMainWindow->clear(sf::Color::Black);
@@ -84,22 +82,21 @@ namespace Core
   void CGame::mp_DefineGameAspect(const std::shared_ptr<const Foundation::Interfaces::IDynamicAspect>& ac_xGameAspect)
   {
     BOOST_ASSERT_MSG(ac_xGameAspect != nullptr , "DynamicAspect is not defined");
-    if (ac_xGameAspect != nullptr)
-    {
+    if (ac_xGameAspect != nullptr) {
       // Static elements
-      ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_States();
+      ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Scenes();
       ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Triggers();
       ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Transient_Data();
 
-      mc_xStateCollection = std::static_pointer_cast<const Foundation::Interfaces::IStateCollection>(ac_xGameAspect->mf_xGetStaticAspect());
-      mc_xTransientData = std::static_pointer_cast<const Foundation::Interfaces::ITransientData>(ac_xGameAspect->mf_xGetStaticAspect());
+      mc_xCSceneCollection = std::static_pointer_cast<const Foundation::CSceneCollection>(ac_xGameAspect->mf_xGetStaticAspect());
+      mc_xTransientData = std::static_pointer_cast<const Foundation::CTransientDataCollection>(ac_xGameAspect->mf_xGetStaticAspect());
 
       //Dynamic elemens
-      ac_xGameAspect->mp_Define_States_Transitions();
-      ac_xGameAspect->mp_Define_Initial_State();
+      ac_xGameAspect->mp_Define_Scenes_Transitions();
+      ac_xGameAspect->mp_Define_Initial_Scene();
 
-      mc_xTransitionCollection = std::static_pointer_cast<const Foundation::Interfaces::ITransitionCollection>(ac_xGameAspect);
-      mc_xInitialState = ac_xGameAspect->mp_GetInitialState();
+      mc_xTransitionCollection = std::static_pointer_cast<const Foundation::CTransitionCollection>(ac_xGameAspect);
+      mc_xInitialScene = ac_xGameAspect->mp_GetInitialScene();
     }
   }
 

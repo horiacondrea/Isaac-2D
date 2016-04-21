@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 #pragma once
 
-#include "common/defines.h"
+#include "defines.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -43,11 +43,11 @@ namespace IModel
 
   private:
 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates Scenes) const
     {
-      states.transform *= getTransform();
-      target.draw(*mv_SpriteButton, states);
-      target.draw(*mv_LabelText, states);
+      Scenes.transform *= getTransform();
+      target.draw(*mv_SpriteButton, Scenes);
+      target.draw(*mv_LabelText, Scenes);
     }
 
   public:
