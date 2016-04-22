@@ -37,7 +37,7 @@ namespace Foundation
     
   }
 
-  const SmartProcessingElement& CProcElemCollection::mf_xGetPEByName(std::string ac_szPEIdentifier) const
+  const SmartProcessingElement& CProcElemCollection::mf_xGetProcElemByName(std::string ac_szPEIdentifier) const
   {
     BOOST_ASSERT_MSG(!ac_szPEIdentifier.empty(), "Empty string provided");
     if (!ac_szPEIdentifier.empty())
