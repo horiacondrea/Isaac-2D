@@ -26,12 +26,15 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | April 2014 | Created
 */
 
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <ProcElemCollection.h>
 #include "IScene.h"
 #include <memory>
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {

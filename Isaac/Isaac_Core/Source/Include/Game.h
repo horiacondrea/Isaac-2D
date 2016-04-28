@@ -37,11 +37,6 @@ Revision | Who      | Date       | Comment
 
 /////////////////////////////////////////////////////////////////////////////
 
-/*!                                
-In the Core namespace you will find the most important components, this
-components are directly implicated in the behavior that your game will
-have.
-*/
 namespace isaac 
 {
   /*!                               

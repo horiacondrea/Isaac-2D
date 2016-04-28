@@ -26,43 +26,77 @@ Revision | Who      | Date       | Comment
 1.0      | hc       | March 2014 | Created
 */
 
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "IStaticAspect.h"
 #include <TransitionCollection.h>
 #include "defines.h"
-
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-
-  /*                           IDynamicAspect
-  /////////////////////////////////////////////////////////////////////////////
-  // IDynamicAspect is probably one of the most important interfaces from this
-  // namespace. You will for sure have a class that will inherit this interfaces
-  // in you game, in order to define yout game transitions, your game transient
-  // data and the initial Scene of the game.
-  /////////////////////////////////////////////////////////////////////////////
+  /*!                     
+   IDynamicAspect is probably one of the most important interfaces from this
+   namespace. You will for sure have a class that will inherit this interfaces
+   in you game, in order to define yout game transitions, your game transient
+   data and the initial Scene of the game.
   */
   class EXPORT_API IDynamicAspect : public isaac::CTransitionCollection
-
   {
     // Public Methods
   public:
 
-    /* mp_Define_Scenes_Transitions | mp_Define_Transient_Data | mp_Define_Initial_Scene
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // These names says everything
-    /////////////////////////////////////////////////////////////////////////////////////////
-    */
-    virtual void mp_Define_Scenes_Transitions() const = 0;
+	/*!
+	All the transitions between scenes need to by defined in this method 
+	*/
+    virtual void mp_DefineScenesTransitions() const = 0;
+	
+	/*!
+	Initial scene name should be defined in this method
+	*/
+    virtual void mp_DefineInitialScene() const = 0;
 
-    virtual void mp_Define_Initial_Scene() const = 0;
+	/*!
+	Rettun the StaticAspect object as a shared_ptr
+	*/
+	virtual const std::shared_ptr<const isaac::IStaticAspect>& mf_xGetStaticAspect() const
+	{
+		return mv_xStaticAspect;
+	}
+
+	/*!
+	This method is used to insert the Static Aspect in the Dynamic one
+	*/
+	virtual void mp_InsertStaticAspect(const std::shared_ptr<const isaac::IStaticAspect>& ac_xStaticAspect)
+	{
+		BOOST_ASSERT_MSG(ac_xStaticAspect != nullptr, "Static Aspect is null");
+		if (ac_xStaticAspect != nullptr)
+			mv_xStaticAspect = ac_xStaticAspect;
+	}
+
+	/*!
+	Returnes the initial scene as a smart IScene object
+	*/
+	virtual const std::shared_ptr<const isaac::IScene>& mp_GetInitialScene() const
+	{
+		return mv_pInitialScene;
+	}
+
+	virtual ~IDynamicAspect()
+	{
+		;
+	}
 
     // Protected member variables
   protected:
-    std::shared_ptr<const isaac::IStaticAspect> mv_xStaticAspect;
-    mutable std::shared_ptr<const isaac::IScene> mv_pInitialScene;
-
+	/*!
+	Utility method that return a smart Transition
+	ac_szSourceSceneIdentifier - name of the source scene
+	ac_szTriggerIdentifier     - name of the trigger that has to be disturbed in order
+								 to move to the destination scene
+	ac_szDestinationSceneIdentifier - name of the destination scene
+	*/
     const std::shared_ptr<const isaac::CTransition> mf_xDefineTransition(std::string ac_szSourceSceneIdentifier,
       std::string ac_szTriggerIdentifier,
       std::string ac_szDestinationSceneIdentifier) const
@@ -72,36 +106,18 @@ namespace isaac
         mv_xStaticAspect->mf_xGetSceneByName(ac_szDestinationSceneIdentifier));
     }
 
+	/*!
+	Utility method for defining an initial scene. Retuns a smart IScene object.
+	ac_szInitialSceneIdentifier - name of the Scene that it will be the iniital scene.
+	This name has to be avialabe in the scene collection.
+	*/
     std::shared_ptr<const isaac::IScene> mf_xDefineInitialScene(std::string ac_szInitialSceneIdentifier) const
     {
       return mv_xStaticAspect->mf_xGetSceneByName(ac_szInitialSceneIdentifier);
     }
 
-    // Public Methods
-  public:
-
-    virtual const std::shared_ptr<const isaac::IStaticAspect>& mf_xGetStaticAspect() const
-    {
-      return mv_xStaticAspect;
-    }
-
-    virtual void mp_Insert_Static_Aspect(const std::shared_ptr<const isaac::IStaticAspect>& ac_xStaticAspect)
-    {
-      BOOST_ASSERT_MSG(ac_xStaticAspect != nullptr, "Static Aspect is null");
-      if (ac_xStaticAspect != nullptr)
-        mv_xStaticAspect = ac_xStaticAspect;
-    }
-
-    virtual const std::shared_ptr<const isaac::IScene>& mp_GetInitialScene() const
-    {
-      return mv_pInitialScene;
-    }
-
-    virtual ~IDynamicAspect()
-    {
-      ;
-    }
-
-
+  private:
+	  std::shared_ptr<const isaac::IStaticAspect> mv_xStaticAspect;
+	  mutable std::shared_ptr<const isaac::IScene> mv_pInitialScene;
   };
 }

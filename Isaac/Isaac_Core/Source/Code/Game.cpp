@@ -92,8 +92,8 @@ namespace isaac
       mc_xTransientData = std::static_pointer_cast<const isaac::CTransientDataCollection>(ac_xGameAspect->mf_xGetStaticAspect());
 
       //Dynamic elemens
-      ac_xGameAspect->mp_Define_Scenes_Transitions();
-      ac_xGameAspect->mp_Define_Initial_Scene();
+      ac_xGameAspect->mp_DefineScenesTransitions();
+      ac_xGameAspect->mp_DefineInitialScene();
 
       mc_xTransitionCollection = std::static_pointer_cast<const isaac::CTransitionCollection>(ac_xGameAspect);
       mc_xInitialScene = ac_xGameAspect->mp_GetInitialScene();
