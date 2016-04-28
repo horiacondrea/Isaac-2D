@@ -17,8 +17,7 @@ endif()
 
 add_definitions(-std=c++11)
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_IModel)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_CModel)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_Model)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_Triggers)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_Core)
 add_subdirectory(${CMAKE_SOURCE_DIR}/Isaac/Isaac_Foundation)
