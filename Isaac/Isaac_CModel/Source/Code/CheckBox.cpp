@@ -28,10 +28,10 @@ Revision | Who      | Date       | Comment
 #include "CheckBox.h"
 #include <iostream>
 
-namespace CModel
+namespace isaac
 {
-  CheckBox::CheckBox(const IModel::IFrame* ac_Box, IModel::IFrame* av_Check, const bool& ac_bCheck) : 
-    IModel::ICheckBox(ac_Box, av_Check, ac_bCheck)
+  CheckBox::CheckBox(const isaac::IFrame* ac_Box, isaac::IFrame* av_Check, const bool& ac_bCheck) : 
+    isaac::ICheckBox(ac_Box, av_Check, ac_bCheck)
   {
       ;
   }

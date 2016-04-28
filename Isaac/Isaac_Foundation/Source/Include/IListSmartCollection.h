@@ -31,39 +31,29 @@ Revision | Who      | Date       | Comment
 #include <list>
 #include <memory>
 
-namespace Foundation
+namespace isaac
 {
-  /*                               Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
-  */
-  namespace Interfaces
+  template<class Type>
+  class IListSmartCollection
   {
-    template<class Type>
-    class IListSmartCollection
+  public:
+
+    const int mp_GetSize() const
     {
-    public:
+      return mv_listSmartCollection.size();
+    }
 
-      const int mp_GetSize() const
-      {
-        return mv_listSmartCollection.size();
-      }
+    std::list<const std::shared_ptr<Type>> mf_mapGetRawList() const
+    {
+      return mv_listSmartCollection;
+    }
 
-      std::list<const std::shared_ptr<Type>> mf_mapGetRawList() const
-      {
-        return mv_listSmartCollection;
-      }
+    virtual ~IListSmartCollection()
+    {
 
-      virtual ~IListSmartCollection()
-      {
+    }
 
-      }
-
-    protected:
-      mutable std::list<const std::shared_ptr<Type>> mv_listSmartCollection;
-    };
-  }
+  protected:
+    mutable std::list<const std::shared_ptr<Type>> mv_listSmartCollection;
+  };
 }

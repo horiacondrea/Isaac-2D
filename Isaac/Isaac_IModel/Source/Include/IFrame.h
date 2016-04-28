@@ -32,7 +32,7 @@ Revision | Who      | Date           | Comment
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-namespace IModel
+namespace isaac
 {
   class EXPORT_API IFrame : public sf::Drawable, public sf::Transformable
   {

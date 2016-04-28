@@ -2,7 +2,7 @@
 
 #include <IDynamicScene.h>
 
-class DynamicScene : public Foundation::Interfaces::IDynamicScene
+class DynamicScene : public isaac::IDynamicScene
 {
 public:
   DynamicScene(std::string ac_szSceneName);

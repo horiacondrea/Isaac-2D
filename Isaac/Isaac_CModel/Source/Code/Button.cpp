@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 #include <cassert>
 
 
-namespace CModel
+namespace isaac
 {
 
   Button::Button(const std::string ac_szButtonText, const std::string ac_szButtonTextFont)

@@ -8,16 +8,16 @@ StaticAspect::StaticAspect()
 
 void StaticAspect::mp_Define_Scenes() const
 {
-  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s1 = std::make_shared<SceneOne>(("Scene1"));
+  const std::shared_ptr<const isaac::IStaticScene> s1 = std::make_shared<SceneOne>(("Scene1"));
   mp_AddScene(s1);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s2 = std::make_shared<SceneTwo>(("Scene2"));
+  const std::shared_ptr<const isaac::IStaticScene> s2 = std::make_shared<SceneTwo>(("Scene2"));
   mp_AddScene(s2);
 
-  const std::shared_ptr<const Foundation::Interfaces::IStaticScene> s3 = std::make_shared<SceneThree>(("Scene3"));
+  const std::shared_ptr<const isaac::IStaticScene> s3 = std::make_shared<SceneThree>(("Scene3"));
   mp_AddScene(s3);
 
-  const std::shared_ptr<const Foundation::Interfaces::IDynamicScene> s4 = std::make_shared<DynamicScene>(("Dyn"));
+  const std::shared_ptr<const isaac::IDynamicScene> s4 = std::make_shared<DynamicScene>(("Dyn"));
   mp_AddScene(s4);
 
 
@@ -27,10 +27,10 @@ void StaticAspect::mp_Define_Scenes() const
 
 void StaticAspect::mp_Define_Triggers() const
 {
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t1 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t1"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t2 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t2"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t3 = std::make_shared<Triggers::CClickOnShape>(("t3"));
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> t4 = std::make_shared<Triggers::CElementPositionTrigger>(Triggers::en_GraterThen, ("t4"));
+  const std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t1"));
+  const std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t2"));
+  const std::shared_ptr<const isaac::ITrigger> t3 = std::make_shared<isaac::CClickOnShape>(("t3"));
+  const std::shared_ptr<const isaac::ITrigger> t4 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t4"));
 
   mp_AddTrigger(t1);
   mp_AddTrigger(t2);

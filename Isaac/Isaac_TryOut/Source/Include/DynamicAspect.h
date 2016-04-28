@@ -5,7 +5,7 @@
 #include <vld.h>
 #endif
 
-class EXPORT_API DynamicAspect : public Foundation::Interfaces::IDynamicAspect
+class EXPORT_API DynamicAspect : public isaac::IDynamicAspect
 {
 public:
   DynamicAspect();

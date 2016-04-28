@@ -51,13 +51,13 @@ namespace isaac
     // Private variables //
     std::shared_ptr< sf::RenderWindow > mv_xMainWindow;
     std::shared_ptr< isaac::COrchestrator > mv_xSceneOrchestrator;
-    std::shared_ptr< const Foundation::CTransientDataCollection > mc_xTransientData;
+    std::shared_ptr< const isaac::CTransientDataCollection > mc_xTransientData;
       
-    std::shared_ptr< Foundation::Interfaces::IScene > mv_xCurrentScene;
-    std::shared_ptr< Foundation::Interfaces::IScene > mv_xPrevScene;
+    std::shared_ptr< isaac::IScene > mv_xCurrentScene;
+    std::shared_ptr< isaac::IScene > mv_xPrevScene;
 
     bool mv_bHasThisSceneInit;
-    std::list< std::pair<std::shared_ptr< Foundation::Interfaces::IScene >, bool> > mv_mapHierarchyOfScenes;
+    std::list< std::pair<std::shared_ptr< isaac::IScene >, bool> > mv_mapHierarchyOfScenes;
 
     std::string mv_szLastTriggerName;
 
@@ -66,7 +66,7 @@ namespace isaac
     // Constructor
     CSceneMachine( std::shared_ptr< sf::RenderWindow >& av_xMainWindow, 
                    std::shared_ptr< isaac::COrchestrator >& av_xSceneOrchetrator,
-                   std::shared_ptr< const Foundation::CTransientDataCollection >& av_xTransientData);
+                   std::shared_ptr< const isaac::CTransientDataCollection >& av_xTransientData);
 
     // D-tor
     // We are not going to destroy anything, since we use only smart pointers
@@ -91,7 +91,7 @@ namespace isaac
     This method will release the sceene from the window, a call to the release method 
     defined in the scene will be done.
     */
-    void mp_ReleseScene(std::shared_ptr< Foundation::Interfaces::IScene >&);
+    void mp_ReleseScene(std::shared_ptr< isaac::IScene >&);
   };
 
 }

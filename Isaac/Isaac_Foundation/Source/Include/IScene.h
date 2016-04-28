@@ -35,84 +35,72 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 
 
-
-
-namespace Foundation
+namespace isaac
 {
-  /*                               Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
-  */
-  namespace Interfaces
+  class EXPORT_API IScene
   {
-    class EXPORT_API IScene
+  public:
+
+    virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&) = 0;
+
+    virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>&) = 0;
+
+    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&,
+      sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
+
+    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
+
+    virtual void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>&, std::string ac_szTriggerName) = 0;
+
+    virtual bool mp_bIsDynamicScene() const = 0;
+
+    virtual std::string mf_szGetSceneName() const
     {
-    public:
+      return mc_szSceneName;
+    }
 
-      virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection>&) = 0;
+    virtual void mp_SetFatherScene(const std::shared_ptr<const isaac::IScene> ac_xFatherScene, const bool& ac_bIsActive = true) const
+    {
+      BOOST_ASSERT_MSG(ac_xFatherScene != nullptr, "Father Scene is null");
+      if (ac_xFatherScene != nullptr)
+        mv_xFatherScene = ac_xFatherScene;
+      mv_bIsFatherSceneActive = ac_bIsActive;
+    }
 
-      virtual void mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>&) = 0;
+    virtual std::shared_ptr<const isaac::IScene> mf_xGetFatherScene() const
+    {
+      return mv_xFatherScene;
+    }
 
-      virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection>&,
-        sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
-
-      virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
-
-      virtual void mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection>&, std::string ac_szTriggerName) = 0;
-
-      virtual bool mp_bIsDynamicScene() const = 0;
-
-      virtual std::string mf_szGetSceneName() const
+    virtual bool mf_bIsSubScene() const
+    {
+      if (mv_xFatherScene == nullptr)
       {
-        return mc_szSceneName;
+        return false;
       }
+      return true;
+    }
 
-      virtual void mp_SetFatherScene(const std::shared_ptr<const Interfaces::IScene> ac_xFatherScene, const bool& ac_bIsActive = true) const
-      {
-        BOOST_ASSERT_MSG(ac_xFatherScene != nullptr, "Father Scene is null");
-        if (ac_xFatherScene != nullptr)
-          mv_xFatherScene = ac_xFatherScene;
-        mv_bIsFatherSceneActive = ac_bIsActive;
-      }
+    virtual bool mf_bIsFatherSceneActive() const
+    {
+      return mv_bIsFatherSceneActive;
+    }
 
-      virtual std::shared_ptr<const Interfaces::IScene> mf_xGetFatherScene() const
-      {
-        return mv_xFatherScene;
-      }
+    virtual ~IScene()
+    {
 
-      virtual bool mf_bIsSubScene() const
-      {
-        if (mv_xFatherScene == nullptr)
-        {
-          return false;
-        }
-        return true;
-      }
+    }
 
-      virtual bool mf_bIsFatherSceneActive() const
-      {
-        return mv_bIsFatherSceneActive;
-      }
+  protected:
 
-      virtual ~IScene()
-      {
+    IScene(std::string ac_szSceneName) : mc_szSceneName(ac_szSceneName)
+    {
 
-      }
+    }
 
-    protected:
+    mutable std::shared_ptr<const isaac::IScene> mv_xFatherScene;
+    mutable bool mv_bIsFatherSceneActive;
 
-      IScene(std::string ac_szSceneName) : mc_szSceneName(ac_szSceneName)
-      {
-        
-      }
-
-      mutable std::shared_ptr<const Interfaces::IScene> mv_xFatherScene;
-      mutable bool mv_bIsFatherSceneActive;
-
-      std::string mc_szSceneName;
-    };
-  }
+    std::string mc_szSceneName;
+  };
 }

@@ -33,20 +33,19 @@ Revision | Who      | Date       | Comment
 #include <IButton.h>
 #include "defines.h"
 
-namespace Triggers
+namespace isaac
 {
-
 #pragma once
-  class EXPORT_API CClickOnButton : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CClickOnButton : public isaac::ITrigger
   {
 
-    const IModel::IButton* mv_xButton;
+    const isaac::IButton* mv_xButton;
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
 
   public:
     CClickOnButton(std::string ac_szTriggerIdentifier);
 
-    void InitTrigger(const IModel::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow);
+    void InitTrigger(const isaac::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow);
 
     const bool mf_bWas_This_Trigger_Disturbed(sf::Event) const;
 

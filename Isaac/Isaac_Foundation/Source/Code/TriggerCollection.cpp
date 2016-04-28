@@ -30,7 +30,7 @@ Revision | Who      | Date       | Comment
 #include <boost/assert.hpp>
 #include <memory>
 
-namespace Foundation
+namespace isaac
 {
 
   CTriggerCollection::CTriggerCollection()
@@ -38,12 +38,12 @@ namespace Foundation
    
   }
 
-  void CTriggerCollection::mp_AddTrigger(const std::shared_ptr<const Interfaces::ITrigger>& ac_xTrigger) const
+  void CTriggerCollection::mp_AddTrigger(const std::shared_ptr<const ITrigger>& ac_xTrigger) const
   {
     BOOST_ASSERT_MSG(ac_xTrigger != nullptr, "Trigger is null");
     if (ac_xTrigger != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const Interfaces::ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
+      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
     }
   }
 
@@ -58,7 +58,7 @@ namespace Foundation
     return false;
   }
 
-  const std::shared_ptr<const Interfaces::ITrigger>& CTriggerCollection::mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const
+  const std::shared_ptr<const ITrigger>& CTriggerCollection::mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const
   {
     BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
     if (!ac_szTriggerIdentifier.empty())

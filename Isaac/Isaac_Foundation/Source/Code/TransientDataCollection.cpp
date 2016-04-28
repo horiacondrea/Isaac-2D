@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 #include <TransientDataCollection.h>
 #include <boost/assert.hpp>
 
-namespace Foundation
+namespace isaac
 {
 
   CTransientDataCollection::CTransientDataCollection()

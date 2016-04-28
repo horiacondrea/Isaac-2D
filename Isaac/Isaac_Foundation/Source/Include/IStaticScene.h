@@ -32,47 +32,37 @@ Revision | Who      | Date       | Comment
 #include <memory>
 #include <defines.h>
 
-namespace Foundation
+namespace isaac
 {
-  /*                               Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
-  */
-  namespace Interfaces
+  class EXPORT_API IStaticScene : public IScene
   {
-    class EXPORT_API IStaticScene : public IScene
+  public:
+
+    virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&) = 0;
+
+    virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>&) = 0;
+
+    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&,
+      sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
+
+    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
+
+    virtual void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName) = 0;
+
+    virtual bool mp_bIsDynamicScene() const
     {
-    public:
+      return false;
+    }
 
-      virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection>&) = 0;
+    virtual ~IStaticScene()
+    {
+    }
 
-      virtual void mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>&) = 0;
+  protected:
+    IStaticScene(std::string ac_szSceneName) : IScene(ac_szSceneName)
+    {
+      ;
+    }
 
-      virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const Foundation::CTransientDataCollection>&,
-        sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
-
-      virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
-
-      virtual void mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName) = 0;
-
-      virtual bool mp_bIsDynamicScene() const
-      {
-        return false;
-      }
-
-      virtual ~IStaticScene()
-      {
-      }
-
-    protected:
-      IStaticScene(std::string ac_szSceneName) : IScene(ac_szSceneName)
-      {
-        ;
-      }
-
-    };
-  }
+  };
 }

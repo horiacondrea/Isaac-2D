@@ -34,12 +34,12 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 /////////////////////////////////////////////////////////////////////////////
 
-namespace Foundation
+namespace isaac
 {
   /*!
   This class buffer holds a collection of transitions
   */
-  class EXPORT_API CTransitionCollection : public Interfaces::IMapSmartCollection< const Foundation::CTransition >
+  class EXPORT_API CTransitionCollection : public IMapSmartCollection< const CTransition >
   {
   public:
 
@@ -50,13 +50,13 @@ namespace Foundation
 
     bool mf_bRemoveTransition(std::string ac_szTransitionIdentifier) const;
 
-    const std::shared_ptr<const Foundation::CTransition>& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
+    const std::shared_ptr<const CTransition>& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
 
     ~CTransitionCollection();
 
   protected:
 
-    void mp_AddTransition(std::string ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const;
+    void mp_AddTransition(std::string ac_szTransitionIdentifier, const std::shared_ptr<const CTransition>& ac_xTransition) const;
   };
 
 }

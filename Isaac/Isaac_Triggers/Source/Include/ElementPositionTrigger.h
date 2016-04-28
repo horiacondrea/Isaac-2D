@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 #include "SFML/Graphics.hpp"
 #include "defines.h"
 
-namespace Triggers
+namespace isaac
 {
   enum Position
   {
@@ -47,7 +47,7 @@ namespace Triggers
     en_Unknow
   };
 
-  class EXPORT_API CElementPositionTrigger : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CElementPositionTrigger : public isaac::ITrigger
   {
     const Position mc_enumPosition;
 //    const Axis mc_enumAxis;

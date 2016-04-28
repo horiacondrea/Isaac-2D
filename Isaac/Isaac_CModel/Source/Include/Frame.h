@@ -33,10 +33,10 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 
 
-namespace CModel
+namespace isaac
 {
 
-  class EXPORT_API Frame : public IModel::IFrame
+  class EXPORT_API Frame : public isaac::IFrame
   {
 
   public:

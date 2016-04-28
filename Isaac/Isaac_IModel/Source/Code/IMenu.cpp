@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 #include "IMenu.h"
 
-namespace IModel
+namespace isaac
 {
 
   IMenu::IMenu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset):

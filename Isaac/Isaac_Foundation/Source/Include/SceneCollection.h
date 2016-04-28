@@ -34,13 +34,13 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 /////////////////////////////////////////////////////////////////////////////
 
-namespace Foundation
+namespace isaac
 {
-  typedef std::shared_ptr<const Interfaces::IScene> SmartScene;
+  typedef std::shared_ptr<const isaac::IScene> SmartScene;
   /*!
   This class buffer holds a collection of Scenes
   */
-  class EXPORT_API CSceneCollection : public Interfaces::IMapSmartCollection<const Interfaces::IScene>
+  class EXPORT_API CSceneCollection : public isaac::IMapSmartCollection<const isaac::IScene>
   {
 
   public:

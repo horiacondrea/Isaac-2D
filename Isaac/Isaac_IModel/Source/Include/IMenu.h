@@ -32,7 +32,7 @@ Revision | Who      | Date       | Comment
 #include "IButton.h"
 #include <SFML/Graphics.hpp>
 
-namespace IModel
+namespace isaac
 {
 
   class EXPORT_API IMenu : public sf::Drawable, public sf::Transformable
@@ -67,7 +67,7 @@ namespace IModel
 
   protected:
 
-    std::map<const std::string, std::shared_ptr<IModel::IButton>> mv_mapMenu;
+    std::map<const std::string, std::shared_ptr<isaac::IButton>> mv_mapMenu;
     const Orientation mc_enumOrientation;
     const unsigned mc_nOffset;
 

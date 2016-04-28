@@ -28,12 +28,12 @@ Revision | Who      | Date       | Comment
 
 #include "ElementPositionTrigger.h"
 
-namespace Triggers
+namespace isaac
 {
 
   CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, std::string ac_szTriggerName) :
     mc_enumPosition(ac_enumPosition) ,
-   Foundation::Interfaces::ITrigger(ac_szTriggerName)
+   isaac::ITrigger(ac_szTriggerName)
   {
     mv_bWasThisTriggerInit = false;
   }

@@ -79,7 +79,7 @@ namespace isaac
   }
 
 
-  void CGame::mp_DefineGameAspect(const std::shared_ptr<const Foundation::Interfaces::IDynamicAspect>& ac_xGameAspect)
+  void CGame::mp_DefineGameAspect(const std::shared_ptr<const isaac::IDynamicAspect>& ac_xGameAspect)
   {
     BOOST_ASSERT_MSG(ac_xGameAspect != nullptr , "DynamicAspect is not defined");
     if (ac_xGameAspect != nullptr) {
@@ -88,14 +88,14 @@ namespace isaac
       ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Triggers();
       ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Transient_Data();
 
-      mc_xCSceneCollection = std::static_pointer_cast<const Foundation::CSceneCollection>(ac_xGameAspect->mf_xGetStaticAspect());
-      mc_xTransientData = std::static_pointer_cast<const Foundation::CTransientDataCollection>(ac_xGameAspect->mf_xGetStaticAspect());
+      mc_xCSceneCollection = std::static_pointer_cast<const isaac::CSceneCollection>(ac_xGameAspect->mf_xGetStaticAspect());
+      mc_xTransientData = std::static_pointer_cast<const isaac::CTransientDataCollection>(ac_xGameAspect->mf_xGetStaticAspect());
 
       //Dynamic elemens
       ac_xGameAspect->mp_Define_Scenes_Transitions();
       ac_xGameAspect->mp_Define_Initial_Scene();
 
-      mc_xTransitionCollection = std::static_pointer_cast<const Foundation::CTransitionCollection>(ac_xGameAspect);
+      mc_xTransitionCollection = std::static_pointer_cast<const isaac::CTransitionCollection>(ac_xGameAspect);
       mc_xInitialScene = ac_xGameAspect->mp_GetInitialScene();
     }
   }

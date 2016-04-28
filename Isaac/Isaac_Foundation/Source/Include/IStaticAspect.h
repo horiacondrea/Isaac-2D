@@ -32,36 +32,26 @@ Revision | Who      | Date       | Comment
 #include <TransientDataCollection.h>
 #include "defines.h"
 
-namespace Foundation
+namespace isaac
 {
-  /*                              Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
-  */
-  namespace Interfaces
+  class EXPORT_API IStaticAspect : public isaac::CSceneCollection,
+    public isaac::CTriggerCollection,
+    public isaac::CTransientDataCollection
   {
-    class EXPORT_API IStaticAspect : public Foundation::CSceneCollection,
-      public Foundation::CTriggerCollection,
-      public Foundation::CTransientDataCollection
+
+  public:
+
+    virtual void mp_Define_Scenes() const = 0;
+
+    virtual void mp_Define_Triggers() const = 0;
+
+    virtual void mp_Define_Transient_Data() const = 0;
+
+  public:
+
+    virtual ~IStaticAspect()
     {
+    }
 
-    public:
-
-      virtual void mp_Define_Scenes() const = 0;
-
-      virtual void mp_Define_Triggers() const = 0;
-
-      virtual void mp_Define_Transient_Data() const = 0;
-
-    public:
-
-      virtual ~IStaticAspect()
-      {
-      }
-
-    };
-  }
+  };
 }

@@ -28,7 +28,7 @@ Revision | Who      | Date           | Comment
 #include "IFrame.h"
 #include <cassert>
 
-namespace IModel
+namespace isaac
 {
 
 

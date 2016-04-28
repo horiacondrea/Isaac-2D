@@ -57,7 +57,7 @@ namespace isaac
      This methid will fill almost all the member variables in this class 
      with data provided by you in the Static Aspect and Dynamic Aspect.
     */
-    void mp_DefineGameAspect(const std::shared_ptr<const Foundation::Interfaces::IDynamicAspect>& ac_xGameAspect);
+    void mp_DefineGameAspect(const std::shared_ptr<const isaac::IDynamicAspect>& ac_xGameAspect);
 
     /*!                              
     mp_Start is the main method for your game, this method keep your window
@@ -102,10 +102,10 @@ namespace isaac
     // Separate the game aspect in tiny elements in order to
     // be processed by other game components
 
-    std::shared_ptr< const Foundation::CSceneCollection >        mc_xCSceneCollection;
-    std::shared_ptr< const Foundation::Interfaces::IScene >      mc_xInitialScene;
-    std::shared_ptr< const Foundation::CTransitionCollection >   mc_xTransitionCollection;
-    std::shared_ptr< const Foundation::CTransientDataCollection> mc_xTransientData;
+    std::shared_ptr< const isaac::CSceneCollection >        mc_xCSceneCollection;
+    std::shared_ptr< const isaac::IScene >      mc_xInitialScene;
+    std::shared_ptr< const isaac::CTransitionCollection >   mc_xTransitionCollection;
+    std::shared_ptr< const isaac::CTransientDataCollection> mc_xTransientData;
 
   };
 

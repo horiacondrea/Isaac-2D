@@ -32,11 +32,11 @@ Revision | Who      | Date       | Comment
 #include <memory>
 #include "defines.h"
 
-namespace Triggers
+namespace isaac
 {
 
 #pragma once
-  class EXPORT_API CClickOnShape : public Foundation::Interfaces::ITrigger
+  class EXPORT_API CClickOnShape : public isaac::ITrigger
   {
 
     std::shared_ptr<sf::Shape> mv_xElement;

@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 #include <SceneCollection.h>
 
-namespace Foundation
+namespace isaac
 {
   CSceneCollection::CSceneCollection()
   {

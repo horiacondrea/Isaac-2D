@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 #include "Menu.h"
 #include "defines.h"
 
-namespace CModel
+namespace isaac
 {
 
   Menu::Menu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset) : IMenu(ac_enumOrientation, ac_nOffset)
@@ -37,7 +37,7 @@ namespace CModel
     ;
   }
 
-  void Menu::mp_AddButton(std::shared_ptr<IModel::IButton> av_xButton, const std::string ac_szKey)
+  void Menu::mp_AddButton(std::shared_ptr<isaac::IButton> av_xButton, const std::string ac_szKey)
   {
     const unsigned int lc_nSize= mv_mapMenu.size();
     switch (mc_enumOrientation)

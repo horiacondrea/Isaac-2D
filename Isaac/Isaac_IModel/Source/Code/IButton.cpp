@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 
 #include <IButton.h>
 
-namespace IModel
+namespace isaac
 {
 
   IButton::IButton()

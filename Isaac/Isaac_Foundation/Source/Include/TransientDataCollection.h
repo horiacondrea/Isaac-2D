@@ -34,12 +34,12 @@ Revision | Who      | Date       | Comment
 #include <IMapCollection.h>
 /////////////////////////////////////////////////////////////////////////////
 
-namespace Foundation
+namespace isaac
 {
   /*!
   This class buffer holds a collection of transient data
   */
-  class EXPORT_API CTransientDataCollection : public Interfaces::IMapCollection < const boost::any >
+  class EXPORT_API CTransientDataCollection : public IMapCollection < const boost::any >
   {
   public:
     /*!

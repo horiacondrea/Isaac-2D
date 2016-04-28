@@ -31,10 +31,10 @@ Revision | Who      | Date       | Comment
 #include <string>
 #include "defines.h"
 
-namespace CModel
+namespace isaac
 {
 
-  class EXPORT_API Button : public IModel::IButton
+  class EXPORT_API Button : public isaac::IButton
   {
   public:
     Button(const std::string ac_szButtonText, const std::string ac_szButtonTextFont);

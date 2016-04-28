@@ -28,10 +28,10 @@ Revision | Who      | Date       | Comment
 
 #include "Frame.h"
 
-namespace CModel
+namespace isaac
 {
 
-  Frame::Frame(const std::string ac_szPicturePath) : IModel::IFrame(ac_szPicturePath)
+  Frame::Frame(const std::string ac_szPicturePath) : isaac::IFrame(ac_szPicturePath)
   {
     
   }

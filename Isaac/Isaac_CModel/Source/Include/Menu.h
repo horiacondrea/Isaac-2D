@@ -30,14 +30,14 @@ Revision | Who      | Date       | Comment
 #include <IMenu.h>
 #include "defines.h"
 
-namespace CModel
+namespace isaac
 {
-  class EXPORT_API Menu: public IModel::IMenu
+  class EXPORT_API Menu: public isaac::IMenu
   {
   public:
     Menu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset);
 
-    virtual void mp_AddButton(std::shared_ptr<IModel::IButton> av_xButton, const std::string ac_szKey);
+    virtual void mp_AddButton(std::shared_ptr<isaac::IButton> av_xButton, const std::string ac_szKey);
 
     virtual void mp_SetButtonsColor(const sf::Color& av_Color);
 

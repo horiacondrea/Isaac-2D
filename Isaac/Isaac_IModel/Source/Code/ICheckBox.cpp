@@ -28,7 +28,7 @@ Revision | Who      | Date           | Comment
 
 #include "../Include/ICheckBox.h"
 
-namespace IModel
+namespace isaac
 {
 
   ICheckBox::ICheckBox(const IFrame* ac_Box, IFrame* av_Check, const bool& ac_bCheck) :

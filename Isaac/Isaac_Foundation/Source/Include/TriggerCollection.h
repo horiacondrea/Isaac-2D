@@ -31,17 +31,17 @@ Revision | Who      | Date       | Comment
 #include <IMapSmartCollection.h>
 #include <ITrigger.h>
 
-namespace Foundation
+namespace isaac
 {
 
-  class EXPORT_API CTriggerCollection : public Interfaces::IMapSmartCollection<const Interfaces::ITrigger>
+  class EXPORT_API CTriggerCollection : public IMapSmartCollection<const ITrigger>
   {
   public:
     CTriggerCollection();
 
     bool mf_bRemoveTrigger(std::string ac_szTriggerIdentifier);
 
-    const std::shared_ptr<const Foundation::Interfaces::ITrigger>& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
+    const std::shared_ptr<const ITrigger>& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
 
     virtual ~CTriggerCollection();
 
@@ -69,7 +69,7 @@ namespace Foundation
       }
     }
 
-    void mp_AddTrigger(const std::shared_ptr<const Foundation::Interfaces::ITrigger>& ac_xTrigger) const;
+    void mp_AddTrigger(const std::shared_ptr<const ITrigger>& ac_xTrigger) const;
 
   };
 

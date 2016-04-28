@@ -8,7 +8,7 @@
 
 #include <IStaticAspect.h>
 
-class EXPORT_API StaticAspect : public Foundation::Interfaces::IStaticAspect
+class EXPORT_API StaticAspect : public isaac::IStaticAspect
 {
 public:
   StaticAspect();

@@ -28,15 +28,15 @@ Revision | Who      | Date       | Comment
 
 #include "ClickOnButton.h"
 
-namespace Triggers
+namespace isaac
 {
 
-  CClickOnButton::CClickOnButton(std::string ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
+  CClickOnButton::CClickOnButton(std::string ac_szTriggerIdentifier) : isaac::ITrigger(ac_szTriggerIdentifier)
   {
 
   }
 
-  void CClickOnButton::InitTrigger(const IModel::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow)
+  void CClickOnButton::InitTrigger(const isaac::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow)
   {
     mv_xButton = av_xElement;
     mv_xMainWindow = av_xMainWindow;

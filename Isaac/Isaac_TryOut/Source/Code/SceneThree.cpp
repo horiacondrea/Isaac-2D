@@ -4,13 +4,13 @@
 
 
 SceneThree::SceneThree(std::string ac_szSceneName) :
-Foundation::Interfaces::IStaticScene(ac_szSceneName)
+isaac::IStaticScene(ac_szSceneName)
 {
   ;
 }
 
 void SceneThree::mp_InitScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
-  std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData)
+  std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData)
 {
   mv_xMainWindow = av_xMainWindow;
   mv_pCircle = std::make_shared<sf::CircleShape>(30);
@@ -19,17 +19,17 @@ void SceneThree::mp_InitScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
   std::cout << "Scene three - Init" << std::endl;
 }
 
-void SceneThree::mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>& ac_xGlobalTriggersColl)
+void SceneThree::mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>& ac_xGlobalTriggersColl)
 {
-  const std::shared_ptr<const Foundation::Interfaces::ITrigger> lv_pTrigger = ac_xGlobalTriggersColl->mf_xGetTriggerByName(("t3"));
-  const std::shared_ptr<Triggers::CClickOnShape> lv_pClickTrigger =
-    std::const_pointer_cast<Triggers::CClickOnShape>(std::static_pointer_cast<const Triggers::CClickOnShape>(lv_pTrigger));
+  const std::shared_ptr<const isaac::ITrigger> lv_pTrigger = ac_xGlobalTriggersColl->mf_xGetTriggerByName(("t3"));
+  const std::shared_ptr<isaac::CClickOnShape> lv_pClickTrigger =
+    std::const_pointer_cast<isaac::CClickOnShape>(std::static_pointer_cast<const isaac::CClickOnShape>(lv_pTrigger));
 
   lv_pClickTrigger->InitTrigger(mv_pCircle, mv_xMainWindow);
 }
 
 void SceneThree::mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow,
-  std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData,
+  std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData,
   sf::Event av_eventSFMLEvent,
   bool& av_bReturnedBool_WindowClosed)
 {
@@ -41,7 +41,7 @@ void SceneThree::mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow) 
 
 }
 
-void SceneThree::mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
+void SceneThree::mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
 {
 
 }

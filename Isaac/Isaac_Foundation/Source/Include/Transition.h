@@ -31,19 +31,19 @@ Revision | Who      | Date       | Comment
 #include "ITrigger.h"
 #include "defines.h"
 
-namespace Foundation
+namespace isaac
 {
   class EXPORT_API CTransition
   {
   protected:
-    const std::shared_ptr< const Interfaces::IScene >     mc_xSourceScene;
-    const std::shared_ptr< const Interfaces::ITrigger>     mc_xTrigger;
-    const std::shared_ptr< const Interfaces::IScene >     mc_xDestinationScene;
+    const std::shared_ptr< const isaac::IScene >     mc_xSourceScene;
+    const std::shared_ptr< const isaac::ITrigger>     mc_xTrigger;
+    const std::shared_ptr< const isaac::IScene >     mc_xDestinationScene;
   public:
 
-    CTransition(const std::shared_ptr< const Interfaces::IScene >& ac_xSourceScene, 
-                const std::shared_ptr< const Interfaces::ITrigger >& ac_xTrigger, 
-                const std::shared_ptr<const Interfaces::IScene >& ac_xDestinationScene) :
+    CTransition(const std::shared_ptr< const isaac::IScene >& ac_xSourceScene, 
+                const std::shared_ptr< const isaac::ITrigger >& ac_xTrigger, 
+                const std::shared_ptr<const isaac::IScene >& ac_xDestinationScene) :
       mc_xSourceScene(ac_xSourceScene) ,
       mc_xTrigger(ac_xTrigger) ,
       mc_xDestinationScene(ac_xDestinationScene)
@@ -53,17 +53,17 @@ namespace Foundation
       BOOST_ASSERT_MSG(mc_xDestinationScene != nullptr, "Destination Scene is null");
     }
 
-    const std::shared_ptr< const Interfaces::IScene >& mf_xGetSourceScene() const
+    const std::shared_ptr< const isaac::IScene >& mf_xGetSourceScene() const
     { 
       return mc_xSourceScene;
     }
 
-    const std::shared_ptr <const Interfaces::ITrigger >& mf_xGetTrigger() const
+    const std::shared_ptr <const isaac::ITrigger >& mf_xGetTrigger() const
     {
       return mc_xTrigger;
     }
 
-    const std::shared_ptr< const Interfaces::IScene >& mf_xGetDestinationScene() const
+    const std::shared_ptr< const isaac::IScene >& mf_xGetDestinationScene() const
     {
       return mc_xDestinationScene;
     }

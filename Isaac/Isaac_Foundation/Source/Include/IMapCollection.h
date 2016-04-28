@@ -29,46 +29,36 @@ Revision | Who      | Date       | Comment
 #pragma once
 #include <map>
 
-namespace Foundation
+namespace isaac
 {
-  /*                               Interfaces
+  /*                             IMapCollection
   /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
+  // IMapCollection -> a template interfaces used in order to hold a map of
+  // keys (char*) and elemens (Types).
   /////////////////////////////////////////////////////////////////////////////
   */
-  namespace Interfaces
+
+  template<class Type>
+  class IMapCollection
   {
-    /*                             IMapCollection
-    /////////////////////////////////////////////////////////////////////////////
-    // IMapCollection -> a template interfaces used in order to hold a map of
-    // keys (char*) and elemens (Types).
-    /////////////////////////////////////////////////////////////////////////////
-    */
+  public:
 
-    template<class Type>
-    class IMapCollection
+    const int mp_GetSize() const
     {
-    public:
+      return mv_mapCollection.size();
+    }
 
-      const int mp_GetSize() const
-      {
-        return mv_mapCollection.size();
-      }
+    std::map<std::string, Type> mf_mapGetRawMap() const
+    {
+      return mv_mapCollection;
+    }
 
-      std::map<std::string, Type> mf_mapGetRawMap() const
-      {
-        return mv_mapCollection;
-      }
+    virtual ~IMapCollection()
+    {
 
-      virtual ~IMapCollection()
-      {
+    }
 
-      }
-
-    protected:
-      mutable std::map<std::string, Type> mv_mapCollection;
-    };
-  }
+  protected:
+    mutable std::map<std::string, Type> mv_mapCollection;
+  };
 }

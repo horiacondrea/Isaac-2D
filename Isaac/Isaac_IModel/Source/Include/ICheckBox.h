@@ -33,7 +33,7 @@ Revision | Who      | Date           | Comment
 #include "IFrame.h"
 
 
-namespace IModel
+namespace isaac
 {
   class EXPORT_API ICheckBox : public sf::Drawable, public sf::Transformable
   {

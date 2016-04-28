@@ -36,16 +36,16 @@ Revision | Who      | Date       | Comment
 
 /////////////////////////////////////////////////////////////////////////////
 
-namespace Foundation
+namespace isaac
 {
-  typedef std::shared_ptr<const Foundation::CTriggerCollection> SmartTriggerCollection;
-  typedef std::shared_ptr<const Interfaces::IProcessingElement> SmartProcessingElement;
+  typedef std::shared_ptr<const CTriggerCollection> SmartTriggerCollection;
+  typedef std::shared_ptr<const IProcessingElement> SmartProcessingElement;
  
   /*!
   This class buffer holds a collection of Process Elements, you can add, replace or
   get any process element that is stored in this buffer
   */
-  class  EXPORT_API CProcElemCollection : public Interfaces::IMapSmartCollection<const Interfaces::IProcessingElement>
+  class  EXPORT_API CProcElemCollection : public IMapSmartCollection<const IProcessingElement>
   {
   public:
 

@@ -32,12 +32,12 @@ Revision | Who      | Date       | Comment
 #include <ICheckBox.h>
 #include "defines.h"
 
-namespace CModel
+namespace isaac
 {
-  class EXPORT_API CheckBox : public IModel::ICheckBox
+  class EXPORT_API CheckBox : public isaac::ICheckBox
   {
   public:
-    CheckBox(const IModel::IFrame* ac_Box, IModel::IFrame* av_Check, const bool& ac_bCheck);
+    CheckBox(const isaac::IFrame* ac_Box, isaac::IFrame* av_Check, const bool& ac_bCheck);
     ~CheckBox();
 
     virtual void mp_Update(std::shared_ptr<sf::RenderWindow>  av_pMainWindow, sf::Event event);

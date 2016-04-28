@@ -33,39 +33,29 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 
 
-namespace Foundation
+namespace isaac
 {
-  /*                              Interfaces
-  /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
-  /////////////////////////////////////////////////////////////////////////////
-  */
-  namespace Interfaces
+  class EXPORT_API ITrigger
   {
-    class EXPORT_API ITrigger
+  protected:
+    std::string mc_szTriggerName;
+
+  public:
+    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
     {
-    protected:
-      std::string mc_szTriggerName;
+      ;
+    }
 
-    public:
-      ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-      {
-		  ;
-      }
+    const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
 
-      const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
+    std::string mf_szGetTriggerName() const
+    {
+      return mc_szTriggerName;
+    }
 
-      std::string mf_szGetTriggerName() const
-      {
-        return mc_szTriggerName;
-      }
-
-      virtual ~ITrigger()
-      {
-        //delete mc_szTriggerName;
-      }
-    };
-  }
+    virtual ~ITrigger()
+    {
+      //delete mc_szTriggerName;
+    }
+  };
 }

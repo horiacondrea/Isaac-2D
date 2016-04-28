@@ -11,6 +11,6 @@ file(GLOB_RECURSE SRCS "*.cpp")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${Isaac2D_SOURCE_DIR}/Output")
 
 add_library(Isaac_Core SHARED ${SRCS} ${INCS})
-target_link_libraries(Isaac_Core Isaac_Foundation)
+target_link_libraries(Isaac_Core Isaac_isaac)
 
 # INSTALL(TARGETS Isaac_Core DESTINATION ${Isaac2D_SOURCE_DIR}/../Output)

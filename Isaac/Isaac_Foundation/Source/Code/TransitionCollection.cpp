@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 
 #include <TransitionCollection.h>
 
-namespace Foundation
+namespace isaac
 {
 
   CTransitionCollection::CTransitionCollection()
@@ -36,13 +36,13 @@ namespace Foundation
     ;
   }
 
-  void CTransitionCollection::mp_AddTransition(std::string ac_szTransitionIdentifier, const std::shared_ptr<const Foundation::CTransition>& ac_xTransition) const
+  void CTransitionCollection::mp_AddTransition(std::string ac_szTransitionIdentifier, const std::shared_ptr<const CTransition>& ac_xTransition) const
   {
     BOOST_ASSERT_MSG(!ac_szTransitionIdentifier.empty(), "Empty string provided");
     BOOST_ASSERT_MSG(ac_xTransition != nullptr, "Transition is null");
     if (!ac_szTransitionIdentifier.empty() && ac_xTransition != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const Foundation::CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
+      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
     }
   }
 
@@ -57,7 +57,7 @@ namespace Foundation
     return false;
   }
 
-  const std::shared_ptr<const Foundation::CTransition>& CTransitionCollection::mf_xGetTransitionByName(std::string ac_szTransitionIdentifier)
+  const std::shared_ptr<const CTransition>& CTransitionCollection::mf_xGetTransitionByName(std::string ac_szTransitionIdentifier)
   {
     BOOST_ASSERT_MSG(!ac_szTransitionIdentifier.empty(), "Empty string provided");
     if (!ac_szTransitionIdentifier.empty())

@@ -49,14 +49,14 @@ namespace isaac
   class COrchestrator
   {
     // Private variables //
-    std::shared_ptr< const Foundation::Interfaces::IScene > mc_xInitialScene;
-    std::shared_ptr< const Foundation::CSceneCollection > mc_xCSceneCollection;
-    std::shared_ptr< const Foundation::CTransitionCollection > mc_xTransitionCollection;
+    std::shared_ptr< const IScene > mc_xInitialScene;
+    std::shared_ptr< const CSceneCollection > mc_xCSceneCollection;
+    std::shared_ptr< const CTransitionCollection > mc_xTransitionCollection;
 
-    std::shared_ptr< const Foundation::Interfaces::IScene > mc_xCurrentScene;
+    std::shared_ptr< const IScene > mc_xCurrentScene;
 
     mutable bool mv_bIsThisFirstTimeHere;
-    mutable std::shared_ptr< Foundation::CTriggerCollection > mv_xTriggersPerScene;
+    mutable std::shared_ptr< CTriggerCollection > mv_xTriggersPerScene;
     mutable std::map<std::string, const bool> mv_mapDynamicMapMirror;
     std::string mv_szLastTriggerName;
 
@@ -65,9 +65,9 @@ namespace isaac
     // Public Methods //
 
     // Constructor
-    COrchestrator(std::shared_ptr< const Foundation::Interfaces::IScene >& ac_xInitialScene,
-                  std::shared_ptr< const Foundation::CSceneCollection >& ac_xCSceneCollection,
-                  std::shared_ptr< const Foundation::CTransitionCollection >& ac_xTransitionCollection);
+    COrchestrator(std::shared_ptr< const IScene >& ac_xInitialScene,
+                  std::shared_ptr< const CSceneCollection >& ac_xCSceneCollection,
+                  std::shared_ptr< const CTransitionCollection >& ac_xTransitionCollection);
 
     // D-tor
     //// We are not going to destroy anything, since we use only smart pointers.
@@ -80,13 +80,13 @@ namespace isaac
     Also mf_pGetSceneToBeDisplayed will return a bool that will allow as to 
     see if any trigger has been disturbed.
     */
-    std::pair< std::shared_ptr< const Foundation::Interfaces::IScene >, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
+    std::pair< std::shared_ptr< const IScene >, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
 
     /*!                        
     GetTriggersPerScene returns the Triggers that are available  for the
     Active Scene, in order to init them in the Scene.
     */
-    std::shared_ptr< Foundation::CTriggerCollection >& mf_xGetTriggersPerScene() const;
+    std::shared_ptr< CTriggerCollection >& mf_xGetTriggersPerScene() const;
 
     /*!
     Get Dynamic Scene Status will return true if for a specific Scene name the processes

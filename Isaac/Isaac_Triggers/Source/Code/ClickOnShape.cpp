@@ -28,10 +28,10 @@ Revision | Who      | Date       | Comment
 
 #include "ClickOnShape.h"
 
-namespace Triggers
+namespace isaac
 {
 
-  CClickOnShape::CClickOnShape(std::string ac_szTriggerIdentifier) : Foundation::Interfaces::ITrigger(ac_szTriggerIdentifier)
+  CClickOnShape::CClickOnShape(std::string ac_szTriggerIdentifier) : isaac::ITrigger(ac_szTriggerIdentifier)
   {
 
   }

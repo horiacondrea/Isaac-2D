@@ -30,45 +30,35 @@ Revision | Who      | Date       | Comment
 #include <map>
 #include <memory>
 
-namespace Foundation
+namespace isaac
 {
-  /*                               Interfaces
+  /*                          IMapSmartCollection
   /////////////////////////////////////////////////////////////////////////////
-  // In the Interfaces namespace you will find the most important interfaces
-  // used in the Framework. You can modify these files if you want, but first
-  // make sure you understand how these works.
+  // IMapCollection -> a smart template interfaces used in order to hold a map of
+  // keys (char*) and elemens (shared_ptr<Types>).
   /////////////////////////////////////////////////////////////////////////////
   */
-  namespace Interfaces
+  template<class Type>
+  class IMapSmartCollection
   {
-    /*                          IMapSmartCollection
-    /////////////////////////////////////////////////////////////////////////////
-    // IMapCollection -> a smart template interfaces used in order to hold a map of
-    // keys (char*) and elemens (shared_ptr<Types>).
-    /////////////////////////////////////////////////////////////////////////////
-    */
-    template<class Type>
-    class IMapSmartCollection
+  public:
+
+    const unsigned int mp_GetSize() const
     {
-    public:
+      return mv_mapSmartCollection.size();
+    }
 
-      const unsigned int mp_GetSize() const
-      {
-        return mv_mapSmartCollection.size();
-      }
+    std::map<std::string, const std::shared_ptr<Type>> mf_mapGetRawMap() const
+    {
+      return mv_mapSmartCollection;
+    }
 
-      std::map<std::string, const std::shared_ptr<Type>> mf_mapGetRawMap() const
-      {
-        return mv_mapSmartCollection;
-      }
+    virtual ~IMapSmartCollection()
+    {
 
-      virtual ~IMapSmartCollection()
-      {
+    }
 
-      }
-
-    protected:
-      mutable std::map<std::string, const std::shared_ptr<Type>> mv_mapSmartCollection;
-    };
-  }
+  protected:
+    mutable std::map<std::string, const std::shared_ptr<Type>> mv_mapSmartCollection;
+  };
 }

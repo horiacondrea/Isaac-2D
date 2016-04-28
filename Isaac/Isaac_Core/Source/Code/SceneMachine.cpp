@@ -34,7 +34,7 @@ namespace isaac
 
   CSceneMachine::CSceneMachine(std::shared_ptr<sf::RenderWindow>& av_xMainWindow, 
                                std::shared_ptr<isaac::COrchestrator>& av_xSceneOrchetrator,
-                               std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData ) :
+                               std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData ) :
                                                                                                     mv_xMainWindow(av_xMainWindow) ,
                                                                                                     mv_xSceneOrchestrator(av_xSceneOrchetrator) ,
                                                                                                     mc_xTransientData(av_xTransientData)
@@ -49,8 +49,8 @@ namespace isaac
   void CSceneMachine::mp_InitCurrentScene(sf::Event av_Event)
   {
     bool lv_bCheckForAutomaticBlock;
-    std::pair< std::shared_ptr<const Foundation::Interfaces::IScene >, std::string> lv_SceneAndTrigger = mv_xSceneOrchestrator->mf_xGetSceneToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
-    mv_xCurrentScene = std::const_pointer_cast<Foundation::Interfaces::IScene>(lv_SceneAndTrigger.first);
+    std::pair< std::shared_ptr<const isaac::IScene >, std::string> lv_SceneAndTrigger = mv_xSceneOrchestrator->mf_xGetSceneToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
+    mv_xCurrentScene = std::const_pointer_cast<isaac::IScene>(lv_SceneAndTrigger.first);
     mv_szLastTriggerName = lv_SceneAndTrigger.second;
 
     if (mv_xCurrentScene != mv_xPrevScene && mv_xPrevScene != nullptr)
@@ -79,7 +79,7 @@ namespace isaac
       {
         if (mv_xCurrentScene->mp_bIsDynamicScene())
         {
-          auto lc_xCurrentDynScene = std::static_pointer_cast<Foundation::Interfaces::IDynamicScene>(mv_xCurrentScene);
+          auto lc_xCurrentDynScene = std::static_pointer_cast<isaac::IDynamicScene>(mv_xCurrentScene);
           if (mv_xSceneOrchestrator->mf_bGetDynamicSceneStatus(lc_xCurrentDynScene->mf_szGetSceneName()))
           {
             lc_xCurrentDynScene->mp_DefineProcess();
@@ -96,7 +96,7 @@ namespace isaac
         do
         {
           const bool isFatherActive = lv_xLocalScene->mf_bIsFatherSceneActive();
-          lv_xLocalScene = std::const_pointer_cast<Foundation::Interfaces::IScene>(lv_xLocalScene->mf_xGetFatherScene());
+          lv_xLocalScene = std::const_pointer_cast<isaac::IScene>(lv_xLocalScene->mf_xGetFatherScene());
           mv_mapHierarchyOfScenes.push_front(std::make_pair(lv_xLocalScene, isFatherActive));
         } while (lv_xLocalScene->mf_bIsSubScene());
 
@@ -104,7 +104,7 @@ namespace isaac
         {
           if (item.first->mp_bIsDynamicScene())
           {
-            auto lc_xCurrentDynScene = std::static_pointer_cast<Foundation::Interfaces::IDynamicScene>(item.first);
+            auto lc_xCurrentDynScene = std::static_pointer_cast<isaac::IDynamicScene>(item.first);
             if (mv_xSceneOrchestrator->mf_bGetDynamicSceneStatus(lc_xCurrentDynScene->mf_szGetSceneName()))
             {
               lc_xCurrentDynScene->mp_DefineProcess();
@@ -147,14 +147,14 @@ namespace isaac
     }
   }
 
-  void CSceneMachine::mp_ReleseScene(std::shared_ptr< Foundation::Interfaces::IScene >& av_xSceneToRelease)
+  void CSceneMachine::mp_ReleseScene(std::shared_ptr< isaac::IScene >& av_xSceneToRelease)
   {
     av_xSceneToRelease->mp_Release(mc_xTransientData, mv_szLastTriggerName);
     if (av_xSceneToRelease->mf_bIsSubScene())
     {
       do
       {
-        av_xSceneToRelease = std::const_pointer_cast<Foundation::Interfaces::IScene>(mv_xPrevScene->mf_xGetFatherScene());
+        av_xSceneToRelease = std::const_pointer_cast<isaac::IScene>(mv_xPrevScene->mf_xGetFatherScene());
         av_xSceneToRelease->mp_Release(mc_xTransientData, mv_szLastTriggerName);
       } while (av_xSceneToRelease->mf_bIsSubScene());
     }

@@ -33,203 +33,195 @@ Revision | Who      | Date       | Comment
 #include <memory>
 #include "defines.h"
 
-namespace Foundation
+namespace isaac
 {
-  /*!                              Interfaces
-  * In the Interfaces namespace you will find the most important interfaces
-  * used in the Framework. You can modify these files if you want, but first
-  * make sure you understand how these works.
-  */
-  namespace Interfaces
+  class EXPORT_API IDynamicScene : public isaac::IScene,
+    public isaac::CProcElemCollection
   {
-    class EXPORT_API IDynamicScene : public Interfaces::IScene,
-      public Foundation::CProcElemCollection
+  public:
+
+    virtual void mp_DefineProcess() const = 0;
+
+    virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow, std::shared_ptr<const isaac::CTransientDataCollection> &ac_xTransientData)
     {
-    public:
-
-      virtual void mp_DefineProcess() const = 0;
-
-      virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow, std::shared_ptr<const Foundation::CTransientDataCollection> &ac_xTransientData)
+      BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
+      BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
+      if (mv_mapSmartCollection.size() > 0)
       {
-        BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
-        BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
-              if (lc_xProcess != nullptr)
-              {
-                lc_xProcess->mp_InitProcess(av_xMainWindow, ac_xTransientData);
-              }
-            }
-          }
-        }
-      }
-
-      virtual void mp_InitTriggers(std::shared_ptr<Foundation::CTriggerCollection>& ac_xGlobalTriggers)
-      {
-        BOOST_ASSERT_MSG(ac_xGlobalTriggers != nullptr, "GlobalTriggers is NULL");
-
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-              if (lc_xProcess != nullptr)
-              {
-                const auto& lc_xLocalTriggers = std::const_pointer_cast<Foundation::CTriggerCollection>(mf_xGetAllTriggers());
-                BOOST_ASSERT_MSG(lc_xLocalTriggers != nullptr, "LocalTriggers is NULL");
-                if (lc_xLocalTriggers != nullptr)
-                {
-                  lc_xProcess->mp_InitTriggers(ac_xGlobalTriggers, lc_xLocalTriggers);
-                }
-              }
-            }
-          }
-        }
-      }
-
-      virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow, std::shared_ptr<const Foundation::CTransientDataCollection> &ac_xTransientData,
-        sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed)
-      {
-        BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
-        BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
-        bool lv_bReturnBool = false;
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
-              if (lc_xProcess != nullptr)
-              {
-                lc_xProcess->mp_UpdateScene(av_xMainWindow, ac_xTransientData, av_eventSFMLEvent, av_bReturnedBool_WindowClosed);
-                if (av_bReturnedBool_WindowClosed)
-                {
-                  lv_bReturnBool = true;
-                }
-              }
-            }
-          }
-        }
-
-        av_bReturnedBool_WindowClosed = lv_bReturnBool;
-
-        std::shared_ptr<const Interfaces::IProcessingElement> lc_xNewPE = mf_bCheckAllPE(av_eventSFMLEvent);
-        if (lc_xNewPE != nullptr)
-        {
-          const auto & lv_xNewProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(lc_xNewPE);
-
-          BOOST_ASSERT_MSG(lv_xNewProcess != nullptr, "Process is NULL");
-
-          if (lv_xNewProcess != nullptr)
-          {
-            lv_xNewProcess->mp_InitProcess(av_xMainWindow, ac_xTransientData);
-          }
-        }
-      }
-
-      virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow) const
-      {
-        BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
-
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
-              if (lc_xProcess != nullptr)
-              {
-                lc_xProcess->mp_DrawScene(av_xMainWindow);
-              }
-            }
-          }
-        }
-      }
-
-      virtual void mp_Release(std::shared_ptr<const Foundation::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
-      {
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
-              if (lc_xProcess != nullptr)
-              {
-                lc_xProcess->mp_Release(av_xTransientData, ac_szTriggerName);
-              }
-            }
-          }
-        }
-      }
-
-      virtual bool mp_bIsDynamicScene() const
-      {
-        return true;
-      }
-
-      virtual void mp_ResetProcessingElements() const
-      {
-        if (mv_mapSmartCollection.size() > 0)
-        {
-          for (const auto& item : mv_mapSmartCollection)
-          {
-            if (item.second->mf_bIsActive())
-            {
-              const auto & lc_xProcess = std::const_pointer_cast<Interfaces::IProcessingElement>(item.second);
-
-              BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
-              if (lc_xProcess != nullptr)
-              {
-                lc_xProcess->mp_ResetProcess();
-              }
-            }
-          }
-        }
-      }
-
-      virtual ~IDynamicScene()
-      {
-      }
-
-    protected:
-      IDynamicScene(std::string ac_szSceneName) : IScene(ac_szSceneName)
-      {
-        ;
-      }
-
-    private:
-      std::shared_ptr<const Interfaces::IProcessingElement> mf_bCheckAllPE(sf::Event event) const
-      {
-        std::string lc_szPEActivated;
         for (const auto& item : mv_mapSmartCollection)
         {
-          item.second->mp_CheckTriggers(lc_szPEActivated, event);
-          if (!lc_szPEActivated.empty())
+          if (item.second->mf_bIsActive())
           {
-            return item.second;
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+
+            BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
+            if (lc_xProcess != nullptr)
+            {
+              lc_xProcess->mp_InitProcess(av_xMainWindow, ac_xTransientData);
+            }
           }
-          return nullptr;
         }
       }
-    };
-  }
+    }
+
+    virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>& ac_xGlobalTriggers)
+    {
+      BOOST_ASSERT_MSG(ac_xGlobalTriggers != nullptr, "GlobalTriggers is NULL");
+
+      if (mv_mapSmartCollection.size() > 0)
+      {
+        for (const auto& item : mv_mapSmartCollection)
+        {
+          if (item.second->mf_bIsActive())
+          {
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+            if (lc_xProcess != nullptr)
+            {
+              const auto& lc_xLocalTriggers = std::const_pointer_cast<isaac::CTriggerCollection>(mf_xGetAllTriggers());
+              BOOST_ASSERT_MSG(lc_xLocalTriggers != nullptr, "LocalTriggers is NULL");
+              if (lc_xLocalTriggers != nullptr)
+              {
+                lc_xProcess->mp_InitTriggers(ac_xGlobalTriggers, lc_xLocalTriggers);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow, std::shared_ptr<const isaac::CTransientDataCollection> &ac_xTransientData,
+      sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed)
+    {
+      BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
+      BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
+      bool lv_bReturnBool = false;
+      if (mv_mapSmartCollection.size() > 0)
+      {
+        for (const auto& item : mv_mapSmartCollection)
+        {
+          if (item.second->mf_bIsActive())
+          {
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+
+            BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
+            if (lc_xProcess != nullptr)
+            {
+              lc_xProcess->mp_UpdateScene(av_xMainWindow, ac_xTransientData, av_eventSFMLEvent, av_bReturnedBool_WindowClosed);
+              if (av_bReturnedBool_WindowClosed)
+              {
+                lv_bReturnBool = true;
+              }
+            }
+          }
+        }
+      }
+
+      av_bReturnedBool_WindowClosed = lv_bReturnBool;
+
+      std::shared_ptr<const isaac::IProcessingElement> lc_xNewPE = mf_bCheckAllPE(av_eventSFMLEvent);
+      if (lc_xNewPE != nullptr)
+      {
+        const auto & lv_xNewProcess = std::const_pointer_cast<isaac::IProcessingElement>(lc_xNewPE);
+
+        BOOST_ASSERT_MSG(lv_xNewProcess != nullptr, "Process is NULL");
+
+        if (lv_xNewProcess != nullptr)
+        {
+          lv_xNewProcess->mp_InitProcess(av_xMainWindow, ac_xTransientData);
+        }
+      }
+    }
+
+    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow) const
+    {
+      BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
+
+      if (mv_mapSmartCollection.size() > 0)
+      {
+        for (const auto& item : mv_mapSmartCollection)
+        {
+          if (item.second->mf_bIsActive())
+          {
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+
+            BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
+            if (lc_xProcess != nullptr)
+            {
+              lc_xProcess->mp_DrawScene(av_xMainWindow);
+            }
+          }
+        }
+      }
+    }
+
+    virtual void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
+    {
+      if (mv_mapSmartCollection.size() > 0)
+      {
+        for (const auto& item : mv_mapSmartCollection)
+        {
+          if (item.second->mf_bIsActive())
+          {
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+
+            BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
+            if (lc_xProcess != nullptr)
+            {
+              lc_xProcess->mp_Release(av_xTransientData, ac_szTriggerName);
+            }
+          }
+        }
+      }
+    }
+
+    virtual bool mp_bIsDynamicScene() const
+    {
+      return true;
+    }
+
+    virtual void mp_ResetProcessingElements() const
+    {
+      if (mv_mapSmartCollection.size() > 0)
+      {
+        for (const auto& item : mv_mapSmartCollection)
+        {
+          if (item.second->mf_bIsActive())
+          {
+            const auto & lc_xProcess = std::const_pointer_cast<isaac::IProcessingElement>(item.second);
+
+            BOOST_ASSERT_MSG(lc_xProcess != nullptr, "Process is NULL");
+            if (lc_xProcess != nullptr)
+            {
+              lc_xProcess->mp_ResetProcess();
+            }
+          }
+        }
+      }
+    }
+
+    virtual ~IDynamicScene()
+    {
+    }
+
+  protected:
+    IDynamicScene(std::string ac_szSceneName) : IScene(ac_szSceneName)
+    {
+      ;
+    }
+
+  private:
+    std::shared_ptr<const isaac::IProcessingElement> mf_bCheckAllPE(sf::Event event) const
+    {
+      std::string lc_szPEActivated;
+      for (const auto& item : mv_mapSmartCollection)
+      {
+        item.second->mp_CheckTriggers(lc_szPEActivated, event);
+        if (!lc_szPEActivated.empty())
+        {
+          return item.second;
+        }
+        return nullptr;
+      }
+    }
+  };
 }
