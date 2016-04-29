@@ -54,4 +54,6 @@ namespace isaac
     }
 
   };
+
+  typedef std::shared_ptr< const isaac::IStaticAspect > StaticAspect;
 }

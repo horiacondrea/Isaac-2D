@@ -49,9 +49,9 @@ namespace isaac
   class CSceneMachine final
   {
     // Private variables //
-    std::shared_ptr< sf::RenderWindow > mv_xMainWindow;
-    std::shared_ptr< isaac::COrchestrator > mv_xSceneOrchestrator;
-    std::shared_ptr< const isaac::CTransientDataCollection > mc_xTransientData;
+    RenderWindow mv_xMainWindow;
+    Orchestrator mv_xSceneOrchestrator;
+    TransientDataCollection mc_xTransientData;
       
     std::shared_ptr< isaac::IScene > mv_xCurrentScene;
     std::shared_ptr< isaac::IScene > mv_xPrevScene;
@@ -64,9 +64,9 @@ namespace isaac
   public:
 
     // Constructor
-    CSceneMachine( std::shared_ptr< sf::RenderWindow >& av_xMainWindow, 
-                   std::shared_ptr< isaac::COrchestrator >& av_xSceneOrchetrator,
-                   std::shared_ptr< const isaac::CTransientDataCollection >& av_xTransientData);
+    CSceneMachine( RenderWindow& av_xMainWindow, 
+                   Orchestrator& av_xSceneOrchetrator,
+                   TransientDataCollection& av_xTransientData);
 
     // D-tor
     // We are not going to destroy anything, since we use only smart pointers
@@ -94,4 +94,5 @@ namespace isaac
     void mp_ReleseScene(std::shared_ptr< isaac::IScene >&);
   };
 
+  typedef std::shared_ptr< CSceneMachine > SceneMachine;
 }

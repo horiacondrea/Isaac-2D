@@ -37,20 +37,23 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+  typedef std::shared_ptr< sf::RenderWindow > RenderWindow;
+
   class EXPORT_API IScene
   {
   public:
+    typedef std::shared_ptr< const isaac::IScene > Scene;
 
-    virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&) = 0;
+    virtual void mp_InitScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData) = 0;
 
-    virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>&) = 0;
+    virtual void mp_InitTriggers(TriggerCollection& av_xTriggerCollection) = 0;
 
-    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&,
+    virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData,
       sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
 
-    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
+    virtual void mp_DrawScene(RenderWindow av_xMainWindow) const = 0;
 
-    virtual void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>&, std::string ac_szTriggerName) = 0;
+    virtual void mp_Release(TransientDataCollection& av_xTransientData, std::string ac_szTriggerName) = 0;
 
     virtual bool mp_bIsDynamicScene() const = 0;
 
@@ -59,7 +62,7 @@ namespace isaac
       return mc_szSceneName;
     }
 
-    virtual void mp_SetFatherScene(const std::shared_ptr<const isaac::IScene> ac_xFatherScene, const bool& ac_bIsActive = true) const
+    virtual void mp_SetFatherScene(const Scene ac_xFatherScene, const bool& ac_bIsActive = true) const
     {
       BOOST_ASSERT_MSG(ac_xFatherScene != nullptr, "Father Scene is null");
       if (ac_xFatherScene != nullptr)
@@ -67,7 +70,7 @@ namespace isaac
       mv_bIsFatherSceneActive = ac_bIsActive;
     }
 
-    virtual std::shared_ptr<const isaac::IScene> mf_xGetFatherScene() const
+    virtual Scene mf_xGetFatherScene() const
     {
       return mv_xFatherScene;
     }
@@ -98,9 +101,11 @@ namespace isaac
 
     }
 
-    mutable std::shared_ptr<const isaac::IScene> mv_xFatherScene;
+    mutable Scene mv_xFatherScene;
     mutable bool mv_bIsFatherSceneActive;
-
     std::string mc_szSceneName;
   };
+
+  typedef std::shared_ptr< const isaac::IScene > Scene;
+  
 }

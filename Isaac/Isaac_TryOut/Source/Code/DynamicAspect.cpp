@@ -9,7 +9,7 @@ DynamicAspect::DynamicAspect()
 {
 }
 
-void DynamicAspect::mp_Define_Scenes_Transitions() const
+void DynamicAspect::mp_DefineScenesTransitions() const
 {
   const std::shared_ptr<const isaac::CTransition> tra1 = mf_xDefineTransition(("Scene1"), ("t1"), ("Scene3"));
 																									   
@@ -25,7 +25,7 @@ void DynamicAspect::mp_Define_Scenes_Transitions() const
   mp_AddTransition(("tra4"), tra4);
 }
 
-void DynamicAspect::mp_Define_Initial_Scene() const
+void DynamicAspect::mp_DefineInitialScene() const
 {
   mv_pInitialScene = mf_xDefineInitialScene(("Scene1"));
 }

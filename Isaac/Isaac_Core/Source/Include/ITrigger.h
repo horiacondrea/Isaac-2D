@@ -58,4 +58,6 @@ namespace isaac
       //delete mc_szTriggerName;
     }
   };
+
+  typedef std::shared_ptr<const ITrigger> Trigger;
 }

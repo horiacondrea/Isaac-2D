@@ -39,6 +39,8 @@ Revision | Who      | Date       | Comment
 
 namespace isaac 
 {
+  typedef std::shared_ptr< sf::RenderWindow > RenderWindow;
+
   /*!                               
    This is the main class for this Framework. In CGame all the information
    that you already define will gather here and it will spread towards
@@ -51,19 +53,26 @@ namespace isaac
     /*!                        
      This methid will fill almost all the member variables in this class 
      with data provided by you in the Static Aspect and Dynamic Aspect.
+     Return value : void
+     Arguments    : DynamicAspect [std::shared_ptr< const isaac::IDynamicAspect]
     */
-    void mp_DefineGameAspect(const std::shared_ptr<const isaac::IDynamicAspect>& ac_xGameAspect);
+    void mp_DefineGameAspect(const DynamicAspect& ac_xGameAspect);
 
     /*!                              
     mp_Start is the main method for your game, this method keep your window
-    alive, and it is responsabile for the MainLoop and is responsible for 
-    initializing the other two most important components : the SceneMachine
-    and the Orchestrator
+    alive, and it is responsabile for the MainLoop, initializing the other 
+    two most important components : the SceneMachine and the Orchestrator
+    Return value : void
+    Arguments    : Window title
+                 : Window Width
+                 : Window Heigh
     */
     void mp_Start(std::string ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
 
     /*!
     This class is Singleton, so you can only have one 'instance'
+    Return value : CGame 
+    Arguments    : none
     */
     static CGame &instance() {
 
@@ -90,17 +99,17 @@ namespace isaac
 
     // Private variables //
 
-    std::shared_ptr< sf::RenderWindow >                          mv_xMainWindow;
-    std::shared_ptr< CSceneMachine >                             mv_xSceneMachine;
-    std::shared_ptr< COrchestrator >                             mv_xSceneOrchestrator;
+    RenderWindow mv_xMainWindow;
+    SceneMachine mv_xSceneMachine;
+    Orchestrator mv_xSceneOrchestrator;
 
     // Separate the game aspect in tiny elements in order to
     // be processed by other game components
 
-    std::shared_ptr< const isaac::CSceneCollection >        mc_xCSceneCollection;
-    std::shared_ptr< const isaac::IScene >      mc_xInitialScene;
-    std::shared_ptr< const isaac::CTransitionCollection >   mc_xTransitionCollection;
-    std::shared_ptr< const isaac::CTransientDataCollection> mc_xTransientData;
+    SceneCollection         mc_xCSceneCollection;
+    Scene                   mc_xInitialScene;
+    TransitionCollection    mc_xTransitionCollection;
+    TransientDataCollection mc_xTransientData;
 
   };
 

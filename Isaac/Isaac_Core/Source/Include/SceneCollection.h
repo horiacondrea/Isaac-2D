@@ -36,7 +36,6 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-  typedef std::shared_ptr<const isaac::IScene> SmartScene;
   /*!
   This class buffer holds a collection of Scenes
   */
@@ -53,7 +52,7 @@ namespace isaac
     Return the scene that has the specified name, if the scene is not found
     nullptr will be returned
     */
-    const SmartScene& mf_xGetSceneByName(const std::string& av_szSceneName) const;
+    const Scene& mf_xGetSceneByName(const std::string& av_szSceneName) const;
 
     virtual ~CSceneCollection();
 
@@ -63,8 +62,10 @@ namespace isaac
     Use this method to add a scene in the buffer, if the scene is null, it will not be
     added in the buffer and an assert will appear in DEBUG mode.
     */
-    void mp_AddScene(const SmartScene& ac_xSceneToAdd) const;
+    void mp_AddScene(const Scene& ac_xSceneToAdd) const;
 
   };
+
+  typedef std::shared_ptr< const CSceneCollection > SceneCollection;
 }
 

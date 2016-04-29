@@ -38,16 +38,16 @@ namespace isaac
   {
   public:
 
-    virtual void mp_InitScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&) = 0;
+    virtual void mp_InitScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData) = 0;
 
     virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>&) = 0;
 
-    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const isaac::CTransientDataCollection>&,
+    virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData,
       sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
 
-    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
+    virtual void mp_DrawScene(RenderWindow av_xMainWindow) const = 0;
 
-    virtual void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName) = 0;
+    virtual void mp_Release(TransientDataCollection& av_xTransientData, std::string ac_szTriggerName) = 0;
 
     virtual bool mp_bIsDynamicScene() const
     {
@@ -65,4 +65,6 @@ namespace isaac
     }
 
   };
+
+  typedef std::shared_ptr< const isaac::IStaticScene > StaticScene;
 }

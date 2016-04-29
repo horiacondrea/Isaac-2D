@@ -50,13 +50,14 @@ namespace isaac
 
     bool mf_bRemoveTransition(std::string ac_szTransitionIdentifier) const;
 
-    const std::shared_ptr<const CTransition>& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
+    const Transition& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
 
     ~CTransitionCollection();
 
   protected:
 
-    void mp_AddTransition(std::string ac_szTransitionIdentifier, const std::shared_ptr<const CTransition>& ac_xTransition) const;
+    void mp_AddTransition(std::string ac_szTransitionIdentifier, const Transition& ac_xTransition) const;
   };
 
+  typedef std::shared_ptr< const CTransitionCollection > TransitionCollection;
 }

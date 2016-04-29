@@ -25,16 +25,20 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | April 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <TriggerCollection.h>
 #include <TransientDataCollection.h>
 #include "ITrigger.h"
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
+  typedef std::shared_ptr< sf::RenderWindow > RenderWindow;
+
   class EXPORT_API IProcessingElement
   {
   public:
@@ -57,18 +61,17 @@ namespace isaac
       en_UnknowProcess
     };
 
-    virtual void mp_InitProcess(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const CTransientDataCollection>&) = 0;
+    virtual void mp_InitProcess(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransietData) = 0;
 
-    virtual void mp_InitTriggers(std::shared_ptr<CTriggerCollection>& ac_xGlobalTriggers, const std::shared_ptr<CTriggerCollection>& ac_xLocalTriggers) = 0;
+    virtual void mp_InitTriggers(TriggerCollection& ac_xGlobalTriggers, const TriggerCollection& ac_xLocalTriggers) = 0;
 
-    virtual void mp_UpdateScene(std::shared_ptr<sf::RenderWindow>, std::shared_ptr<const CTransientDataCollection> &,
-      sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
+    virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransietData, sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
 
-    virtual void mp_DrawScene(std::shared_ptr<sf::RenderWindow>) const = 0;
+    virtual void mp_DrawScene(RenderWindow av_xMainWindow) const = 0;
 
-    virtual void mp_Release(std::shared_ptr<const CTransientDataCollection> &, std::string ac_szTriggerName) = 0;
+    virtual void mp_Release(TransientDataCollection& av_xTransietData, std::string ac_szTriggerName) = 0;
 
-    void mp_addStartTrigger(std::shared_ptr<const ITrigger>& ac_xStartTrigger) const
+    void mp_addStartTrigger(Trigger& ac_xStartTrigger) const
     {
       if (mt_ProcessType != en_Permanent && mt_ProcessType != en_PermanentWithStop)
       {
@@ -81,7 +84,7 @@ namespace isaac
       }
     }
 
-    void mp_addStopTrigger(std::shared_ptr<const ITrigger>& ac_xStopTrigger) const
+    void mp_addStopTrigger(Trigger& ac_xStopTrigger) const
     {
       if (mt_ProcessType != en_Permanent)
       {
@@ -108,12 +111,12 @@ namespace isaac
       return mv_bIsActive;
     }
 
-    virtual const std::shared_ptr<const CTriggerCollection>& mf_xGetStartTriggers() const
+    virtual const TriggerCollection& mf_xGetStartTriggers() const
     {
       return mv_xStartTriggers;
     }
 
-    virtual const std::shared_ptr<const CTriggerCollection>& mf_xGetStopTriggers() const
+    virtual const TriggerCollection& mf_xGetStopTriggers() const
     {
       return mv_xStopTriggers;
     }
@@ -222,8 +225,10 @@ namespace isaac
     mutable bool mv_bIsActive;
     bool mv_bHasOneTimeRun;
 
-    mutable std::shared_ptr<const CTriggerCollection> mv_xStartTriggers;
-    mutable std::shared_ptr<const CTriggerCollection> mv_xStopTriggers;
+    mutable TriggerCollection mv_xStartTriggers;
+    mutable TriggerCollection mv_xStopTriggers;
 
   };
+
+  typedef std::shared_ptr< const isaac::IProcessingElement > ProcessingElement;
 }

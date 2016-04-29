@@ -33,7 +33,6 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-
   class EXPORT_API CTriggerCollection : public IMapSmartCollection<const ITrigger>
   {
   public:
@@ -41,7 +40,7 @@ namespace isaac
 
     bool mf_bRemoveTrigger(std::string ac_szTriggerIdentifier);
 
-    const std::shared_ptr<const ITrigger>& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
+    const Trigger& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
 
     virtual ~CTriggerCollection();
 
@@ -69,8 +68,9 @@ namespace isaac
       }
     }
 
-    void mp_AddTrigger(const std::shared_ptr<const ITrigger>& ac_xTrigger) const;
+    void mp_AddTrigger(const Trigger& ac_xTrigger) const;
 
   };
 
+  typedef std::shared_ptr<isaac::CTriggerCollection> TriggerCollection;
 }

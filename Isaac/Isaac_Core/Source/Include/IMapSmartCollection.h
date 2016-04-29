@@ -25,18 +25,18 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <map>
 #include <memory>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  /*                          IMapSmartCollection
-  /////////////////////////////////////////////////////////////////////////////
-  // IMapCollection -> a smart template interfaces used in order to hold a map of
-  // keys (char*) and elemens (shared_ptr<Types>).
-  /////////////////////////////////////////////////////////////////////////////
+  /*!                          
+  IMapCollection -> a smart template interfaces used in order to hold a map of
+  keys (char*) and elemens (shared_ptr<Types>).
   */
   template<class Type>
   class IMapSmartCollection

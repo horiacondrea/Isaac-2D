@@ -33,9 +33,9 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-  COrchestrator::COrchestrator(std::shared_ptr<const isaac::IScene>& ac_xInitialScene, 
-                               std::shared_ptr<const isaac::CSceneCollection>& ac_xCSceneCollection,
-                               std::shared_ptr<const isaac::CTransitionCollection>& ac_xTransitionCollection) :
+  COrchestrator::COrchestrator(Scene & ac_xInitialScene, 
+                               SceneCollection& ac_xCSceneCollection,
+                               TransitionCollection& ac_xTransitionCollection) :
     mc_xInitialScene(ac_xInitialScene),
     mc_xCSceneCollection(ac_xCSceneCollection),
     mc_xTransitionCollection(ac_xTransitionCollection)
@@ -50,7 +50,7 @@ namespace isaac
     mp_OrganizeDynamicScenes();
   }
 
-  std::pair<std::shared_ptr< const isaac::IScene >, std::string>  COrchestrator::mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
+  std::pair<Scene, std::string>  COrchestrator::mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event)
   {
     av_bHasAnyTriggerDisturbed = false;
     if (mc_xTransitionCollection->mp_GetSize() == 0)
@@ -68,7 +68,7 @@ namespace isaac
       else
       {
         std::list<std::string> av_listSceneNames;
-        std::shared_ptr<const isaac::IScene> lv_xLocalScene = mc_xCurrentScene;
+        Scene lv_xLocalScene = mc_xCurrentScene;
         av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
         if (mc_xCurrentScene->mf_bIsSubScene())
         {
@@ -105,13 +105,13 @@ namespace isaac
     return std::make_pair(mc_xCurrentScene, mv_szLastTriggerName);
   }
 
-  std::shared_ptr<isaac::CTriggerCollection>& COrchestrator::mf_xGetTriggersPerScene() const
+  TriggerCollection& COrchestrator::mf_xGetTriggersPerScene() const
   {
 
     mv_xTriggersPerScene = std::make_shared<isaac::CTriggerCollection>();
 
     std::list<std::string> av_listSceneNames;
-    std::shared_ptr<const isaac::IScene> lv_xLocalScene = mc_xCurrentScene;
+    Scene lv_xLocalScene = mc_xCurrentScene;
     av_listSceneNames.push_back(lv_xLocalScene->mf_szGetSceneName());
     if (mc_xCurrentScene->mf_bIsSubScene())
     {

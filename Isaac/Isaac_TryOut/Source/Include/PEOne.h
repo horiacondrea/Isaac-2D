@@ -4,7 +4,6 @@
 
 class PEOne : public isaac::IProcessingElement
 {
-
   std::shared_ptr<sf::ConvexShape> mv_xShape;
 
 public:

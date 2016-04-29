@@ -4,7 +4,7 @@ int CreateGame()
 {
   std::shared_ptr< isaac::IDynamicAspect> lv_xDynAspect = std::make_shared<DynamicAspect>();
 
-  lv_xDynAspect->mp_Insert_Static_Aspect(std::make_shared<StaticAspect>());
+  lv_xDynAspect->mp_InsertStaticAspect(std::make_shared<StaticAspect>());
 
   isaac::CGame::instance().mp_DefineGameAspect(lv_xDynAspect);
 

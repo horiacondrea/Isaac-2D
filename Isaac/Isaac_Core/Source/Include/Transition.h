@@ -36,14 +36,14 @@ namespace isaac
   class EXPORT_API CTransition
   {
   protected:
-    const std::shared_ptr< const isaac::IScene >     mc_xSourceScene;
-    const std::shared_ptr< const isaac::ITrigger>     mc_xTrigger;
-    const std::shared_ptr< const isaac::IScene >     mc_xDestinationScene;
+    const Scene mc_xSourceScene;
+    const Trigger mc_xTrigger;
+    const Scene mc_xDestinationScene;
   public:
 
-    CTransition(const std::shared_ptr< const isaac::IScene >& ac_xSourceScene, 
-                const std::shared_ptr< const isaac::ITrigger >& ac_xTrigger, 
-                const std::shared_ptr<const isaac::IScene >& ac_xDestinationScene) :
+    CTransition(const Scene& ac_xSourceScene, 
+                const Trigger& ac_xTrigger, 
+                const Scene& ac_xDestinationScene) :
       mc_xSourceScene(ac_xSourceScene) ,
       mc_xTrigger(ac_xTrigger) ,
       mc_xDestinationScene(ac_xDestinationScene)
@@ -53,17 +53,17 @@ namespace isaac
       BOOST_ASSERT_MSG(mc_xDestinationScene != nullptr, "Destination Scene is null");
     }
 
-    const std::shared_ptr< const isaac::IScene >& mf_xGetSourceScene() const
+    const Scene& mf_xGetSourceScene() const
     { 
       return mc_xSourceScene;
     }
 
-    const std::shared_ptr <const isaac::ITrigger >& mf_xGetTrigger() const
+    const Trigger& mf_xGetTrigger() const
     {
       return mc_xTrigger;
     }
 
-    const std::shared_ptr< const isaac::IScene >& mf_xGetDestinationScene() const
+    const Scene& mf_xGetDestinationScene() const
     {
       return mc_xDestinationScene;
     }
@@ -77,4 +77,6 @@ namespace isaac
     {
     }
   };
+
+  typedef std::shared_ptr< const isaac::CTransition > Transition;
 }

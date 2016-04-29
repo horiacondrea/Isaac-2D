@@ -36,16 +36,16 @@ namespace isaac
   }
 
 
-  void CSceneCollection::mp_AddScene(const SmartScene& av_xSceneToAdd) const
+  void CSceneCollection::mp_AddScene(const Scene& av_xSceneToAdd) const
   {
     BOOST_ASSERT_MSG(av_xSceneToAdd != nullptr, "Scene to add is null");
     if (av_xSceneToAdd != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const SmartScene>::value_type(av_xSceneToAdd->mf_szGetSceneName(), av_xSceneToAdd));
+      mv_mapSmartCollection.insert(std::map<std::string, const Scene>::value_type(av_xSceneToAdd->mf_szGetSceneName(), av_xSceneToAdd));
     }
   }
 
-  const SmartScene& CSceneCollection::mf_xGetSceneByName(const std::string& av_szSceneName) const
+  const Scene& CSceneCollection::mf_xGetSceneByName(const std::string& av_szSceneName) const
   {
     BOOST_ASSERT_MSG(!av_szSceneName.empty(), "Empty string provided");
     if (!av_szSceneName.empty())

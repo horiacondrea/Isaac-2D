@@ -25,19 +25,18 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <map>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  /*                             IMapCollection
-  /////////////////////////////////////////////////////////////////////////////
-  // IMapCollection -> a template interfaces used in order to hold a map of
-  // keys (char*) and elemens (Types).
-  /////////////////////////////////////////////////////////////////////////////
+  /*!                    
+  IMapCollection -> a template interfaces used in order to hold a map of
+  keys (char*) and elemens (Types).
   */
-
   template<class Type>
   class IMapCollection
   {

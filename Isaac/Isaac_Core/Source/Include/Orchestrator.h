@@ -49,14 +49,14 @@ namespace isaac
   class COrchestrator
   {
     // Private variables //
-    std::shared_ptr< const IScene > mc_xInitialScene;
-    std::shared_ptr< const CSceneCollection > mc_xCSceneCollection;
-    std::shared_ptr< const CTransitionCollection > mc_xTransitionCollection;
+    Scene mc_xInitialScene;
+    SceneCollection mc_xCSceneCollection;
+    TransitionCollection mc_xTransitionCollection;
 
-    std::shared_ptr< const IScene > mc_xCurrentScene;
+    Scene mc_xCurrentScene;
 
     mutable bool mv_bIsThisFirstTimeHere;
-    mutable std::shared_ptr< CTriggerCollection > mv_xTriggersPerScene;
+    mutable TriggerCollection mv_xTriggersPerScene;
     mutable std::map<std::string, const bool> mv_mapDynamicMapMirror;
     std::string mv_szLastTriggerName;
 
@@ -65,9 +65,9 @@ namespace isaac
     // Public Methods //
 
     // Constructor
-    COrchestrator(std::shared_ptr< const IScene >& ac_xInitialScene,
-                  std::shared_ptr< const CSceneCollection >& ac_xCSceneCollection,
-                  std::shared_ptr< const CTransitionCollection >& ac_xTransitionCollection);
+    COrchestrator(Scene & ac_xInitialScene,
+                  SceneCollection& ac_xCSceneCollection,
+                  TransitionCollection& ac_xTransitionCollection);
 
     // D-tor
     //// We are not going to destroy anything, since we use only smart pointers.
@@ -80,7 +80,7 @@ namespace isaac
     Also mf_pGetSceneToBeDisplayed will return a bool that will allow as to 
     see if any trigger has been disturbed.
     */
-    std::pair< std::shared_ptr< const IScene >, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
+    std::pair< Scene, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
 
     /*!                        
     GetTriggersPerScene returns the Triggers that are available  for the
@@ -102,5 +102,5 @@ namespace isaac
     void mp_OrganizeDynamicScenes() const;
 
   };
-
+  typedef std::shared_ptr< COrchestrator > Orchestrator;
 }

@@ -49,7 +49,7 @@ namespace isaac
   void CSceneMachine::mp_InitCurrentScene(sf::Event av_Event)
   {
     bool lv_bCheckForAutomaticBlock;
-    std::pair< std::shared_ptr<const isaac::IScene >, std::string> lv_SceneAndTrigger = mv_xSceneOrchestrator->mf_xGetSceneToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
+    const auto& lv_SceneAndTrigger = mv_xSceneOrchestrator->mf_xGetSceneToBeDisplayed(lv_bCheckForAutomaticBlock, av_Event);
     mv_xCurrentScene = std::const_pointer_cast<isaac::IScene>(lv_SceneAndTrigger.first);
     mv_szLastTriggerName = lv_SceneAndTrigger.second;
 

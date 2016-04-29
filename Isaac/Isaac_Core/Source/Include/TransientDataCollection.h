@@ -108,4 +108,6 @@ namespace isaac
     ~CTransientDataCollection();
   };
 
+  typedef std::shared_ptr< const isaac::CTransientDataCollection > TransientDataCollection;
+
 }

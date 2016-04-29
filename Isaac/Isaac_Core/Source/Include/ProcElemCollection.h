@@ -38,9 +38,6 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-  typedef std::shared_ptr<const CTriggerCollection> SmartTriggerCollection;
-  typedef std::shared_ptr<const IProcessingElement> SmartProcessingElement;
- 
   /*!
   This class buffer holds a collection of Process Elements, you can add, replace or
   get any process element that is stored in this buffer
@@ -55,28 +52,28 @@ namespace isaac
     Return the process element that has the specified name, if process element 
     is not found nullptr will be returned
     */
-    const SmartProcessingElement& mf_xGetProcElemByName(std::string ac_szPEIdentifier) const;
+    const ProcessingElement& mf_xGetProcElemByName(std::string ac_szPEIdentifier) const;
 
     /*!
     Returns all the start triggers that are availalbe for all the Process Elements
     in the buffer, if no start triggers are found a collection with ZERO(0) elements
     will be returned.
     */
-    SmartTriggerCollection mf_xGetAllStartTriggers() const;
+    TriggerCollection mf_xGetAllStartTriggers() const;
 
     /*!
     Returns all the stop triggers that are availalbe for all the Process Elements
     in the buffer, if no stop triggers are found a collection with ZERO(0) elements
     will be returned.
     */
-    SmartTriggerCollection mf_xGetAllStopTriggers() const;
+    TriggerCollection mf_xGetAllStopTriggers() const;
 
     /*!
     Returns all the triggers that are availalbe for all the Process Elements
     in the buffer, if no triggers are found a collection with ZERO(0) elements
     will be returned.
     */
-    SmartTriggerCollection mf_xGetAllTriggers() const;
+    TriggerCollection mf_xGetAllTriggers() const;
 
     virtual ~CProcElemCollection();
 
@@ -86,8 +83,10 @@ namespace isaac
     Use this method to add a processing element in the buffer, if the processing element
     is null, it will no be added in the buffer and an assert will appear in DEBUG mode.
     */
-    void mp_AddProcessingElement(const SmartProcessingElement& ac_xProcessingElement) const;
+    void mp_AddProcessingElement(const ProcessingElement& ac_xProcessingElement) const;
 
   };
+
+  typedef std::shared_ptr< const isaac::CProcElemCollection > ProcessingElementCollection;
 
 }
