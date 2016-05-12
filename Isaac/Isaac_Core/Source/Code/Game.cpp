@@ -84,9 +84,9 @@ namespace isaac
     BOOST_ASSERT_MSG(ac_xGameAspect != nullptr , "DynamicAspect is not defined");
     if (ac_xGameAspect != nullptr) {
       // Static elements
-      ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Scenes();
-      ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Triggers();
-      ac_xGameAspect->mf_xGetStaticAspect()->mp_Define_Transient_Data();
+      ac_xGameAspect->mf_xGetStaticAspect()->mp_DefineScenes();
+      ac_xGameAspect->mf_xGetStaticAspect()->mp_DefineTriggers();
+      ac_xGameAspect->mf_xGetStaticAspect()->mp_DefineTransientData();
 
       mc_xCSceneCollection = std::static_pointer_cast<const isaac::CSceneCollection>(ac_xGameAspect->mf_xGetStaticAspect());
       mc_xTransientData = std::static_pointer_cast<const isaac::CTransientDataCollection>(ac_xGameAspect->mf_xGetStaticAspect());

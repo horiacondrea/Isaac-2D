@@ -193,7 +193,7 @@ namespace isaac
     /*!
     Release all the defined processes
     Return value : void
-    Arguments    :  : Transient Data Collection 
+    Arguments    : Transient Data Collection 
                    [std::shared_ptr< const isaac::CTransientDataCollection >]
                  : name of the last trigger that was called
     */

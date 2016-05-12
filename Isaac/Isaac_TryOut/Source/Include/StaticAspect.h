@@ -13,11 +13,11 @@ class EXPORT_API StaticAspect : public isaac::IStaticAspect
 public:
   StaticAspect();
 
-  void mp_Define_Scenes() const;
+  void mp_DefineScenes() const;
 
-  void mp_Define_Triggers() const;
+  void mp_DefineTriggers() const;
 
-  void mp_Define_Transient_Data() const;
+  void mp_DefineTransientData() const;
 
   ~StaticAspect();
 };

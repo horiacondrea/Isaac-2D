@@ -25,12 +25,14 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <SceneCollection.h>
 #include <TriggerCollection.h>
 #include <TransientDataCollection.h>
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -41,11 +43,26 @@ namespace isaac
 
   public:
 
-    virtual void mp_Define_Scenes() const = 0;
+    /*!
+    In this method you need to define your available scenes
+    Return value : void
+    Arguments    : none
+    */
+    virtual void mp_DefineScenes() const = 0;
 
-    virtual void mp_Define_Triggers() const = 0;
+    /*!
+    In this method you can define you available triggers
+    Return value : void
+    Arguments    : none
+    */
+    virtual void mp_DefineTriggers() const = 0;
 
-    virtual void mp_Define_Transient_Data() const = 0;
+    /*!
+    In this method you can define you available transient data
+    Return value : void
+    Arguments    : none
+    */
+    virtual void mp_DefineTransientData() const = 0;
 
   public:
 

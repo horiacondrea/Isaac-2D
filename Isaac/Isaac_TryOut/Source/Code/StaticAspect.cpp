@@ -6,7 +6,7 @@ StaticAspect::StaticAspect()
 {
 }
 
-void StaticAspect::mp_Define_Scenes() const
+void StaticAspect::mp_DefineScenes() const
 {
   const std::shared_ptr<const isaac::IStaticScene> s1 = std::make_shared<SceneOne>(("Scene1"));
   mp_AddScene(s1);
@@ -25,7 +25,7 @@ void StaticAspect::mp_Define_Scenes() const
   //s1->mp_SetFatherScene(s3);
 }
 
-void StaticAspect::mp_Define_Triggers() const
+void StaticAspect::mp_DefineTriggers() const
 {
   const std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t1"));
   const std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t2"));
@@ -38,7 +38,7 @@ void StaticAspect::mp_Define_Triggers() const
   mp_AddTrigger(t4);
 }
 
-void StaticAspect::mp_Define_Transient_Data() const
+void StaticAspect::mp_DefineTransientData() const
 {
 
   const int data1 = 10;
