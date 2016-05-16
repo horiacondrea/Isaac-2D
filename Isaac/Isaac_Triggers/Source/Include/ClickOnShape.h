@@ -25,12 +25,14 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <ITrigger.h>
 #include "SFML/Graphics.hpp"
 #include <memory>
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -47,7 +49,7 @@ namespace isaac
 
     void InitTrigger(std::shared_ptr<sf::Shape> av_xElement , std::shared_ptr<sf::RenderWindow> av_xMainWindow);
 
-    const bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const;
+    const bool mf_bCheckTrigger(sf::Event event) const;
 
     virtual ~CClickOnShape();
   };

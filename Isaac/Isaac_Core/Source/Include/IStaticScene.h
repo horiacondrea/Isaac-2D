@@ -43,31 +43,38 @@ namespace isaac
     /*!
     In this method you do the initialization of the proces. This method is called
     before the starting of the scene
+
     Return value : void
-    Arguments    : SFML Render Window [std::shared_ptr< sf::RenderWindow >]
-                 : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
+
+    Arguments    : 
+    - SFML Render Window [std::shared_ptr< sf::RenderWindow >]
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
     */
     virtual void mp_InitScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData) = 0;
 
     /*!
     Init all the needed defined triggers. This method is called before the starting of
     the scene, right after the init
+
     Return value : void
-    Arguments    : Trigger Collection [std::shared_ptr<isaac::CTriggerCollection>]
+
+    Arguments    : 
+    - Trigger Collection [std::shared_ptr<isaac::CTriggerCollection>]
     */
     virtual void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>&) = 0;
 
     /*!
     Do the scene logic. This method is called in a loop while the scene is active
+
     Return value : void
-    Arguments    : SFML Render Window [std::shared_ptr< sf::RenderWindow >]
-                 : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
-                 : SFML Event [sf::Event]
-                 : reference bool, must be set to true before you decide to close
-                   the window. See examples on horiacondrea.com about how to use
-                   this parameter in the right way.
+
+    Arguments    : 
+    - SFML Render Window [std::shared_ptr< sf::RenderWindow >]
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
+    - SFML Event [sf::Event]
+    - reference bool, must be set to true before you decide to close
+      the window. See examples on horiacondrea.com about how to use
+      this parameter in the right way.
     */
     virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransientData,
       sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
@@ -75,24 +82,29 @@ namespace isaac
     /*!
     Draw what ever you need on the scene. This method is called in a loop while the 
     scene is active
+
     Return value : void
-    Arguments    : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
+
+    Arguments    : 
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
     */
     virtual void mp_DrawScene(RenderWindow av_xMainWindow) const = 0;
 
     /*!
     Release(reset or delete) what ever you need. This method is called right before
     the final release of the scene
+
     Return value : void
-    Arguments    : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
-                 : name of the last trigger that was called
+
+    Arguments    : 
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
+    - Name of the last trigger that was called
     */
     virtual void mp_Release(TransientDataCollection& av_xTransientData, std::string ac_szTriggerName) = 0;
 
     /*!
     Return value : False
+
     Arguments    : none
     */
     virtual bool mp_bIsDynamicScene() const

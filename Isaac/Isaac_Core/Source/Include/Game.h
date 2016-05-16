@@ -51,10 +51,13 @@ namespace isaac
   public:
 
     /*!                        
-     This methid will fill almost all the member variables in this class 
-     with data provided by you in the Static Aspect and Dynamic Aspect.
-     Return value : void
-     Arguments    : DynamicAspect [std::shared_ptr< const isaac::IDynamicAspect]
+    This methid will fill almost all the member variables in this class 
+    with data provided by you in the Static Aspect and Dynamic Aspect.
+
+    Return value : void 
+
+    Arguments:
+    - DynamicAspect [std::shared_ptr< const isaac::IDynamicAspect]
     */
     void mp_DefineGameAspect(const DynamicAspect& ac_xGameAspect);
 
@@ -62,16 +65,21 @@ namespace isaac
     mp_Start is the main method for your game, this method keep your window
     alive, and it is responsabile for the MainLoop, initializing the other 
     two most important components : the SceneMachine and the Orchestrator
+   
     Return value : void
-    Arguments    : Window title
-                 : Window Width
-                 : Window Heigh
+
+    Arguments    : 
+    - Window Title
+    - Window Width
+    - Window Heigh
     */
     void mp_Start(std::string ac_szGameTitle, const unsigned int &ac_nGameWidth, const unsigned int &ac_nGameHeigh);
 
     /*!
     This class is Singleton, so you can only have one 'instance'
+
     Return value : CGame 
+
     Arguments    : none
     */
     static CGame &instance() {
@@ -94,6 +102,10 @@ namespace isaac
 
     /*!                         
     The Game Loop will work as long as the window remain open
+
+    Return value : void
+
+    Arguments    : none
     */
     void mp_GameLoop();
 

@@ -25,25 +25,39 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "defines.h"
 #include <IMapSmartCollection.h>
 #include <ITrigger.h>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
+  /*!
+  This class buffer holds a collection of triggers
+  */
   class EXPORT_API CTriggerCollection : public IMapSmartCollection<const ITrigger>
   {
   public:
     CTriggerCollection();
 
+    /*!
+    Remove a specific trigger from the map
+    */
     bool mf_bRemoveTrigger(std::string ac_szTriggerIdentifier);
 
+    /*!
+    Get a specific trigger from the map
+    */
     const Trigger& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
 
     virtual ~CTriggerCollection();
 
+    /*!
+    Get a specific trigger from the map
+    */
     template<class Type>
     std::shared_ptr<Type> mf_xGetTriggerByNameAndType(std::string ac_szTriggerIdentifier) const
     {
@@ -68,6 +82,9 @@ namespace isaac
       }
     }
 
+    /*!
+    Add a specific trigger to map
+    */
     void mp_AddTrigger(const Trigger& ac_xTrigger) const;
 
   };

@@ -25,8 +25,10 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
-#include "ClickOnShape.h"
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
+#include <ClickOnShape.h>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -42,7 +44,7 @@ namespace isaac
     mv_xMainWindow = av_xMainWindow;
   }
 
-  const bool CClickOnShape::mf_bWas_This_Trigger_Disturbed(sf::Event event) const
+  const bool CClickOnShape::mf_bCheckTrigger(sf::Event event) const
   {
     const int mouseX = sf::Mouse::getPosition(*mv_xMainWindow).x;
     const int mouseY = sf::Mouse::getPosition(*mv_xMainWindow).y;

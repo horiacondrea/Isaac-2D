@@ -49,21 +49,27 @@ namespace isaac
 
     /*!
     All the transitions between scenes need to by defined in this method
+    
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineScenesTransitions() const = 0;
 
     /*!
     Initial scene name should be defined in this method
+   
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineInitialScene() const = 0;
 
     /*!
-    Rettun the StaticAspect object as a shared_ptr
+    Return the StaticAspect object as a shared_ptr
+   
     Return value : void
+
     Arguments    : none
     */
     virtual const StaticAspect& mf_xGetStaticAspect() const
@@ -73,8 +79,11 @@ namespace isaac
 
     /*!
     This method is used to insert the Static Aspect in the Dynamic one
+   
     Return value : void
-    Arguments    : StaticAspect [std::shared_ptr< const isaac::IStaticAspect >]
+
+    Arguments    : 
+    - StaticAspect [std::shared_ptr< const isaac::IStaticAspect >]
     */
     virtual void mp_InsertStaticAspect(const StaticAspect& ac_xStaticAspect)
     {
@@ -85,7 +94,9 @@ namespace isaac
 
     /*!
     Returnes the initial scene as a smart IScene object
+   
     Return value : InitialScene [std::shared_ptr< const isaac::IScene >]
+
     Arguments    : none
     */
     virtual const Scene& mp_GetInitialScene() const
@@ -102,11 +113,14 @@ namespace isaac
   protected:
     /*!
     Utility method that return a smart Transition
+   
     Return value : Transition [std::shared_ptr<const isaac::CTransition>]
-    Arguments    : name of the source scene
-                 : name of the trigger that has to be disturbed in order
-                   to move to the destination scene
-                 : name of the destination scene
+
+    Arguments    : 
+    - name of the source scene
+    - name of the trigger that has to be disturbed in order
+      to move to the destination scene
+    - name of the destination scene
     */
     const Transition mf_xDefineTransition(std::string ac_szSourceSceneIdentifier,
       std::string ac_szTriggerIdentifier,
@@ -119,8 +133,11 @@ namespace isaac
 
     /*!
     Utility method for defining an initial scene.
+   
     Return value : InitialScene [std::shared_ptr< const isaac::IScene >]
-    Arguments    : name of the Scene that will be the iniital scene
+
+    Arguments    : 
+    - name of the Scene that will be the iniital scene
     */
     Scene mf_xDefineInitialScene(std::string ac_szInitialSceneIdentifier) const
     {

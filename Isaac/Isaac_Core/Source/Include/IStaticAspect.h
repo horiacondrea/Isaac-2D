@@ -45,21 +45,27 @@ namespace isaac
 
     /*!
     In this method you need to define your available scenes
+
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineScenes() const = 0;
 
     /*!
     In this method you can define you available triggers
+
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineTriggers() const = 0;
 
     /*!
     In this method you can define you available transient data
+
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineTransientData() const = 0;

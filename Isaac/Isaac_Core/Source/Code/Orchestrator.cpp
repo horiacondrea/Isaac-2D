@@ -25,11 +25,13 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | Feb   2014 | Created
 */
-
-#include "Orchestrator.h"
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
+#include <Orchestrator.h>
 #include <TriggerCollection.h>
 #include <IDynamicScene.h>
 #include <list>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {

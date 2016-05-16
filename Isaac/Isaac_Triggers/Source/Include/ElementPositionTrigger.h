@@ -25,11 +25,13 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <ITrigger.h>
 #include "SFML/Graphics.hpp"
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -64,7 +66,7 @@ namespace isaac
 
     void mp_InitTrigger( sf::Shape* ac_pShape, const double ac_dfPosition);
 
-    const bool mf_bWas_This_Trigger_Disturbed(sf::Event) const;
+    const bool mf_bCheckTrigger(sf::Event) const;
 
   };
 

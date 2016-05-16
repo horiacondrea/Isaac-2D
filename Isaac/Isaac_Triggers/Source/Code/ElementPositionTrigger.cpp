@@ -25,8 +25,10 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
-#include "ElementPositionTrigger.h"
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
+#include <ElementPositionTrigger.h>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -87,7 +89,7 @@ namespace isaac
     return false;
   }
 
-  const bool CElementPositionTrigger::mf_bWas_This_Trigger_Disturbed(sf::Event) const
+  const bool CElementPositionTrigger::mf_bCheckTrigger(sf::Event) const
   {
     return mp_CalculateTrigger();
   }

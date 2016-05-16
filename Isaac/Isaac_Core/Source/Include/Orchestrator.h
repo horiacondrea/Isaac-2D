@@ -34,11 +34,6 @@ Revision | Who      | Date       | Comment
 #include <TransitionCollection.h>
 /////////////////////////////////////////////////////////////////////////////
 
-/*!                          
-In the Core namespace you will find the most important components, this
-components are directly implicated in the behavior that your game will
-have.
-*/
 namespace isaac
 {
   /*!                            
@@ -73,24 +68,41 @@ namespace isaac
     //// We are not going to destroy anything, since we use only smart pointers.
     ~COrchestrator();
 
-    /*!                        
+    /*!
     This method check the triggers that are available in the Active Scene
     and determine what Scene will be next. If the Initial Scene is the Active
     Scene this will be displayed.
     Also mf_pGetSceneToBeDisplayed will return a bool that will allow as to 
     see if any trigger has been disturbed.
+
+    Return value : The Scene to be displayed next and the trigger name that was
+                   disturbed last [ std::pair< Scene, std::string> ]. If no trigger 
+                   was disturbed the string will contain "NoTrigger"
+
+    Arguments    : 
+    - Bool that indicates id a trigger was disturbed or not
+    - SFML Event [sf::Event]
+                   
     */
     std::pair< Scene, std::string> mf_xGetSceneToBeDisplayed(bool& av_bHasAnyTriggerDisturbed, sf::Event av_Event);
 
     /*!                        
-    GetTriggersPerScene returns the Triggers that are available  for the
-    Active Scene, in order to init them in the Scene.
+    Returns the Triggers that are available  for the Active Scene, in order to 
+    init them in the Scene.
+
+    Return value : Trigger Collection
+
+    Arguments    : none
     */
     std::shared_ptr< CTriggerCollection >& mf_xGetTriggersPerScene() const;
 
     /*!
     Get Dynamic Scene Status will return true if for a specific Scene name the processes
     are defined and will return false if the processes are not defined
+
+    Return value : bool
+
+    Arguments    : none
     */
     const bool mf_bGetDynamicSceneStatus(std::string ac_szDynamicSceneName) const;
 
@@ -98,6 +110,10 @@ namespace isaac
     // Private Methods //
     /*!
     Organize dynamic Scenes in a map
+
+    Return value : void
+
+    Arguments    : none
     */
     void mp_OrganizeDynamicScenes() const;
 

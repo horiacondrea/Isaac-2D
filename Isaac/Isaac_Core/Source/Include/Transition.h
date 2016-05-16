@@ -25,11 +25,13 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include "IScene.h"
-#include "ITrigger.h"
+#include <IScene.h>
+#include <ITrigger.h>
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -53,24 +55,36 @@ namespace isaac
       BOOST_ASSERT_MSG(mc_xDestinationScene != nullptr, "Destination Scene is null");
     }
 
+    /*!
+    Get the Source Scene for the current transition
+    */
     const Scene& mf_xGetSourceScene() const
     { 
       return mc_xSourceScene;
     }
 
+    /*!
+    Get the avilalbe Trigger for the current transition
+    */
     const Trigger& mf_xGetTrigger() const
     {
       return mc_xTrigger;
     }
 
+    /*!
+    Get the Destination Scene for the current transition
+    */
     const Scene& mf_xGetDestinationScene() const
     {
       return mc_xDestinationScene;
     }
 
+    /*!
+    Check the Trigger for the avilable transition
+    */
     const bool mf_bCheckTransition(sf::Event event) const
     {
-      return mc_xTrigger->mf_bWas_This_Trigger_Disturbed(event);
+      return mc_xTrigger->mf_bCheckTrigger(event);
     }
 
     virtual ~CTransition()

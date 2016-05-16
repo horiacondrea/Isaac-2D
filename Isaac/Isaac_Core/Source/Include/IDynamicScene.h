@@ -45,17 +45,21 @@ namespace isaac
     
     /*!
     All the processes are going to be defined inside this method
+   
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_DefineProcess() const = 0;
 
     /*!
     Init all the defined processes
+   
     Return value : void
-    Arguments    : SFML Render Window [std::shared_ptr< sf::RenderWindow >]
-                 : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
+
+    Arguments    : 
+    - SFML Render Window [std::shared_ptr< sf::RenderWindow >]
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
     */
     virtual void mp_InitScene(RenderWindow av_xMainWindow, TransientDataCollection &ac_xTransientData)
     {
@@ -81,8 +85,11 @@ namespace isaac
 
     /*!
     Init all the defined triggers
+   
     Return value : void
-    Arguments    : Trigger Collection [std::shared_ptr<isaac::CTriggerCollection>]
+
+    Arguments    : 
+    - Trigger Collection [std::shared_ptr<isaac::CTriggerCollection>]
     */
     virtual void mp_InitTriggers(TriggerCollection& ac_xGlobalTriggers)
     {
@@ -111,14 +118,16 @@ namespace isaac
 
     /*!
     Update all the defined processes
+
     Return value : void
-    Arguments    : SFML Render Window [std::shared_ptr< sf::RenderWindow >]
-                 : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
-                 : SFML Event [sf::Event]
-                 : reference bool, must be set to true before you decide to close
-                   the window. See examples on horiacondrea.com about how to use
-                   this parameter in the right way.
+
+    Arguments    : 
+    - SFML Render Window [std::shared_ptr< sf::RenderWindow >]
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
+    - SFML Event [sf::Event]
+    - reference bool, must be set to true before you decide to close
+      the window. See examples on horiacondrea.com about how to use
+      this parameter in the right way.
     */
     virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection &ac_xTransientData, sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed)
     {
@@ -164,9 +173,11 @@ namespace isaac
 
     /*!
     Draw all the defined processes
+
     Return value : void
-    Arguments    : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
+
+    Arguments    : 
+    - Transient Data Collection [std::shared_ptr< const isaac::CTransientDataCollection >]
     */
     virtual void mp_DrawScene(RenderWindow av_xMainWindow) const
     {
@@ -192,10 +203,12 @@ namespace isaac
 
     /*!
     Release all the defined processes
+
     Return value : void
-    Arguments    : Transient Data Collection 
-                   [std::shared_ptr< const isaac::CTransientDataCollection >]
-                 : name of the last trigger that was called
+
+    Arguments    : 
+    - Transient Data Collection 
+    - name of the last trigger that was called
     */
     virtual void mp_Release(TransientDataCollection& av_xTransientData, std::string ac_szTriggerName)
     {
@@ -219,7 +232,9 @@ namespace isaac
 
     /*!
     Return true, because this is a dynamic scene
+
     Return value : void
+
     Arguments    : none
     */
     virtual bool mp_bIsDynamicScene() const
@@ -229,7 +244,9 @@ namespace isaac
 
     /*!
     Resre all the defined processes
+
     Return value : void
+
     Arguments    : none
     */
     virtual void mp_ResetProcessingElements() const
@@ -265,8 +282,12 @@ namespace isaac
   private:
     /*!
     Check if a new processes has been triggered
+
     Return value : smart IProcessingElement object if a new process has been triggerd
                    nullptr if no new procees has been triggerd
+
+    Arguments    : 
+    - SFML Event [sf::Event]
     */
     ProcessingElement mf_bCheckAllProcElem(sf::Event event) const
     {

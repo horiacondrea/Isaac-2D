@@ -25,13 +25,13 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | August 2015 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <IFrame.h>
 #include "defines.h"
-
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -46,8 +46,6 @@ namespace isaac
     virtual const float mp_dfGetWidth() const;
 
     virtual const float mp_dfGetHeight() const;
-
-     
  
   };
 

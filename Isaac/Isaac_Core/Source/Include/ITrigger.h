@@ -46,9 +46,23 @@ namespace isaac
     {
       ;
     }
+    /*!
+    Return the current status of the trigger
 
-    const virtual bool mf_bWas_This_Trigger_Disturbed(sf::Event event) const = 0;
+    Return value : True if the trigger condition was accomplished, false otherwise [bool]
 
+    Arguments    : 
+    - SFML Event [sf::Event>]
+    */
+    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+
+    /*!
+    Return the name of the trigger
+
+    Return value : Name of the trigger [std::string]
+
+    Arguments    : none
+    */
     std::string mf_szGetTriggerName() const
     {
       return mc_szTriggerName;

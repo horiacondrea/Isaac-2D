@@ -25,8 +25,10 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | August 2014 | Created
 */
-
-#include "ClickOnButton.h"
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
+#include <ClickOnButton.h>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
@@ -42,7 +44,7 @@ namespace isaac
     mv_xMainWindow = av_xMainWindow;
   }
 
-  const bool CClickOnButton::mf_bWas_This_Trigger_Disturbed(sf::Event event) const
+  const bool CClickOnButton::mf_bCheckTrigger(sf::Event event) const
   {
     if (mv_xButton->mf_bCheckForTrigger(mv_xMainWindow, event))
       return true;

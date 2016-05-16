@@ -218,7 +218,7 @@ namespace isaac
         {
           for (const auto & item : mv_xStopTriggers->mf_mapGetRawMap())
           {
-            if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+            if (item.second->mf_bCheckTrigger(event))
             {
               mv_bIsActive = false;
             }
@@ -232,7 +232,7 @@ namespace isaac
         {
           for (const auto & item : mv_xStopTriggers->mf_mapGetRawMap())
           {
-            if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+            if (item.second->mf_bCheckTrigger(event))
             {
               mv_bIsActive = false;
             }
@@ -242,7 +242,7 @@ namespace isaac
         {
           for (const auto & item : mv_xStartTriggers->mf_mapGetRawMap())
           {
-            if (item.second->mf_bWas_This_Trigger_Disturbed(event))
+            if (item.second->mf_bCheckTrigger(event))
             {
               mv_bIsActive = true;
               av_szNewPEActivated = mf_szGetPEIdentifier();

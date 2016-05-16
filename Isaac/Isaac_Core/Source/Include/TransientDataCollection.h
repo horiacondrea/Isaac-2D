@@ -25,7 +25,6 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | March 2014 | Created
 */
-
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -47,6 +46,9 @@ namespace isaac
     */
     CTransientDataCollection();
 
+    /*!
+    Template method for retrieving transient data
+    */
     template<class Type>
     Type mf_xGetTransientData(std::string ac_szDataIdentifier) const
     {
@@ -70,6 +72,9 @@ namespace isaac
       }
     }
 
+    /*!
+    Template method for updating transient data
+    */
     template<class Type>
     void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const
     {

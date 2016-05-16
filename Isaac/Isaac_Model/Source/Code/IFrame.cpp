@@ -25,12 +25,14 @@ Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | September 2015 | Created
 */
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #include "IFrame.h"
 #include <cassert>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-
 
   IFrame::IFrame(const std::string ac_szPicturePath) : 
     mc_szPicturePath(ac_szPicturePath)

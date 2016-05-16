@@ -25,20 +25,21 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | August 2015 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <ITrigger.h>
 #include "SFML/Graphics.hpp"
 #include <memory>
 #include <IButton.h>
 #include "defines.h"
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
 #pragma once
   class EXPORT_API CClickOnButton : public isaac::ITrigger
   {
-
     const isaac::IButton* mv_xButton;
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
 
@@ -47,7 +48,7 @@ namespace isaac
 
     void InitTrigger(const isaac::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow);
 
-    const bool mf_bWas_This_Trigger_Disturbed(sf::Event) const;
+    const bool mf_bCheckTrigger(sf::Event) const;
 
     virtual ~CClickOnButton();
   };

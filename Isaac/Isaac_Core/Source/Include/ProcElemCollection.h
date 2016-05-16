@@ -33,7 +33,6 @@ Revision | Who      | Date       | Comment
 #include <IProcessingElement.h>
 #include <IMapSmartCollection.h>
 #include "defines.h"
-
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac

@@ -48,14 +48,23 @@ namespace isaac
     */
     CTransitionCollection();
 
+    /*!
+    Remove specific transition from the map
+    */
     bool mf_bRemoveTransition(std::string ac_szTransitionIdentifier) const;
 
+    /*!
+    Get specific transition from the map
+    */
     const Transition& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
 
     ~CTransitionCollection();
 
   protected:
 
+    /*!
+    Add transition to the map
+    */
     void mp_AddTransition(std::string ac_szTransitionIdentifier, const Transition& ac_xTransition) const;
   };
 
