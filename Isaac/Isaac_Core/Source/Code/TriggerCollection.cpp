@@ -66,7 +66,10 @@ namespace isaac
     if (!ac_szTriggerIdentifier.empty())
     {
       auto it = mv_mapSmartCollection.find(ac_szTriggerIdentifier);
-      return it->second;
+      if (it != mv_mapSmartCollection.end())
+        return it->second;
+      else
+        return nullptr;
     }
   }
 

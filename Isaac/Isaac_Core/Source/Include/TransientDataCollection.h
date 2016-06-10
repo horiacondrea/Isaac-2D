@@ -52,22 +52,28 @@ namespace isaac
     template<class Type>
     Type mf_xGetTransientData(std::string ac_szDataIdentifier) const
     {
-      const auto& it = mv_mapCollection->find(ac_szDataIdentifier);
-      if (!it->second.empty())
+      const auto& it = mv_mapCollection.find(ac_szDataIdentifier);
+      if (it != mv_mapCollection.end())
       {
-        if (it->second.type() == typeid(Type))
-          return boost::any_cast<Type>(it->second);
+        if (!it->second.empty())
+        {
+          if (it->second.type() == typeid(Type))
+            return boost::any_cast<Type>(it->second);
+          else
+          {
+            // Wrong Data Type
+            // Assert here
+            BOOST_ASSERT_MSG(false, "Wrong data type!");
+          }
+        }
         else
         {
-          // Wrong Data Type
+          // Wrong Data Identifier
           // Assert here
-          BOOST_ASSERT_MSG(false, "Wrong data type!");
+          BOOST_ASSERT_MSG(false, "Data Identifier not found!");
         }
       }
-      else
-      {
-        // Wrong Data Identifier
-        // Assert here
+      else {
         BOOST_ASSERT_MSG(false, "Data Identifier not found!");
       }
     }
@@ -78,7 +84,7 @@ namespace isaac
     template<class Type>
     void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const
     {
-      for (const auto& dataItem : *mv_mapCollection)
+      for (const auto& dataItem : mv_mapCollection)
       {
         if (!dataItem.second.empty())
         {
@@ -86,8 +92,8 @@ namespace isaac
           {
             if (dataItem.second.type() == typeid(Type))
             {
-              mv_mapCollection->erase(ac_szDataIdentifier);
-              mv_mapCollection->emplace(ac_szDataIdentifier, ac_data__Data);
+              mv_mapCollection.erase(ac_szDataIdentifier);
+              mv_mapCollection.emplace(ac_szDataIdentifier, ac_data__Data);
               break;
             }
             else

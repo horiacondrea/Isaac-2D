@@ -35,36 +35,28 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-  enum Position
-  {
-    en_GraterThen,
-    en_LessThen,
-    en_UnknowPosition
-  };
-
-  enum Axis
-  {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
-
   class EXPORT_API CElementPositionTrigger : public isaac::ITrigger
   {
-    const Position mc_enumPosition;
-//    const Axis mc_enumAxis;
-    sf::Shape* mc_pShape;
-    double mc_dfPosition;
-    bool mv_bWasThisTriggerInit;
+  public:
+    struct PositionProp
+    {
+      Signs mc_enumPosition;
+      Axis mc_enumAxis;
+      double mc_dfPositionValue;
+    };
 
   private:
+
+    mutable PositionProp mv_PositionProp;
+    mutable sf::Transformable* mv_pShape;
+
     const bool mp_CalculateTrigger() const;
 
   public:
-    CElementPositionTrigger(const Position ac_enumPosition , std::string ac_szTriggerName);
+    CElementPositionTrigger(std::string ac_szTriggerName);
     virtual ~CElementPositionTrigger();
 
-    void mp_InitTrigger( sf::Shape* ac_pShape, const double ac_dfPosition);
+    void mp_InitTrigger(sf::Transformable* ac_pShape, const PositionProp& ac_PositionProp ) const;
 
     const bool mf_bCheckTrigger(sf::Event) const;
 

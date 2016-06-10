@@ -23,72 +23,33 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include <ManualTrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  enum Signs
+
+  CManualTrigger::CManualTrigger(std::string ac_szTriggerName) :
+    isaac::ITrigger(ac_szTriggerName)
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+    mv_bResult = false;
+  }
 
-  enum Axis
+  void CManualTrigger::mp_SetTrigger(const bool& ac_bResult) const
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+    mv_bResult = ac_bResult;
+  }
 
-
-  class EXPORT_API ITrigger
+  const bool CManualTrigger::mf_bCheckTrigger(sf::Event e) const
   {
-  protected:
-    std::string mc_szTriggerName;
+    return mv_bResult;
+  }
 
-  public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
-
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
-
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
-  };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
+  CManualTrigger::~CManualTrigger()
+  {
+  }
 }

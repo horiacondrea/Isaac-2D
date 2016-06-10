@@ -53,7 +53,9 @@ namespace Test {
 
     //std::shared_ptr<Triggers::CElementPositionTrigger> lv_pPosition = ac_xGlobalTriggersColl->mf_xGetTriggerByNameAndType<Triggers::CElementPositionTrigger>(_T("t1"));
 
-    lv_pPosition->mp_InitTrigger(mv_pRect, 200);
+    isaac::CElementPositionTrigger::PositionProp prop = { isaac::Signs::en_GraterThen, isaac::Axis::en_X, 200.0 };
+
+    lv_pPosition->mp_InitTrigger(mv_pRect, prop);
   }
 
   void SceneOne::mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow,

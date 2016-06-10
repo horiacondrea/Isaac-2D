@@ -44,7 +44,6 @@ namespace isaac
   {
     BOOST_ASSERT_MSG(mc_xInitialScene != nullptr, "InitialScene is null");
     BOOST_ASSERT_MSG(mc_xCSceneCollection != nullptr, "Scene collection is null");
-    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() != 0, "There is no Scene defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is null");
 
     mv_bIsThisFirstTimeHere = true;
@@ -139,7 +138,6 @@ namespace isaac
 
   void COrchestrator::mp_OrganizeDynamicScenes() const
   {
-    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() != 0, "There is no Scene defined");
     for (const auto& item : mc_xCSceneCollection->mf_mapGetRawMap())
     {
       if (item.second->mp_bIsDynamicScene())

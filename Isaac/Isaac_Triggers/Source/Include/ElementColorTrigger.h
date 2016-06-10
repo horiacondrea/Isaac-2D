@@ -23,72 +23,45 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include <ITrigger.h>
+#include "SFML/Graphics.hpp"
 /////////////////////////////////////////////////////////////////////////////
 
-namespace isaac
-{
-  enum Signs
-  {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+namespace isaac {
 
-  enum Axis
+  class EXPORT_API CElementColorTrigger : public isaac::ITrigger
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+  public:
+    enum ColorWhere
+    {
+      FillColor,
+      OutlineColor,
+      Unknow
+    };
 
+    struct ColorProp
+    {
+      ColorWhere mv_colorWere;
+      sf::Color mv_Color;
+    };
 
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
+  private:
+    mutable sf::Shape* mv_pElement;
+    mutable ColorProp  mv_ColorProp;
 
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+    CElementColorTrigger(std::string ac_szTriggerName);
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+    void mp_InitTrigger(sf::Shape* ac_pShape, const ColorProp& ac_ColorProp) const;
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+    const bool mf_bCheckTrigger(sf::Event) const override;
 
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
+    virtual ~CElementColorTrigger();
   };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }
+

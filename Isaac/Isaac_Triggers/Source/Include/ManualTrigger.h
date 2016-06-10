@@ -23,72 +23,27 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
-/////////////////////////////////////////////////////////////////////////////
+#include <ITrigger.h>
+#include "SFML/Graphics.hpp"
 
 namespace isaac
 {
-  enum Signs
+  class EXPORT_API CManualTrigger : public isaac::ITrigger
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
-
-  enum Axis
-  {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
-
-
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
-
+  private:
+    mutable bool mv_bResult;
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+    CManualTrigger(std::string ac_szTriggerName);
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+    void mp_SetTrigger(const bool& ac_bResult) const;
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+    const bool mf_bCheckTrigger(sf::Event) const override;
 
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
+    virtual ~CManualTrigger();
   };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }

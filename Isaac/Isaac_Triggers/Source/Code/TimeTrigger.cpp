@@ -23,72 +23,46 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include <TimeTrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  enum Signs
+
+  CTimeTrigger::CTimeTrigger(std::string ac_szTriggerName) :
+    isaac::ITrigger(ac_szTriggerName)
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+    mv_Clock.restart();
+    mv_bTriggerChecked = false;
+  }
 
-  enum Axis
+  void CTimeTrigger::mp_InitTrigger(const sf::Time ac_Time) const
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+    mv_Start = mv_Clock.getElapsedTime();
+    mv_Time = ac_Time;
+  }
 
-
-  class EXPORT_API ITrigger
+  const bool CTimeTrigger::mf_bCheckTrigger(sf::Event e) const
   {
-  protected:
-    std::string mc_szTriggerName;
+    if (!mv_bTriggerChecked) {
+      const sf::Time lv_checkTime = mv_Clock.getElapsedTime();
+      const sf::Time lv_Rest = lv_checkTime - mv_Start;
 
-  public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
+      if (lv_Rest >= mv_Time) {
+        mv_bTriggerChecked = true;
+        return true;
+      }
+      return false;
     }
-    /*!
-    Return the current status of the trigger
+    return false;
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+  }
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
-  };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
+  CTimeTrigger::~CTimeTrigger()
+  {
+  }
 }

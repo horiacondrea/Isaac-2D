@@ -23,72 +23,36 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016 | Created
 */
-//                             Headers
-/////////////////////////////////////////////////////////////////////////////
+
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
-/////////////////////////////////////////////////////////////////////////////
+#include <IStaticScene.h>
 
-namespace isaac
-{
-  enum Signs
+namespace isaac {
+
+  class EXPORT_API CBlankScene : public isaac::IStaticScene
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
-
-  enum Axis
-  {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
-
-
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
+  private:
 
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+    CBlankScene(std::string ac_szSceneName);
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+    void mp_InitScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow,
+      std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData);
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+    void mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>& ac_xGlobalTriggersColl);
 
-    /*!
-    Return the name of the trigger
+    void mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow,
+      std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData,
+      sf::Event av_eventSFMLEvent,
+      bool& av_bReturnedBool_WindowClosed);
 
-    Return value : Name of the trigger [std::string]
+    void mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow) const;
 
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
+    void mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName);
 
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
+    ~CBlankScene();
   };
 
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }

@@ -48,6 +48,10 @@ namespace isaac
     }
   }
 
+  IFrame::IFrame() {
+    ;
+  }
+
   void IFrame::draw(sf::RenderTarget& target, sf::RenderStates States) const
   {
     States.transform *= getTransform();

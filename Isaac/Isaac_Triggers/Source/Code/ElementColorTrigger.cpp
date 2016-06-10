@@ -23,72 +23,56 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include "ElementColorTrigger.h"
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  enum Signs
+
+  CElementColorTrigger::CElementColorTrigger(std::string ac_szTriggerName) :
+    isaac::ITrigger(ac_szTriggerName)
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+    mv_ColorProp = { ColorWhere::Unknow, sf::Color::Transparent };
+  }
 
-  enum Axis
+  void CElementColorTrigger::mp_InitTrigger(sf::Shape* ac_pShape, const ColorProp& ac_ColorProp) const
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+    mv_pElement = ac_pShape;
+    mv_ColorProp = ac_ColorProp;
+  }
 
-
-  class EXPORT_API ITrigger
+  const bool CElementColorTrigger::mf_bCheckTrigger(sf::Event) const
   {
-  protected:
-    std::string mc_szTriggerName;
-
-  public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
+    switch (mv_ColorProp.mv_colorWere)
     {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
-
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
-
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
+    case ColorWhere::FillColor:
     {
-      return mc_szTriggerName;
+      const sf::Color lc_Color = mv_pElement->getFillColor();
+      if (lc_Color == mv_ColorProp.mv_Color)
+        return true;
+      return false;
+      break;
     }
-
-    virtual ~ITrigger()
+    case ColorWhere::OutlineColor:
     {
-      //delete mc_szTriggerName;
+      const sf::Color lc_Color = mv_pElement->getOutlineColor();
+      if (lc_Color == mv_ColorProp.mv_Color)
+        return true;
+      return false;
+      break;
     }
-  };
+    case ColorWhere::Unknow:
+      return false;
+    default:
+      break;
+    }
+  }
 
-  typedef std::shared_ptr<const ITrigger> Trigger;
+  CElementColorTrigger::~CElementColorTrigger()
+  {
+  }
 }

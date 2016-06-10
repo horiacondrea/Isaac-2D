@@ -23,72 +23,35 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include <KeyPressTrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  enum Signs
+
+  CKeyPressTrigger::CKeyPressTrigger(std::string ac_szTriggerName) :
+    isaac::ITrigger(ac_szTriggerName)
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+    mv_Key = sf::Keyboard::Key::Unknown;
+  }
 
-  enum Axis
+  void CKeyPressTrigger::mp_InitTrigger(const sf::Keyboard::Key& ac_Key) const
+   {
+    mv_Key = ac_Key;
+  }
+
+  const bool CKeyPressTrigger::mf_bCheckTrigger(sf::Event e) const
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+    if (sf::Keyboard::isKeyPressed(mv_Key))
+      return true;
+    return false;
+  }
 
-
-  class EXPORT_API ITrigger
+  CKeyPressTrigger::~CKeyPressTrigger()
   {
-  protected:
-    std::string mc_szTriggerName;
-
-  public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
-
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
-
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
-  };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
+  }
 }

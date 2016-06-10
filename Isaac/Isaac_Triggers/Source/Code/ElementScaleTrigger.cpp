@@ -23,72 +23,63 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
+#include <ElementScaleTrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  enum Signs
+
+  CElementScaleTrigger::CElementScaleTrigger(std::string ac_szTriggerName) :
+    isaac::ITrigger(ac_szTriggerName)
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+    mv_ScaleProp = { isaac::Signs::en_UnknowPosition, sf::Vector2f(1, 1) };
+  }
 
-  enum Axis
+  void CElementScaleTrigger::mp_InitTrigger(sf::Transformable* ac_pShape, const ScaleProp& ac_ScaleProp) const
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+    mv_pElement = ac_pShape;
+    mv_ScaleProp = ac_ScaleProp;
+  }
 
-
-  class EXPORT_API ITrigger
+  const bool CElementScaleTrigger::mf_bCheckTrigger(sf::Event) const
   {
-  protected:
-    std::string mc_szTriggerName;
+    const sf::Vector2f lc_Scale = mv_pElement->getScale();
 
-  public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
+    switch (mv_ScaleProp.mv_Signs)
     {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
-
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
-
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
+    case isaac::Signs::en_EqualWith:
     {
-      return mc_szTriggerName;
+      if (lc_Scale.x == mv_ScaleProp.mv_ScaleXY.x && lc_Scale.y == mv_ScaleProp.mv_ScaleXY.y)
+        return true;
+      return false;
+      break;
     }
-
-    virtual ~ITrigger()
+    case isaac::Signs::en_GraterThen:
     {
-      //delete mc_szTriggerName;
+      if (lc_Scale.x > mv_ScaleProp.mv_ScaleXY.x && lc_Scale.y > mv_ScaleProp.mv_ScaleXY.y)
+        return true;
+      return false;
+      break;
     }
-  };
+    case isaac::Signs::en_LessThen:
+    {
+      if (lc_Scale.x < mv_ScaleProp.mv_ScaleXY.x && lc_Scale.y < mv_ScaleProp.mv_ScaleXY.y)
+        return true;
+      return false;
+      break;
+    }
+    case isaac::Signs::en_UnknowPosition:
+      return false;
+    default:
+      break;
+    }
+  }
 
-  typedef std::shared_ptr<const ITrigger> Trigger;
+  CElementScaleTrigger::~CElementScaleTrigger()
+  {
+  }
 }

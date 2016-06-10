@@ -33,11 +33,10 @@ Revision | Who      | Date       | Comment
 namespace isaac
 {
 
-  CElementPositionTrigger::CElementPositionTrigger(const Position ac_enumPosition, std::string ac_szTriggerName) :
-    mc_enumPosition(ac_enumPosition) ,
-   isaac::ITrigger(ac_szTriggerName)
+  CElementPositionTrigger::CElementPositionTrigger(std::string ac_szTriggerName) :
+   isaac::ITrigger(ac_szTriggerName),
+   mv_PositionProp({ isaac::Signs::en_UnknowPosition, isaac::Axis::en_Unknow, 0.0 })
   {
-    mv_bWasThisTriggerInit = false;
   }
 
 
@@ -46,45 +45,91 @@ namespace isaac
    
   }
 
-  void CElementPositionTrigger::mp_InitTrigger( sf::Shape* ac_pShape,  double ac_dfPosition)
+  void CElementPositionTrigger::mp_InitTrigger(sf::Transformable* ac_pShape, const PositionProp& ac_PositionProp) const
   {
-    mc_pShape = ac_pShape;
-    mc_dfPosition = ac_dfPosition;
-    mv_bWasThisTriggerInit = true;
+    mv_pShape = ac_pShape;
+    mv_PositionProp = ac_PositionProp;
   }
 
   const bool CElementPositionTrigger::mp_CalculateTrigger() const
   {
-    if (mv_bWasThisTriggerInit)
+    switch (mv_PositionProp.mc_enumPosition)
     {
-      switch (mc_enumPosition)
+    case en_GraterThen:
+    {
+      switch (mv_PositionProp.mc_enumAxis)
       {
-      case en_GraterThen:
+      case en_X:
       {
-        if (mc_pShape->getPosition().x > mc_dfPosition)
-        {
+        if (mv_pShape->getPosition().x > mv_PositionProp.mc_dfPositionValue)
           return true;
-        }
         else
-        {
           return false;
-        }
       }
-        break;
-      case en_LessThen:
+      case en_Y:
       {
-        if (mc_pShape->getPosition().x < mc_dfPosition)
-        {
+        if (mv_pShape->getPosition().y > mv_PositionProp.mc_dfPositionValue)
           return true;
-        }
         else
-        {
           return false;
-        }
       }
+      case en_Unknow:
+        return false;
       default:
         break;
       }
+    }
+    break;
+    case en_LessThen:
+    {
+      switch (mv_PositionProp.mc_enumAxis)
+      {
+      case en_X:
+      {
+        if (mv_pShape->getPosition().x < mv_PositionProp.mc_dfPositionValue)
+          return true;
+        else
+          return false;
+      }
+      case en_Y:
+      {
+        if (mv_pShape->getPosition().y < mv_PositionProp.mc_dfPositionValue)
+          return true;
+        else
+          return false;
+      }
+      case en_Unknow:
+        return false;
+      default:
+        break;
+      }
+    }
+    case en_EqualWith:
+    {
+      switch (mv_PositionProp.mc_enumAxis)
+      {
+      case en_X:
+      {
+        if (mv_pShape->getPosition().x == mv_PositionProp.mc_dfPositionValue)
+          return true;
+        else
+          return false;
+      }
+      case en_Y:
+      {
+        if (mv_pShape->getPosition().y == mv_PositionProp.mc_dfPositionValue)
+          return true;
+        else
+          return false;
+      }
+      case en_Unknow:
+        return false;
+      default:
+        break;
+      }
+    }
+    default:
+      break;
     }
     return false;
   }

@@ -62,7 +62,9 @@ namespace Test {
     const std::shared_ptr<isaac::CElementPositionTrigger> lv_pPosition =
       std::const_pointer_cast<isaac::CElementPositionTrigger>(std::static_pointer_cast<const isaac::CElementPositionTrigger>(lv_pTrigger));
 
-    lv_pPosition->mp_InitTrigger(mv_xShape.get(), 500);
+    const isaac::CElementPositionTrigger::PositionProp prop = { isaac::Signs::en_GraterThen, isaac::Axis::en_X, 500.0 };
+
+    lv_pPosition->mp_InitTrigger(mv_xShape.get(), prop);
   }
 
   void PEOne::mp_UpdateScene(std::shared_ptr<sf::RenderWindow> ac_xMainWindow,

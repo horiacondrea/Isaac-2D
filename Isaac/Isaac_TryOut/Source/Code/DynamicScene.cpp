@@ -51,9 +51,9 @@ namespace Test {
 
     std::shared_ptr< isaac::IProcessingElement> pe3 = std::make_shared<PEThree>(isaac::IProcessingElement::en_PermanentWithStop, "pe3");
 
-    std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<const isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("tpe"));
+    std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<const isaac::CElementPositionTrigger>(("tpe"));
 
-    std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<const isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("tpe2"));
+    std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<const isaac::CElementPositionTrigger>(("tpe2"));
 
 
     pe2->mp_addStartTrigger(t1);

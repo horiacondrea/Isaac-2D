@@ -23,72 +23,36 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
-/////////////////////////////////////////////////////////////////////////////
+#include <ITrigger.h>
+#include "SFML/Graphics.hpp"
 
-namespace isaac
-{
-  enum Signs
+namespace isaac {
+
+  class EXPORT_API CElementScaleTrigger : public isaac::ITrigger
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
+  public:
+    struct ScaleProp
+    {
+      isaac::Signs mv_Signs;
+      sf::Vector2f mv_ScaleXY;
+    };
 
-  enum Axis
-  {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
-
-
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
+  private:
+    mutable sf::Transformable* mv_pElement;
+    mutable ScaleProp mv_ScaleProp;
 
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+    CElementScaleTrigger(std::string ac_szTriggerName);
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+    void mp_InitTrigger(sf::Transformable* ac_pShape, const ScaleProp& ac_ScaleProp) const;
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+    const bool mf_bCheckTrigger(sf::Event) const override;
 
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
+    virtual ~CElementScaleTrigger();
   };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }

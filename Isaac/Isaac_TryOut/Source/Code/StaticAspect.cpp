@@ -56,10 +56,10 @@ namespace Test {
 
   void StaticAspect::mp_DefineTriggers() const
   {
-    const std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t1"));
-    const std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t2"));
+    const std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<isaac::CElementPositionTrigger>(("t1"));
+    const std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<isaac::CElementPositionTrigger>(("t2"));
     const std::shared_ptr<const isaac::ITrigger> t3 = std::make_shared<isaac::CClickOnShape>(("t3"));
-    const std::shared_ptr<const isaac::ITrigger> t4 = std::make_shared<isaac::CElementPositionTrigger>(isaac::en_GraterThen, ("t4"));
+    const std::shared_ptr<const isaac::ITrigger> t4 = std::make_shared<isaac::CElementPositionTrigger>(("t4"));
 
     mp_AddTrigger(t1);
     mp_AddTrigger(t2);
@@ -73,7 +73,7 @@ namespace Test {
     const int data1 = 10;
     mp_AddTransientData(data1, "int");
 
-    /* std::shared_ptr<const DataModelI::IInt> data2 = std::make_shared<const DataModelC::CBufferIInt>(5);
+    /*std::shared_ptr<const DataModelI::IInt> data2 = std::make_shared<const DataModelC::CBufferIInt>(5);
      mp_AddTransientData(data2, "smart");
 
      pint = new int(26);

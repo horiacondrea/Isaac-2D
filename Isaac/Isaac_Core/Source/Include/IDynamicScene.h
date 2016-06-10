@@ -299,8 +299,8 @@ namespace isaac
         {
           return item.second;
         }
-        return nullptr;
       }
+      return nullptr;
     }
   };
 

@@ -23,72 +23,35 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
-/////////////////////////////////////////////////////////////////////////////
+#include <ITrigger.h>
+#include "SFML/Graphics.hpp"
 
 namespace isaac
 {
-  enum Signs
-  {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
 
-  enum Axis
+  class EXPORT_API CTimeTrigger : public isaac::ITrigger
   {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
+  public:
 
-
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
+  private:
+    mutable sf::Time mv_Time;
+    mutable sf::Time mv_Start;
+    sf::Clock mv_Clock;
+    mutable bool mv_bTriggerChecked;
 
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
-    {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+    CTimeTrigger(std::string ac_szTriggerName);
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
+    void mp_InitTrigger(const sf::Time ac_Time) const;
 
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
+    const bool mf_bCheckTrigger(sf::Event) const override;
 
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
-    {
-      return mc_szTriggerName;
-    }
-
-    virtual ~ITrigger()
-    {
-      //delete mc_szTriggerName;
-    }
+    virtual ~CTimeTrigger();
   };
 
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }

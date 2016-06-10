@@ -39,6 +39,7 @@ namespace isaac
   {
   public:
     IFrame(const std::string ac_szPicturePath);
+    IFrame();
     ~IFrame();
 
     virtual const float mp_dfGetWidth() const = 0;

@@ -23,72 +23,72 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | March 2014 | Created
+1.0      | hc       | June 2016| Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <list>
-#include <boost/any.hpp>
-#include <SFML/Graphics.hpp>
-#include "defines.h"
-/////////////////////////////////////////////////////////////////////////////
+#include <ITrigger.h>
 
 namespace isaac
 {
-  enum Signs
+  template <class type>
+  class EXPORT_API CNumericTrigger : public isaac::ITrigger
   {
-    en_GraterThen,
-    en_LessThen,
-    en_EqualWith,
-    en_UnknowPosition
-  };
-
-  enum Axis
-  {
-    en_X,
-    en_Y,
-    en_Unknow
-  };
-
-
-  class EXPORT_API ITrigger
-  {
-  protected:
-    std::string mc_szTriggerName;
-
   public:
-    ITrigger(std::string ac_szTriggerName) : mc_szTriggerName(ac_szTriggerName)
+    struct NumericProp
     {
-      ;
-    }
-    /*!
-    Return the current status of the trigger
+      isaac::Signs mv_Signs;
+      type         mv_typeValue;
+    };
 
-    Return value : True if the trigger condition was accomplished, false otherwise [bool]
-
-    Arguments    : 
-    - SFML Event [sf::Event>]
-    */
-    const virtual bool mf_bCheckTrigger(sf::Event event) const = 0;
-
-    /*!
-    Return the name of the trigger
-
-    Return value : Name of the trigger [std::string]
-
-    Arguments    : none
-    */
-    std::string mf_szGetTriggerName() const
+  private:
+    mutable NumericProp mv_NumericProp;
+    mutable type mv_typeTheValue;
+  public:
+    CNumericTrigger(std::string ac_szTriggerName)
     {
-      return mc_szTriggerName;
+      mv_NumericProp = { isaac::Signs::en_UnknowPosition, std::numeric_limits<type>::quiet_NaN };
     }
 
-    virtual ~ITrigger()
+    void mp_InitTrigger(type av_TheValue, const NumericProp& ac_NumericProp) const
     {
-      //delete mc_szTriggerName;
+      mv_typeTheValue = av_TheValue;
+      mv_NumericProp = ac_NumericProp;
     }
+
+    const bool mf_bCheckTrigger(sf::Event) const override
+    {
+      switch (mv_NumericProp.mv_Signs)
+      {
+      case isaac::Signs::en_EqualWith:
+      {
+        if (mv_typeTheValue == mv_NumericProp.mv_typeValue)
+          return true;
+        return false;
+        break;
+      }
+      case isaac::Signs::en_GraterThen:
+      {
+        if (mv_typeTheValue > mv_NumericProp.mv_typeValue)
+          return true;
+        return false;
+        break;
+      }
+      case isaac::Signs::en_LessThen:
+      {
+        if (mv_typeTheValue < mv_NumericProp.mv_typeValue)
+          return true;
+        return false;
+        break;
+      }
+      case isaac::Signs::en_UnknowPosition:
+        return false;
+      default:
+        break;
+      }
+    }
+
+    virtual ~CNumericTrigger();
   };
-
-  typedef std::shared_ptr<const ITrigger> Trigger;
 }

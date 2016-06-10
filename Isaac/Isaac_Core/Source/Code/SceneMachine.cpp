@@ -104,7 +104,7 @@ namespace isaac
 
         for (const auto& item : mv_mapHierarchyOfScenes)
         {
-          if (item.first->mp_bIsDynamicScene())
+          if (item.first->mp_bIsDynamicScene( ))
           {
             auto lc_xCurrentDynScene = std::static_pointer_cast<isaac::IDynamicScene>(item.first);
             if (mv_xSceneOrchestrator->mf_bGetDynamicSceneStatus(lc_xCurrentDynScene->mf_szGetSceneName()))

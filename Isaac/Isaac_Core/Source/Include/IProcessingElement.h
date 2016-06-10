@@ -45,7 +45,7 @@ namespace isaac
 
     /*!                 
     en_Permanent      - actie while the Scene is active
-    en_Continuous     - needs a trigger start and stop
+    en_Continuous     - needs a start and stop trigger
     en_OneTimeProcess - when the start triggerd will get disturbed this process
                         will run one time
     */
@@ -93,7 +93,7 @@ namespace isaac
     virtual void mp_UpdateScene(RenderWindow av_xMainWindow, TransientDataCollection& av_xTransietData, sf::Event av_eventSFMLEvent, bool& av_bReturnedBool_WindowClosed) = 0;
 
     /*!
-    Draw what ever you need on the stage. This method is called in a loop while the 
+    Draw what ever you need on the scene. This method is called in a loop while the 
     process is active
     Return value : void
     Arguments    : Transient Data Collection 

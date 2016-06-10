@@ -28,6 +28,7 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #include <Game.h>
+#include <BlankScene.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
@@ -37,18 +38,23 @@ namespace isaac
     mv_xMainWindow = std::make_shared<sf::RenderWindow>();
 
     BOOST_ASSERT_MSG(mc_xCSceneCollection != nullptr , "Scene collection is not defined");
-    BOOST_ASSERT_MSG(mc_xCSceneCollection->mp_GetSize() > 0, "There is no Scene defined");
     BOOST_ASSERT_MSG(mc_xTransientData != nullptr, "Transient data is not defined");
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is not defined");
 
     if(!(av_szGameTitle.empty())            && 
       mc_xCSceneCollection        != nullptr &&
-      mc_xCSceneCollection->mp_GetSize() > 0 &&
       mc_xTransientData          != nullptr &&
       mc_xTransitionCollection   != nullptr && 
       mv_xMainWindow             != nullptr )
     {
       mv_xMainWindow->create(sf::VideoMode(av_nGameWidth, av_nGameHeigh), av_szGameTitle, sf::Style::Close);
+
+      if (mc_xCSceneCollection->mp_GetSize() == 0) {
+        // Load default scene
+        const auto default = std::make_shared<CBlankScene>(("BlankScene"));
+        mc_xCSceneCollection->mf_mapGetRawMap().emplace("BlankScene", default);
+        mc_xInitialScene = default;
+      }
 
       mv_xSceneOrchestrator = std::make_shared<isaac::COrchestrator>(mc_xInitialScene, mc_xCSceneCollection, mc_xTransitionCollection);
       mv_xSceneMachine = std::make_shared<isaac::CSceneMachine>(mv_xMainWindow, mv_xSceneOrchestrator, mc_xTransientData);
