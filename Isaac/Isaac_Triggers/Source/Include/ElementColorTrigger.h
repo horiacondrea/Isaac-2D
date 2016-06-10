@@ -32,16 +32,20 @@ Revision | Who      | Date       | Comment
 #include "SFML/Graphics.hpp"
 /////////////////////////////////////////////////////////////////////////////
 
+
 namespace isaac {
 
+  /*!
+
+  */
   class EXPORT_API CElementColorTrigger : public isaac::ITrigger
   {
   public:
     enum ColorWhere
     {
-      FillColor,
-      OutlineColor,
-      Unknow
+      en_FillColor,
+      en_OutlineColor,
+      en_Unknow
     };
 
     struct ColorProp

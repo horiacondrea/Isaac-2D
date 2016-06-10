@@ -25,12 +25,18 @@ Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
 1.0      | hc       | June 2016 | Created
 */
-
+//                             Headers
+/////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <IStaticScene.h>
+/////////////////////////////////////////////////////////////////////////////
 
 namespace isaac {
 
+  /*!
+  This is a blank scene, that will instatiate in case you try to run
+  an application without any active scenes. 
+  */
   class EXPORT_API CBlankScene : public isaac::IStaticScene
   {
   private:

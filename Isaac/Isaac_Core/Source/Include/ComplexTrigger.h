@@ -23,36 +23,40 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | August 2014 | Created
+1.0      | hc       | June 2016 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#include <ClickOnButton.h>
+#pragma once
+#include <TriggerCollection.h>
+#include <ITrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
-namespace isaac
-{
+namespace isaac {
 
-  CClickOnButton::CClickOnButton(std::string ac_szTriggerIdentifier) : isaac::ITrigger(ac_szTriggerIdentifier)
+  /*!
+  A complex trigger is defined by at least one trigger. When all the triggers are
+  returning TRUE the complex trigger will be disturbed, in other cases the complex
+  trigger will retrurn FALSE
+  */
+  class EXPORT_API CComplexTrigger : public CTriggerCollection, public ITrigger
   {
+  public:
+    CComplexTrigger(std::string ac_szTriggerName);
 
-  }
+    /*!
+    Return the current status of the trigger
 
-  void CClickOnButton::InitTrigger(const isaac::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow)
-  {
-    mv_xButton = av_xElement;
-    mv_xMainWindow = av_xMainWindow;
-  }
+    Return value : True if the trigger condition was accomplished, false otherwise [bool]
 
-  const bool CClickOnButton::mf_bCheckTrigger(sf::Event event) const
-  {
-    if (mv_xButton->mf_bCheckForTrigger(mv_xMainWindow, event))
-      return true;
-    else
-      return false;
-  }
+    Arguments    :
+    - SFML Event [sf::Event>]
+    */
+    const bool mf_bCheckTrigger(sf::Event event) const;
 
-  CClickOnButton::~CClickOnButton()
-  {
-  }
+    ~CComplexTrigger();
+
+  private:
+
+  };
 }

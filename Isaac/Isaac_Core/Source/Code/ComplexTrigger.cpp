@@ -23,34 +23,32 @@ Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
 Revision | Who      | Date       | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | August 2015 | Created
+1.0      | hc       | June 2016 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include <ITrigger.h>
-#include "SFML/Graphics.hpp"
-#include <memory>
-#include <IButton.h>
-#include "defines.h"
+#include <ComplexTrigger.h>
 /////////////////////////////////////////////////////////////////////////////
 
-namespace isaac
-{
-#pragma once
-  class EXPORT_API CClickOnButton : public isaac::ITrigger
+namespace isaac {
+
+  CComplexTrigger::CComplexTrigger(std::string ac_szTriggerName) :
+    ITrigger(ac_szTriggerName)
   {
-    const isaac::IButton* mv_xButton;
-    std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
+  }
 
-  public:
-    CClickOnButton(std::string ac_szTriggerIdentifier);
+  const bool CComplexTrigger::mf_bCheckTrigger(sf::Event event) const
+  {
+    bool lv_bResult = false;
+    for (const auto& it : mv_mapSmartCollection) {
+      lv_bResult = true;
+      if (!it.second->mf_bCheckTrigger(event))
+        lv_bResult = false;
+    }
+    return lv_bResult;
+  }
 
-    void InitTrigger(const isaac::IButton* av_xElement, std::shared_ptr<sf::RenderWindow>& av_xMainWindow);
-
-    const bool mf_bCheckTrigger(sf::Event) const;
-
-    virtual ~CClickOnButton();
-  };
-
+  CComplexTrigger::~CComplexTrigger()
+  {
+  }
 }

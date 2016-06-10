@@ -27,7 +27,7 @@ Revision | Who      | Date       | Comment
 */
 
 #include "StaticAspect.h"
-#include <ClickOnShape.h>
+#include <ElementMouseTrigger.h>
 
 namespace Test {
 
@@ -58,7 +58,7 @@ namespace Test {
   {
     const std::shared_ptr<const isaac::ITrigger> t1 = std::make_shared<isaac::CElementPositionTrigger>(("t1"));
     const std::shared_ptr<const isaac::ITrigger> t2 = std::make_shared<isaac::CElementPositionTrigger>(("t2"));
-    const std::shared_ptr<const isaac::ITrigger> t3 = std::make_shared<isaac::CClickOnShape>(("t3"));
+    const std::shared_ptr<const isaac::ITrigger> t3 = std::make_shared<isaac::CElementMouseTrigger>(("t3"));
     const std::shared_ptr<const isaac::ITrigger> t4 = std::make_shared<isaac::CElementPositionTrigger>(("t4"));
 
     mp_AddTrigger(t1);

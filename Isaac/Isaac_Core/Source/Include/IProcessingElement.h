@@ -253,6 +253,18 @@ namespace isaac
         break;
       case IProcessingElement::en_OneTimeProcess:
       {
+        if (mv_bIsActive)
+          mv_bIsActive = false;
+        else {
+          for (const auto & item : mv_xStartTriggers->mf_mapGetRawMap())
+          {
+            if (item.second->mf_bCheckTrigger(event))
+            {
+              mv_bIsActive = true;
+              av_szNewPEActivated = mf_szGetPEIdentifier();
+            }
+          }
+        }
       }
         break;
       case IProcessingElement::en_UnknowProcess:

@@ -27,7 +27,7 @@ Revision | Who      | Date       | Comment
 */
 
 #include "SceneThree.h"
-#include <ClickOnShape.h>
+#include <ElementMouseTrigger.h>
 #include <iostream>
 
 namespace Test {
@@ -51,10 +51,10 @@ namespace Test {
   void SceneThree::mp_InitTriggers(std::shared_ptr<isaac::CTriggerCollection>& ac_xGlobalTriggersColl)
   {
     const std::shared_ptr<const isaac::ITrigger> lv_pTrigger = ac_xGlobalTriggersColl->mf_xGetTriggerByName(("t3"));
-    const std::shared_ptr<isaac::CClickOnShape> lv_pClickTrigger =
-      std::const_pointer_cast<isaac::CClickOnShape>(std::static_pointer_cast<const isaac::CClickOnShape>(lv_pTrigger));
+    const std::shared_ptr<isaac::CElementMouseTrigger> lv_pClickTrigger =
+      std::const_pointer_cast<isaac::CElementMouseTrigger>(std::static_pointer_cast<const isaac::CElementMouseTrigger>(lv_pTrigger));
 
-    lv_pClickTrigger->InitTrigger(mv_pCircle, mv_xMainWindow);
+    lv_pClickTrigger->InitTrigger(mv_pCircle.get(), mv_xMainWindow, isaac::CElementMouseTrigger::en_RollOut);
   }
 
   void SceneThree::mp_UpdateScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow,

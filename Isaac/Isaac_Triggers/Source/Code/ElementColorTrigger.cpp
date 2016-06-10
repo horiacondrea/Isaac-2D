@@ -36,7 +36,7 @@ namespace isaac
   CElementColorTrigger::CElementColorTrigger(std::string ac_szTriggerName) :
     isaac::ITrigger(ac_szTriggerName)
   {
-    mv_ColorProp = { ColorWhere::Unknow, sf::Color::Transparent };
+    mv_ColorProp = { ColorWhere::en_Unknow, sf::Color::Transparent };
   }
 
   void CElementColorTrigger::mp_InitTrigger(sf::Shape* ac_pShape, const ColorProp& ac_ColorProp) const
@@ -49,7 +49,7 @@ namespace isaac
   {
     switch (mv_ColorProp.mv_colorWere)
     {
-    case ColorWhere::FillColor:
+    case ColorWhere::en_FillColor:
     {
       const sf::Color lc_Color = mv_pElement->getFillColor();
       if (lc_Color == mv_ColorProp.mv_Color)
@@ -57,7 +57,7 @@ namespace isaac
       return false;
       break;
     }
-    case ColorWhere::OutlineColor:
+    case ColorWhere::en_OutlineColor:
     {
       const sf::Color lc_Color = mv_pElement->getOutlineColor();
       if (lc_Color == mv_ColorProp.mv_Color)
@@ -65,7 +65,7 @@ namespace isaac
       return false;
       break;
     }
-    case ColorWhere::Unknow:
+    case ColorWhere::en_Unknow:
       return false;
     default:
       break;
