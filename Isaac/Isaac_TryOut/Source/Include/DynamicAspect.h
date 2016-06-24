@@ -31,7 +31,7 @@ Revision | Who      | Date       | Comment
 #include <IDynamicAspect.h>
 #include <defines.h>
 #ifdef DEBUG
-#include <vld.h>
+//#include <vld.h>
 #endif
 /////////////////////////////////////////////////////////////////////////////
 
