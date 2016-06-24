@@ -21,32 +21,40 @@
 /*
 Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
-Revision | Who      | Date       | Comment
+Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | August 2015 | Created
+1.0      | hc       | September 2015 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <IFrame.h>
 #include "defines.h"
+#include <SFML/Graphics.hpp>
+#include <memory>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-
-  class EXPORT_API Frame : public isaac::IFrame
+  class EXPORT_API Frame : public sf::Drawable, public sf::Transformable
   {
-
   public:
     Frame(const std::string ac_szPicturePath);
-    virtual ~Frame();
 
-    virtual const float mp_dfGetWidth() const;
+    sf::Sprite* mf_pGetSprite() const {
+      return mv_Sprite;
+    }
 
-    virtual const float mp_dfGetHeight() const;
- 
+    ~Frame();
+
+  private:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates Scenes) const;
+
+  protected:
+    sf::Texture   mv_Texture;
+    sf::Sprite*   mv_Sprite;
+    const std::string mc_szPicturePath;
+
   };
 
-};
+  
+}

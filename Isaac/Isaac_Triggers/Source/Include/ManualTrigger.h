@@ -33,6 +33,9 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+  /*!
+  This one is a manual trigger, you can activated by yourself
+  */
   class EXPORT_API CManualTrigger : public isaac::ITrigger
   {
   private:
@@ -40,6 +43,9 @@ namespace isaac
   public:
     CManualTrigger(std::string ac_szTriggerName);
 
+    /*!
+    Ser the trigger value
+    */
     void mp_SetTrigger(const bool& ac_bResult) const;
 
     const bool mf_bCheckTrigger(sf::Event) const override;

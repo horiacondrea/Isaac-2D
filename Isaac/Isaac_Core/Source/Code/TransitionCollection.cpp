@@ -44,7 +44,7 @@ namespace isaac
     BOOST_ASSERT_MSG(ac_xTransition != nullptr, "Transition is null");
     if (!ac_szTransitionIdentifier.empty() && ac_xTransition != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
+      mv_mapSmartCollection->insert(std::map<std::string, const std::shared_ptr<const CTransition>>::value_type(ac_szTransitionIdentifier, ac_xTransition));
     }
   }
 
@@ -53,7 +53,7 @@ namespace isaac
     BOOST_ASSERT_MSG(!ac_szTransitionIdentifier.empty(), "Empty string provided");
     if (!ac_szTransitionIdentifier.empty())
     {
-      mv_mapSmartCollection.erase(ac_szTransitionIdentifier);
+      mv_mapSmartCollection->erase(ac_szTransitionIdentifier);
       return true;
     }
     return false;
@@ -64,9 +64,11 @@ namespace isaac
     BOOST_ASSERT_MSG(!ac_szTransitionIdentifier.empty(), "Empty string provided");
     if (!ac_szTransitionIdentifier.empty())
     {
-      const auto& it = mv_mapSmartCollection.find(ac_szTransitionIdentifier);
-      return it->second;
+      const auto& it = mv_mapSmartCollection->find(ac_szTransitionIdentifier);
+      if (it != mv_mapSmartCollection->end())
+        return it->second;
     }
+    return nullptr;
   }
 
   CTransitionCollection::~CTransitionCollection()

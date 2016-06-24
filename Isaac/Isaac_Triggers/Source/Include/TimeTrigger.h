@@ -33,7 +33,9 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-
+  /*!
+  CTimeTrigger will help you if you need a trigger based on time
+  */
   class EXPORT_API CTimeTrigger : public isaac::ITrigger
   {
   public:
@@ -47,6 +49,9 @@ namespace isaac
   public:
     CTimeTrigger(std::string ac_szTriggerName);
 
+    /*!
+    Init the trigger with time that you want to pass till the trigger it will activate
+    */
     void mp_InitTrigger(const sf::Time ac_Time) const;
 
     const bool mf_bCheckTrigger(sf::Event) const override;

@@ -34,50 +34,61 @@ Revision | Who      | Date       | Comment
 namespace isaac
 {
 
-  Menu::Menu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset) : IMenu(ac_enumOrientation, ac_nOffset)
+  Menu::Menu(const Axis ac_enumOrientation, const unsigned& ac_nOffset) : 
+    mc_enumOrientation(ac_enumOrientation),
+    mc_nOffset(ac_nOffset)
   {
-    ;
+    mv_mapMenu = new std::map<const std::string, isaac::TextButton*>();
   }
 
-  void Menu::mp_AddButton(std::shared_ptr<isaac::IButton> av_xButton, const std::string ac_szKey)
+  void Menu::mp_AddButton(isaac::TextButton* av_xButton, const std::string ac_szKey)
   {
-    const unsigned int lc_nSize= mv_mapMenu.size();
+    const unsigned int lc_nSize = mv_mapMenu->size();
     switch (mc_enumOrientation)
     {
-    case IMenu::Orientation::X_Axis:
+    case Axis::en_X:
     {
-                                     av_xButton->setPosition((float)lc_nSize * mc_nOffset, 0);
+      av_xButton->setPosition((float)lc_nSize * mc_nOffset, 0);
     }
-      break;
+    break;
 
-    case IMenu::Orientation::Y_Axis:
+    case Axis::en_Y:
     {
-                                     av_xButton->setPosition(0, (float)lc_nSize * mc_nOffset);
+      av_xButton->setPosition(0, (float)lc_nSize * mc_nOffset);
     }
+    break;
+    case Axis::en_Unknow:
       break;
     default:
       break;
     }
-    mv_mapMenu.emplace(std::make_pair(ac_szKey, av_xButton));
-  }
-
-  void Menu::mp_SetButtonsColor(const sf::Color& av_Color)
-  {
-    for (const auto& button : mv_mapMenu)
-    {
-      button.second->mp_SetColor(av_Color);
-    }
+    mv_mapMenu->emplace(std::make_pair(ac_szKey, av_xButton));
   }
 
   void Menu::mp_SetButtonsCharacterSize(const unsigned& av_nSize)
   {
-    for (const auto& button : mv_mapMenu)
+    for (const auto& button : *mv_mapMenu)
     {
       button.second->mp_SetCharacterSize(av_nSize);
     }
   }
 
+  void Menu::draw(sf::RenderTarget& target, sf::RenderStates States) const
+  {
+    States.transform *= getTransform();
+
+    for (const auto& button : *mv_mapMenu)
+    {
+      target.draw(*button.second, States);
+    }
+  }
+
   Menu::~Menu()
   {
+    for (const auto& button : *mv_mapMenu)
+    {
+      delete button.second;
+    }
+    delete mv_mapMenu;
   }
 }

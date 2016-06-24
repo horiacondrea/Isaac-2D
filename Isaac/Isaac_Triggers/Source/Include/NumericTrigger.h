@@ -32,10 +32,17 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+  /*!
+  This one is a numeric trigger it will check if a tracked value is equal
+  greater or lesser that a given value.
+  */
   template <class type>
   class EXPORT_API CNumericTrigger : public isaac::ITrigger
   {
   public:
+    /*!
+    Structure defining the trigger properties.
+    */
     struct NumericProp
     {
       isaac::Signs mv_Signs;
@@ -51,7 +58,10 @@ namespace isaac
       mv_NumericProp = { isaac::Signs::en_UnknowPosition, std::numeric_limits<type>::quiet_NaN };
     }
 
-    void mp_InitTrigger(type av_TheValue, const NumericProp& ac_NumericProp) const
+    /*!
+    Init the trigger with the given value and the real one.
+    */
+    void mp_InitTrigger(type& av_TheValue, const NumericProp& ac_NumericProp) const
     {
       mv_typeTheValue = av_TheValue;
       mv_NumericProp = ac_NumericProp;

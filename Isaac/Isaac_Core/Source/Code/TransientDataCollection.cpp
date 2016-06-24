@@ -46,7 +46,7 @@ namespace isaac
 
     if ((!ac_szDataIdentifier.empty()) && (!ac_data__Data.empty()))
     {
-      mv_mapCollection.emplace(ac_szDataIdentifier, ac_data__Data);
+      mv_mapCollection->emplace(ac_szDataIdentifier, ac_data__Data);
     }
   }
 

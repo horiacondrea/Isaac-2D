@@ -36,6 +36,10 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+
+  /*!
+  Specify how the needed value should be beside the real one
+  */
   enum Signs
   {
     en_GraterThen,
@@ -44,6 +48,9 @@ namespace isaac
     en_UnknowPosition
   };
 
+  /*!
+  Specify the axis were the real value should be checked 
+  */
   enum Axis
   {
     en_X,

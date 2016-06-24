@@ -29,16 +29,17 @@ Revision | Who      | Date       | Comment
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <ICheckBox.h>
+#include <Frame.h>
 #include "defines.h"
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  class EXPORT_API CheckBox : public isaac::ICheckBox
+  class EXPORT_API CheckBox : public sf::Drawable, public sf::Transformable
   {
   public:
-    CheckBox(const isaac::IFrame* ac_Box, isaac::IFrame* av_Check, const bool& ac_bCheck);
+    CheckBox(const isaac::Frame* ac_Box, isaac::Frame* av_Check, const bool& ac_bCheck);
+    CheckBox(const sf::Shape* ac_Box, sf::Shape* av_Check, const bool& ac_bCheck);
     ~CheckBox();
 
     virtual void mp_Update(std::shared_ptr<sf::RenderWindow>  av_pMainWindow, sf::Event event);
@@ -50,6 +51,13 @@ namespace isaac
   private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates States) const;
 
+    const Frame* mc_Box;
+    Frame* mv_Check;
+
+    const sf::Shape* mc_pBox;
+    sf::Shape* mv_pCheck;
+
+    bool mv_bChecked;
   
   };
 

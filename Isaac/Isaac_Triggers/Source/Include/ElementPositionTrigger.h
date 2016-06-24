@@ -35,9 +35,16 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+  /*!
+  CElementPositionTrigger will help you if you need a trigger based on
+  element position
+  */
   class EXPORT_API CElementPositionTrigger : public isaac::ITrigger
   {
   public:
+    /*!
+    Structure defining the trigger properties.
+    */
     struct PositionProp
     {
       Signs mc_enumPosition;
@@ -56,6 +63,9 @@ namespace isaac
     CElementPositionTrigger(std::string ac_szTriggerName);
     virtual ~CElementPositionTrigger();
 
+    /*!
+    Init the trigger with the element and the wanted properties.
+    */
     void mp_InitTrigger(sf::Transformable* ac_pShape, const PositionProp& ac_PositionProp ) const;
 
     const bool mf_bCheckTrigger(sf::Event) const;

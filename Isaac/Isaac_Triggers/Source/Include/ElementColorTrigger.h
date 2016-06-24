@@ -36,11 +36,15 @@ Revision | Who      | Date       | Comment
 namespace isaac {
 
   /*!
-
+  CElementColorTrigger will help you if you need a trigger based on the 
+  collor of an element.
   */
   class EXPORT_API CElementColorTrigger : public isaac::ITrigger
   {
   public:
+    /*!
+     Specify the place where the needed color it will be checked.  
+    */
     enum ColorWhere
     {
       en_FillColor,
@@ -48,6 +52,9 @@ namespace isaac {
       en_Unknow
     };
 
+    /*!
+    Structure defining the trigger properties.
+    */
     struct ColorProp
     {
       ColorWhere mv_colorWere;
@@ -61,6 +68,9 @@ namespace isaac {
   public:
     CElementColorTrigger(std::string ac_szTriggerName);
 
+    /*!
+    Init the trigger with the element and the wanted properties.
+    */
     void mp_InitTrigger(sf::Shape* ac_pShape, const ColorProp& ac_ColorProp) const;
 
     const bool mf_bCheckTrigger(sf::Event) const override;

@@ -44,7 +44,7 @@ namespace isaac
     BOOST_ASSERT_MSG(!ac_szPEIdentifier.empty(), "Empty string provided");
     if (!ac_szPEIdentifier.empty())
     {
-      const auto& it = mv_mapSmartCollection.find(ac_szPEIdentifier);
+      const auto& it = mv_mapSmartCollection->find(ac_szPEIdentifier);
       return it->second;
     }
     return nullptr;
@@ -55,7 +55,7 @@ namespace isaac
     BOOST_ASSERT_MSG(ac_xProcessingElement != nullptr, "Process to add is null");
     if (ac_xProcessingElement != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const isaac::IProcessingElement>>::value_type(ac_xProcessingElement->mf_szGetPEIdentifier(), ac_xProcessingElement));
+      mv_mapSmartCollection->insert(std::map<std::string, const std::shared_ptr<const isaac::IProcessingElement>>::value_type(ac_xProcessingElement->mf_szGetPEIdentifier(), ac_xProcessingElement));
     }
   }
 
@@ -63,9 +63,9 @@ namespace isaac
   {
     auto lv_xLocalTriggerCollection = std::make_shared<isaac::CTriggerCollection>();
 
-    if (mv_mapSmartCollection.size())
+    if (mv_mapSmartCollection->size())
     {
-      for (const auto& item : mv_mapSmartCollection)
+      for (const auto& item : *mv_mapSmartCollection)
       {
         const auto& lv_xItemTriggers = item.second->mf_xGetStartTriggers();
         if (lv_xItemTriggers != nullptr && lv_xItemTriggers->mp_GetSize() > 0)
@@ -84,9 +84,9 @@ namespace isaac
   {
     auto lv_xLocalTriggerCollection = std::make_shared<isaac::CTriggerCollection>();
 
-    if (mv_mapSmartCollection.size() > 0)
+    if (mv_mapSmartCollection->size() > 0)
     {
-      for (const auto& item : mv_mapSmartCollection)
+      for (const auto& item : *mv_mapSmartCollection)
       {
         const auto& lv_xItemTriggers = item.second->mf_xGetStopTriggers();
         if (lv_xItemTriggers != nullptr && lv_xItemTriggers->mp_GetSize() > 0)

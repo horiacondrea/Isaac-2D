@@ -33,9 +33,16 @@ Revision | Who      | Date       | Comment
 
 namespace isaac {
 
+  /*!
+  CElementScaleTrigger will help you if you need a trigger based on
+  the element scale
+  */
   class EXPORT_API CElementScaleTrigger : public isaac::ITrigger
   {
   public:
+    /*!
+    Structure defining the trigger properties.
+    */
     struct ScaleProp
     {
       isaac::Signs mv_Signs;
@@ -49,6 +56,9 @@ namespace isaac {
   public:
     CElementScaleTrigger(std::string ac_szTriggerName);
 
+    /*!
+    Init the trigger with the element and the wanted properties.
+    */
     void mp_InitTrigger(sf::Transformable* ac_pShape, const ScaleProp& ac_ScaleProp) const;
 
     const bool mf_bCheckTrigger(sf::Event) const override;

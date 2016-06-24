@@ -45,7 +45,7 @@ namespace isaac
     BOOST_ASSERT_MSG(ac_xTrigger != nullptr, "Trigger is null");
     if (ac_xTrigger != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const std::shared_ptr<const ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
+      mv_mapSmartCollection->insert(std::map<std::string, const std::shared_ptr<const ITrigger>>::value_type(ac_xTrigger->mf_szGetTriggerName(), ac_xTrigger));
     }
   }
 
@@ -54,7 +54,7 @@ namespace isaac
     BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
     if (!ac_szTriggerIdentifier.empty())
     {
-      mv_mapSmartCollection.erase(ac_szTriggerIdentifier);
+      mv_mapSmartCollection->erase(ac_szTriggerIdentifier);
       return true;
     }
     return false;
@@ -65,8 +65,8 @@ namespace isaac
     BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
     if (!ac_szTriggerIdentifier.empty())
     {
-      auto it = mv_mapSmartCollection.find(ac_szTriggerIdentifier);
-      if (it != mv_mapSmartCollection.end())
+      auto it = mv_mapSmartCollection->find(ac_szTriggerIdentifier);
+      if (it != mv_mapSmartCollection->end())
         return it->second;
       else
         return nullptr;

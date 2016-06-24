@@ -43,7 +43,7 @@ namespace isaac
     BOOST_ASSERT_MSG(av_xSceneToAdd != nullptr, "Scene to add is null");
     if (av_xSceneToAdd != nullptr)
     {
-      mv_mapSmartCollection.insert(std::map<std::string, const Scene>::value_type(av_xSceneToAdd->mf_szGetSceneName(), av_xSceneToAdd));
+      mv_mapSmartCollection->insert(std::map<std::string, const Scene>::value_type(av_xSceneToAdd->mf_szGetSceneName(), av_xSceneToAdd));
     }
   }
 
@@ -52,8 +52,8 @@ namespace isaac
     BOOST_ASSERT_MSG(!av_szSceneName.empty(), "Empty string provided");
     if (!av_szSceneName.empty())
     {
-      const auto& it = mv_mapSmartCollection.find(av_szSceneName);
-      if (it != mv_mapSmartCollection.end())
+      const auto& it = mv_mapSmartCollection->find(av_szSceneName);
+      if (it != mv_mapSmartCollection->end())
         return it->second;
     }
     return nullptr;

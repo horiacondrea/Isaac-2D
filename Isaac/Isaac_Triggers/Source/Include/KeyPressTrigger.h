@@ -33,6 +33,10 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+  /*!
+  CKeyPressTrigger will help you if you need a trigger based on
+  a keyboard event
+  */
   class EXPORT_API CKeyPressTrigger : public isaac::ITrigger
   {
   public:
@@ -43,6 +47,9 @@ namespace isaac
   public:
     CKeyPressTrigger(std::string ac_szTriggerName);
 
+    /*!
+    Init the trigger with the wanted key
+    */
     void mp_InitTrigger(const sf::Keyboard::Key& ac_Key) const;
 
     const bool mf_bCheckTrigger(sf::Event) const override;

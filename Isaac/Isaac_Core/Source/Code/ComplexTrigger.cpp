@@ -40,7 +40,7 @@ namespace isaac {
   const bool CComplexTrigger::mf_bCheckTrigger(sf::Event event) const
   {
     bool lv_bResult = false;
-    for (const auto& it : mv_mapSmartCollection) {
+    for (const auto& it : *mv_mapSmartCollection) {
       lv_bResult = true;
       if (!it.second->mf_bCheckTrigger(event))
         lv_bResult = false;

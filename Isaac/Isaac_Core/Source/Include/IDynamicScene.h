@@ -65,9 +65,9 @@ namespace isaac
     {
       BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
       BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -95,9 +95,9 @@ namespace isaac
     {
       BOOST_ASSERT_MSG(ac_xGlobalTriggers != nullptr, "GlobalTriggers is NULL");
 
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -134,9 +134,9 @@ namespace isaac
       BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
       BOOST_ASSERT_MSG(ac_xTransientData != nullptr, "Transient Data is NULL");
       bool lv_bReturnBool = false;
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -183,9 +183,9 @@ namespace isaac
     {
       BOOST_ASSERT_MSG(av_xMainWindow != nullptr, "Main Window is NULL");
 
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -212,9 +212,9 @@ namespace isaac
     */
     virtual void mp_Release(TransientDataCollection& av_xTransientData, std::string ac_szTriggerName)
     {
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -251,9 +251,9 @@ namespace isaac
     */
     virtual void mp_ResetProcessingElements() const
     {
-      if (mv_mapSmartCollection.size() > 0)
+      if (mv_mapSmartCollection->size() > 0)
       {
-        for (const auto& item : mv_mapSmartCollection)
+        for (const auto& item : *mv_mapSmartCollection)
         {
           if (item.second->mf_bIsActive())
           {
@@ -292,7 +292,7 @@ namespace isaac
     ProcessingElement mf_bCheckAllProcElem(sf::Event event) const
     {
       std::string lc_szPEActivated;
-      for (const auto& item : mv_mapSmartCollection)
+      for (const auto& item : *mv_mapSmartCollection)
       {
         item.second->mp_CheckTriggers(lc_szPEActivated, event);
         if (!lc_szPEActivated.empty())

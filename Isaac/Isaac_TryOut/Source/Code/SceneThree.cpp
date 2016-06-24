@@ -45,6 +45,16 @@ namespace Test {
     mv_pCircle = std::make_shared<sf::CircleShape>(30);
     mv_pCircle->setPosition(300, 300);
 
+    mv_pButton = new isaac::TextButton("Test Button", "C:\\Windows\\Fonts\\tahoma.ttf");
+    mv_pButton->setPosition(20,20);
+
+    mv_pBox = new sf::RectangleShape(sf::Vector2f(30, 30));
+    mv_pCheck = new sf::RectangleShape(sf::Vector2f(10, 10));
+    mv_pCheck->setFillColor(sf::Color::Red);
+
+    mv_pCheckBox = new isaac::CheckBox(mv_pBox, mv_pCheck, false);
+    mv_pCheckBox->setPosition(20, 200);
+
     std::cout << "Scene three - Init" << std::endl;
   }
 
@@ -62,12 +72,14 @@ namespace Test {
     sf::Event av_eventSFMLEvent,
     bool& av_bReturnedBool_WindowClosed)
   {
-    av_pMainWindow->draw(*mv_pCircle);
+    mv_pCheckBox->mp_Update(av_pMainWindow, av_eventSFMLEvent);
   }
 
   void SceneThree::mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_pMainWindow) const
   {
-
+    av_pMainWindow->draw(*mv_pCircle);
+    av_pMainWindow->draw(*mv_pButton);
+    av_pMainWindow->draw(*mv_pCheckBox);
   }
 
   void SceneThree::mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
@@ -77,5 +89,9 @@ namespace Test {
 
   SceneThree::~SceneThree()
   {
+    delete mv_pButton;
+    delete mv_pBox;
+    delete mv_pCheck;
+    delete mv_pCheckBox;
   }
 }

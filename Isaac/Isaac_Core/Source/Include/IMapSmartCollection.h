@@ -42,23 +42,28 @@ namespace isaac
   class IMapSmartCollection
   {
   public:
+    
+    IMapSmartCollection()
+    {
+      mv_mapSmartCollection = new std::map<std::string, const std::shared_ptr<Type>>();
+    }
 
     const unsigned int mp_GetSize() const
     {
-      return mv_mapSmartCollection.size();
+      return mv_mapSmartCollection->size();
     }
 
     std::map<std::string, const std::shared_ptr<Type>> mf_mapGetRawMap() const
     {
-      return mv_mapSmartCollection;
+      return *mv_mapSmartCollection;
     }
 
     virtual ~IMapSmartCollection()
     {
-
+      delete mv_mapSmartCollection;
     }
 
   protected:
-    mutable std::map<std::string, const std::shared_ptr<Type>> mv_mapSmartCollection;
+    mutable std::map<std::string, const std::shared_ptr<Type>>* mv_mapSmartCollection;
   };
 }

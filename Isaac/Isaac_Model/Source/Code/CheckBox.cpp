@@ -33,10 +33,26 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
-  CheckBox::CheckBox(const isaac::IFrame* ac_Box, isaac::IFrame* av_Check, const bool& ac_bCheck) : 
-    isaac::ICheckBox(ac_Box, av_Check, ac_bCheck)
+  CheckBox::CheckBox(const isaac::Frame* ac_Box, isaac::Frame* av_Check, const bool& ac_bCheck) : 
+    mc_Box(ac_Box), 
+    mv_Check(av_Check), 
+    mv_bChecked(ac_bCheck)
   {
-      ;
+    mc_pBox = nullptr;
+    mv_pCheck = nullptr;
+    mv_Check->setPosition(sf::Vector2f((mc_Box->mf_pGetSprite()->getGlobalBounds().width * 0.5) - (mv_Check->mf_pGetSprite()->getGlobalBounds().width * 0.5),
+      (mc_Box->mf_pGetSprite()->getGlobalBounds().height * 0.5) - (mv_Check->mf_pGetSprite()->getGlobalBounds().height * 0.5)));
+  }
+
+  CheckBox::CheckBox(const sf::Shape* ac_Box, sf::Shape* av_Check, const bool& ac_bCheck) :
+    mc_pBox(ac_Box),
+    mv_pCheck(av_Check),
+    mv_bChecked(ac_bCheck)
+  {
+    mc_Box = nullptr;
+    mv_Check = nullptr;
+    mv_pCheck->setPosition(sf::Vector2f((mc_pBox->getGlobalBounds().width * 0.5) - (mv_pCheck->getGlobalBounds().width * 0.5),
+      (mc_pBox->getGlobalBounds().height * 0.5) - (mv_pCheck->getGlobalBounds().height * 0.5)));
   }
 
   void CheckBox::mp_Update(std::shared_ptr<sf::RenderWindow>  av_pMainWindow, sf::Event event)
@@ -47,9 +63,14 @@ namespace isaac
     float SpriteY2 = this->getPosition().y;
     float SpriteX2 = this->getPosition().x;
 
+    float lv_lfBoxHeight = 0;
+    if (nullptr == mc_Box)
+      lv_lfBoxHeight = mc_pBox->getGlobalBounds().height;
+    else
+      lv_lfBoxHeight = mc_Box->mf_pGetSprite()->getGlobalBounds().height;
 
-    if (((mouseX > this->getPosition().x) && (mouseX < this->getPosition().x + mc_Box->mp_dfGetWidth())) &&
-      ((mouseY > this->getPosition().y) && (mouseY < getPosition().y + mc_Box->mp_dfGetWidth())))
+    if (((mouseX > this->getPosition().x) && (mouseX < this->getPosition().x + lv_lfBoxHeight)) &&
+      ((mouseY > this->getPosition().y) && (mouseY < getPosition().y + lv_lfBoxHeight)))
     {
     
       if (event.type == event.MouseButtonReleased && event.type == event.mouseButton.button == sf::Mouse::Left)
@@ -75,10 +96,20 @@ namespace isaac
   void CheckBox::draw(sf::RenderTarget& target, sf::RenderStates States) const
   {
     States.transform *= getTransform();
-    target.draw(*mc_Box, States);
+    if (nullptr != mc_Box || nullptr != mv_Check) {
+      target.draw(*mc_Box, States);
 
-    if (mv_bChecked)
-      target.draw(*mv_Check, States);
+      if (mv_bChecked)
+        target.draw(*mv_Check, States);
+    }
+    else {
+
+      target.draw(*mc_pBox, States);
+
+      if (mv_bChecked)
+        target.draw(*mv_pCheck, States);
+    }
+
   }
 
   CheckBox::~CheckBox()

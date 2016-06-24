@@ -31,6 +31,7 @@ Revision | Who      | Date       | Comment
 #include "defines.h"
 #include <boost\any.hpp>
 #include <IMapCollection.h>
+#include <IMapSmartCollection.h>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
@@ -52,8 +53,8 @@ namespace isaac
     template<class Type>
     Type mf_xGetTransientData(std::string ac_szDataIdentifier) const
     {
-      const auto& it = mv_mapCollection.find(ac_szDataIdentifier);
-      if (it != mv_mapCollection.end())
+      const auto& it = mv_mapCollection->find(ac_szDataIdentifier);
+      if (it != mv_mapCollection->end())
       {
         if (!it->second.empty())
         {
@@ -84,7 +85,7 @@ namespace isaac
     template<class Type>
     void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const
     {
-      for (const auto& dataItem : mv_mapCollection)
+      for (const auto& dataItem : *mv_mapCollection)
       {
         if (!dataItem.second.empty())
         {
@@ -92,8 +93,8 @@ namespace isaac
           {
             if (dataItem.second.type() == typeid(Type))
             {
-              mv_mapCollection.erase(ac_szDataIdentifier);
-              mv_mapCollection.emplace(ac_szDataIdentifier, ac_data__Data);
+              mv_mapCollection->erase(ac_szDataIdentifier);
+              mv_mapCollection->emplace(ac_szDataIdentifier, ac_data__Data);
               break;
             }
             else

@@ -21,31 +21,35 @@
 /*
 Copyright @ 2014
 Author Horatiu Condrea [ horiacondrea.com ]
-Revision | Who      | Date       | Comment
+Revision | Who      | Date           | Comment
 ------------------------------------------------------------------------------------------------------------------------------------------
-1.0      | hc       | August 2015 | Created
+1.0      | hc       | September 2015 | Created
 */
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #include "Frame.h"
+#include <cassert>
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
 
-  Frame::Frame(const std::string ac_szPicturePath) : isaac::IFrame(ac_szPicturePath)
+  Frame::Frame(const std::string ac_szPicturePath) :
+    mc_szPicturePath(ac_szPicturePath)
   {
-    
+    mv_Sprite = new sf::Sprite();
+    if (!mv_Texture.loadFromFile(mc_szPicturePath))
+      assert(false);
+    else
+      mv_Sprite->setTexture(mv_Texture, true);
   }
 
-  const float Frame::mp_dfGetWidth() const
-  {
-    return mv_Sprite->getGlobalBounds().width;
-  }
 
-  const float Frame::mp_dfGetHeight() const
+  void Frame::draw(sf::RenderTarget& target, sf::RenderStates States) const
   {
-    return mv_Sprite->getGlobalBounds().height;
+    States.transform *= getTransform();
+
+    target.draw(*mv_Sprite, States);
   }
 
   Frame::~Frame()

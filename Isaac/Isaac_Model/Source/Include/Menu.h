@@ -28,27 +28,36 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <IMenu.h>
+#include <TextButton.h>
 #include "defines.h"
 /////////////////////////////////////////////////////////////////////////////
 
 namespace isaac
 {
-  class EXPORT_API Menu: public isaac::IMenu
+  class EXPORT_API Menu: public sf::Shape
   {
   public:
-    Menu(const Orientation ac_enumOrientation, const unsigned& ac_nOffset);
+    enum Axis
+    {
+      en_X,
+      en_Y,
+      en_Unknow
+    };
 
-    virtual void mp_AddButton(std::shared_ptr<isaac::IButton> av_xButton, const std::string ac_szKey);
+    Menu(const Axis ac_enumOrientation, const unsigned& ac_nOffset);
 
-    virtual void mp_SetButtonsColor(const sf::Color& av_Color);
+    virtual void mp_AddButton(isaac::TextButton* av_xButton, const std::string ac_szKey);
 
     virtual void mp_SetButtonsCharacterSize(const unsigned& av_nSize);
+
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates States) const;
 
     ~Menu();
 
   private:
-
+    std::map<const std::string, isaac::TextButton*>* mv_mapMenu;
+    const Axis mc_enumOrientation;
+    const unsigned mc_nOffset;
   };
 
 }

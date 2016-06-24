@@ -37,11 +37,17 @@ Revision | Who      | Date       | Comment
 namespace isaac
 {
 
-#pragma once
+  /*!
+  CElementMouseTrigger will help you if you need a trigger based on a
+  mouse element event 
+  */
   class EXPORT_API CElementMouseTrigger : public isaac::ITrigger
   {
 
   public:
+    /*!
+    Specify the mouse event type that the trigger it will going to check.
+    */
     enum MouseTriggerType
     {
      en_LeftClick,
@@ -60,6 +66,9 @@ namespace isaac
   public:
     CElementMouseTrigger(std::string ac_szTriggerIdentifier);
 
+    /*!
+    Init the trigger with the element the render window variable and the type of event to be checked
+    */
     void InitTrigger(sf::Shape* av_xElement, std::shared_ptr<sf::RenderWindow> av_xMainWindow, const MouseTriggerType& av_enumType) const;
 
     const bool mf_bCheckTrigger(sf::Event event) const;

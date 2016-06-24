@@ -30,6 +30,8 @@ Revision | Who      | Date       | Comment
 
 #include <IStaticScene.h>
 #include <ElementPositionTrigger.h>
+#include <CheckBox.h>
+#include <TextButton.h>
 namespace Test {
 
   class SceneThree : public isaac::IStaticScene
@@ -37,6 +39,11 @@ namespace Test {
 
     std::shared_ptr<sf::RenderWindow> mv_xMainWindow;
     std::shared_ptr<sf::CircleShape> mv_pCircle;
+    isaac::TextButton* mv_pButton;
+
+    isaac::CheckBox* mv_pCheckBox;
+    sf::RectangleShape* mv_pBox;
+    sf::RectangleShape* mv_pCheck;
 
   public:
     SceneThree(std::string ac_szSceneName);
