@@ -163,7 +163,7 @@ namespace isaac
           const auto& lc_xDynamicScene = mc_xCSceneCollection->mf_xGetSceneByName(ac_szDynamicSceneName);
           if (lc_xDynamicScene->mp_bIsDynamicScene())
           {
-            auto& lc_xCurrentDynScene = std::static_pointer_cast<const isaac::IDynamicScene>(lc_xDynamicScene);
+            const auto& lc_xCurrentDynScene = std::static_pointer_cast<const isaac::IDynamicScene>(lc_xDynamicScene);
             lc_xCurrentDynScene->mp_ResetProcessingElements();
           }
         }

@@ -51,7 +51,7 @@ namespace isaac
     Return the process element that has the specified name, if process element 
     is not found nullptr will be returned
     */
-    const ProcessingElement& mf_xGetProcElemByName(std::string ac_szPEIdentifier) const;
+    const ProcessingElement mf_xGetProcElemByName(std::string ac_szPEIdentifier) const;
 
     /*!
     Returns all the start triggers that are availalbe for all the Process Elements

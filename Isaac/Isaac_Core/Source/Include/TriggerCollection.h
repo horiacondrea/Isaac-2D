@@ -51,7 +51,7 @@ namespace isaac
     /*!
     Get a specific trigger from the map
     */
-    const Trigger& mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
+    const Trigger mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const;
 
     virtual ~CTriggerCollection();
 

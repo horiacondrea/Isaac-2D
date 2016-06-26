@@ -59,7 +59,7 @@ namespace isaac
     return false;
   }
 
-  const std::shared_ptr<const CTransition>& CTransitionCollection::mf_xGetTransitionByName(std::string ac_szTransitionIdentifier)
+  const Transition CTransitionCollection::mf_xGetTransitionByName(std::string ac_szTransitionIdentifier)
   {
     BOOST_ASSERT_MSG(!ac_szTransitionIdentifier.empty(), "Empty string provided");
     if (!ac_szTransitionIdentifier.empty())

@@ -29,7 +29,7 @@ Revision | Who      | Date       | Comment
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "defines.h"
-#include <boost\any.hpp>
+#include <boost/any.hpp>
 #include <IMapCollection.h>
 #include <IMapSmartCollection.h>
 /////////////////////////////////////////////////////////////////////////////
@@ -51,62 +51,13 @@ namespace isaac
     Template method for retrieving transient data
     */
     template<class Type>
-    Type mf_xGetTransientData(std::string ac_szDataIdentifier) const
-    {
-      const auto& it = mv_mapCollection->find(ac_szDataIdentifier);
-      if (it != mv_mapCollection->end())
-      {
-        if (!it->second.empty())
-        {
-          if (it->second.type() == typeid(Type))
-            return boost::any_cast<Type>(it->second);
-          else
-          {
-            // Wrong Data Type
-            // Assert here
-            BOOST_ASSERT_MSG(false, "Wrong data type!");
-          }
-        }
-        else
-        {
-          // Wrong Data Identifier
-          // Assert here
-          BOOST_ASSERT_MSG(false, "Data Identifier not found!");
-        }
-      }
-      else {
-        BOOST_ASSERT_MSG(false, "Data Identifier not found!");
-      }
-    }
+    Type mf_xGetTransientData(std::string ac_szDataIdentifier) const;
 
     /*!
     Template method for updating transient data
     */
     template<class Type>
-    void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const
-    {
-      for (const auto& dataItem : *mv_mapCollection)
-      {
-        if (!dataItem.second.empty())
-        {
-          if (dataItem.first == ac_szDataIdentifier)
-          {
-            if (dataItem.second.type() == typeid(Type))
-            {
-              mv_mapCollection->erase(ac_szDataIdentifier);
-              mv_mapCollection->emplace(ac_szDataIdentifier, ac_data__Data);
-              break;
-            }
-            else
-            {
-              // Wrong Data Type
-              // Assert here
-              BOOST_ASSERT_MSG(false, "Wrong data type!");
-            }
-          }
-        }
-      }
-    }
+    void mp_UpdateTransientData(std::string ac_szDataIdentifier, Type ac_data__Data) const;
 
   protected:
 

@@ -39,7 +39,7 @@ namespace isaac
     
   }
 
-  const ProcessingElement& CProcElemCollection::mf_xGetProcElemByName(std::string ac_szPEIdentifier) const
+  const ProcessingElement CProcElemCollection::mf_xGetProcElemByName(std::string ac_szPEIdentifier) const
   {
     BOOST_ASSERT_MSG(!ac_szPEIdentifier.empty(), "Empty string provided");
     if (!ac_szPEIdentifier.empty())

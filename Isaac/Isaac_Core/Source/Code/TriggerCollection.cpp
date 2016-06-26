@@ -60,7 +60,7 @@ namespace isaac
     return false;
   }
 
-  const std::shared_ptr<const ITrigger>& CTriggerCollection::mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const
+  const Trigger CTriggerCollection::mf_xGetTriggerByName(std::string ac_szTriggerIdentifier) const
   {
     BOOST_ASSERT_MSG(!ac_szTriggerIdentifier.empty(), "Empty string provided");
     if (!ac_szTriggerIdentifier.empty())

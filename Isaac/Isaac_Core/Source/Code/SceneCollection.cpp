@@ -47,7 +47,7 @@ namespace isaac
     }
   }
 
-  const Scene& CSceneCollection::mf_xGetSceneByName(const std::string& av_szSceneName) const
+  const Scene CSceneCollection::mf_xGetSceneByName(const std::string& av_szSceneName) const
   {
     BOOST_ASSERT_MSG(!av_szSceneName.empty(), "Empty string provided");
     if (!av_szSceneName.empty())

@@ -28,7 +28,7 @@ Revision | Who      | Date       | Comment
 //                             Headers
 /////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include <boost\assert.hpp>
+#include <boost/assert.hpp>
 #include <SFML/Graphics.hpp>
 #include <TriggerCollection.h>
 #include <TransientDataCollection.h>

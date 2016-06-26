@@ -52,7 +52,7 @@ namespace isaac
     Return the scene that has the specified name, if the scene is not found
     nullptr will be returned
     */
-    const Scene& mf_xGetSceneByName(const std::string& av_szSceneName) const;
+    const Scene mf_xGetSceneByName(const std::string& av_szSceneName) const;
 
     virtual ~CSceneCollection();
 

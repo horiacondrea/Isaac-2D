@@ -56,7 +56,7 @@ namespace isaac
     /*!
     Get specific transition from the map
     */
-    const Transition& mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
+    const Transition mf_xGetTransitionByName(std::string ac_szTransitionIdentifier);
 
     ~CTransitionCollection();
 

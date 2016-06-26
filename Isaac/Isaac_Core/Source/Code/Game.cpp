@@ -42,7 +42,7 @@ namespace isaac
     BOOST_ASSERT_MSG(mc_xTransitionCollection != nullptr, "Transition collection is not defined");
 
     if(!(av_szGameTitle.empty())            && 
-      mc_xCSceneCollection        != nullptr &&
+      mc_xCSceneCollection       != nullptr &&
       mc_xTransientData          != nullptr &&
       mc_xTransitionCollection   != nullptr && 
       mv_xMainWindow             != nullptr )
@@ -51,9 +51,9 @@ namespace isaac
 
       if (mc_xCSceneCollection->mp_GetSize() == 0) {
         // Load default scene
-        const auto default = std::make_shared<CBlankScene>(("BlankScene"));
-        mc_xCSceneCollection->mf_mapGetRawMap().emplace("BlankScene", default);
-        mc_xInitialScene = default;
+        const auto& lc_default = std::make_shared<CBlankScene>(("BlankScene"));
+        mc_xCSceneCollection->mf_mapGetRawMap().emplace("BlankScene", lc_default);
+        mc_xInitialScene = lc_default;
       }
 
       mv_xSceneOrchestrator = std::make_shared<isaac::COrchestrator>(mc_xInitialScene, mc_xCSceneCollection, mc_xTransitionCollection);

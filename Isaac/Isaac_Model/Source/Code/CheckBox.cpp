@@ -73,7 +73,7 @@ namespace isaac
       ((mouseY > this->getPosition().y) && (mouseY < getPosition().y + lv_lfBoxHeight)))
     {
     
-      if (event.type == event.MouseButtonReleased && event.type == event.mouseButton.button == sf::Mouse::Left)
+      if (event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
       {
         if (!mv_bChecked)
           mv_bChecked = true;
