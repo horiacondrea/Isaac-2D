@@ -51,9 +51,9 @@ namespace isaac
 
     mv_LabelText->setString(ac_szButtonText);
 
-    if (!mv_LabelFont->loadFromFile(ac_szButtonTextFont))
+/*    if (!mv_LabelFont->loadFromFile(ac_szButtonTextFont))
       assert(false);
-    else
+    else*/
       mv_LabelText->setFont(*mv_LabelFont);
 
 
