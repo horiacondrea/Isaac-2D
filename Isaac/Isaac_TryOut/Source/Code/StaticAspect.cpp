@@ -70,8 +70,8 @@ namespace Test {
   void StaticAspect::mp_DefineTransientData() const
   {
 
-    const int data1 = 10;
-    mp_AddTransientData(data1, "int");
+    const int speed = 1;
+    mp_AddTransientData(speed, "speed");
 
     /*std::shared_ptr<const DataModelI::IInt> data2 = std::make_shared<const DataModelC::CBufferIInt>(5);
      mp_AddTransientData(data2, "smart");

@@ -65,7 +65,9 @@ namespace Test {
   {
     av_bReturnedBool_WindowClosed = false;
 
-    mv_pRect->move(1, 0);
+    const int speed = av_xTransientData->mf_xGetTransientData<const int>("speed");
+
+    mv_pRect->move(speed, 0);
   }
 
   void SceneOne::mp_DrawScene(std::shared_ptr<sf::RenderWindow> av_xMainWindow) const
