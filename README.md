@@ -4,7 +4,7 @@ Isaac 2D is a C++ framework based on SFML(Simple and Fast Multimedia Library) an
 
 ### How do I get set up? ###
 
-See the wiki page for documentation and tutorials
+See the wiki page for documentation and tutorials.
 
 ### Who do I talk to? ###
 
