@@ -11,3 +11,7 @@ See the wiki page for documentation and tutorials.
 * Repo owner or admin
 
 Horia Condrea <horia@horiacondrea.com>
+
+* Team members
+
+Florin Balate <florin.balate@gmail.com>
