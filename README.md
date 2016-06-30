@@ -14,4 +14,5 @@ Horia Condrea <horia@horiacondrea.com>
 
 * Team members
 
+Horia Condrea horia@horiacondrea.com
 Florin Balate <florin.balate@gmail.com>
