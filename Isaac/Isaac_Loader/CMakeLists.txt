@@ -6,6 +6,7 @@ file(GLOB_RECURSE SRCS "*.cpp")
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${Isaac2D_SOURCE_DIR}/Output")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${Isaac2D_SOURCE_DIR}/Output")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${Isaac2D_SOURCE_DIR}/Output")
 
 add_executable(Isaac_Loader ${SRCS} ${INCS})
 target_link_libraries(Isaac_Loader Isaac_Core)
