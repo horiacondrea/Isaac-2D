@@ -36,6 +36,7 @@ Revision | Who      | Date       | Comment
 
 namespace isaac
 {
+
   class EXPORT_API IStaticScene : public IScene
   {
   public:

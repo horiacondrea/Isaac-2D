@@ -122,7 +122,7 @@ namespace isaac
 
   void CSceneMachine::mp_ActivateCurrentScene(sf::Event event)
   {
-    bool lv_bCurrentSceneProvideExitScene;
+    bool lv_bCurrentSceneProvideExitScene = false;
     if (!(mv_xCurrentScene->mf_bIsSubScene()))
     {
       mv_xCurrentScene->mp_UpdateScene(mv_xMainWindow, mc_xTransientData, event, lv_bCurrentSceneProvideExitScene);

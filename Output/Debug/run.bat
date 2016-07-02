@@ -1,1 +1,1 @@
-Isaac_Loader Isaac_TryOut CreateGame
+Isaac_Loader -b Isaac_TryOut -f CreateGame

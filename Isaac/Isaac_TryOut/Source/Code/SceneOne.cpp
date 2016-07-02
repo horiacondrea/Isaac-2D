@@ -63,8 +63,6 @@ namespace Test {
     sf::Event av_eventSFMLEvent,
     bool& av_bReturnedBool_WindowClosed)
   {
-    av_bReturnedBool_WindowClosed = false;
-
     const int speed = av_xTransientData->mf_xGetTransientData<const int>("speed");
 
     mv_pRect->move(speed, 0);

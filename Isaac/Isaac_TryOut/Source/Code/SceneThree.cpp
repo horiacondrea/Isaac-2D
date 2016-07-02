@@ -72,6 +72,7 @@ namespace Test {
     sf::Event av_eventSFMLEvent,
     bool& av_bReturnedBool_WindowClosed)
   {
+
     mv_pCheckBox->mp_Update(av_pMainWindow, av_eventSFMLEvent);
   }
 
@@ -84,14 +85,14 @@ namespace Test {
 
   void SceneThree::mp_Release(std::shared_ptr<const isaac::CTransientDataCollection>& av_xTransientData, std::string ac_szTriggerName)
   {
-
-  }
-
-  SceneThree::~SceneThree()
-  {
     delete mv_pButton;
     delete mv_pBox;
     delete mv_pCheck;
     delete mv_pCheckBox;
+  }
+
+  SceneThree::~SceneThree()
+  {
+    
   }
 }
