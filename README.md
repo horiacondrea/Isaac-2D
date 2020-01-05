@@ -12,6 +12,8 @@ See the wiki page for documentation and tutorials.
 
 Horia Condrea <horia@horiacondrea.com>
 
+For more of my stuff you can check: [horiacondrea.com](https://www.horiacondrea.com)
+
 * Team members
 
 Horia Condrea <horia@horiacondrea.com>
